@@ -1,0 +1,28 @@
+{
+  "name": "pvgis-mcp-1to1",
+  "version": "0.1.0",
+  "description": "PVGIS v6 OpenAPI to MCP tools, 1 operation = 1 tool.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc -p tsconfig.json",
+    "fetch:openapi": "tsx scripts/fetch-openapi.ts",
+    "generate": "tsx scripts/generate-from-openapi.ts",
+    "audit": "tsx scripts/audit-openapi.ts",
+    "prepare:all": "pnpm fetch:openapi && pnpm generate && pnpm audit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

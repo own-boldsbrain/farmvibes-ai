@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "pvgis-1to1": {
+      "command": "pnpm",
+      "args": ["dev"],
+      "cwd": "C:/Users/fjuni/Projects/pvgis-mcp-1to1"
+    }
+  }
+}

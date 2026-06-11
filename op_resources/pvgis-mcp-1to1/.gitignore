@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.env
+openapi/pvgis-v6-openapi.json.tmp
