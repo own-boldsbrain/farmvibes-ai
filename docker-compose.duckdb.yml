@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  duckdb-geo:
+    build:
+      context: .
+      dockerfile: Dockerfile.duckdb
+    volumes:
+      - C:\Users\fjuni\Projects\01-Upstream\04-YSH-Energy\ysh-packages\infra:/app/infra
+      - .:/app/scripts
+    environment:
+      - DUCKDB_DATABASE=/app/infra/data/50_curated/duckdb/analytical.duckdb
+    command: python /app/scripts/consolidate_ysh_data.py

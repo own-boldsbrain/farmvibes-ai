@@ -1,0 +1,21 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip \
+    libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir \
+    duckdb==1.0.0 \
+    pandas \
+    geopandas \
+    shapely \
+    pyogrio
+
+# Pre-install spatial extension
+RUN python -c "import duckdb; conn = duckdb.connect(':memory:'); conn.execute('INSTALL spatial; INSTALL httpfs;'); conn.close()"
+
+ENTRYPOINT ["python"]
