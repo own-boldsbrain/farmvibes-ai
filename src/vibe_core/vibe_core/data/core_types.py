@@ -113,7 +113,7 @@ class TypeDictVibe(Dict[str, DataVibeType]):
         yield cls.validate
 
     @classmethod
-    def validate(cls, v: Any) -> "BaseVibe":
+    def validate(cls, v: Any, *args: Any) -> "BaseVibe":
         """Validate a dictionary of values against FarmVibes.AI types.
 
         This method takes a dictionary of values as input and returns a :class:`BaseVibe` object.

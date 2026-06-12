@@ -6,22 +6,18 @@ from shapely import geometry as shpg
 
 from vibe_core.data import Raster, CategoricalRaster, AssetVibe, gen_guid
 
-try:
-    import opengeoai
-except ImportError:
-    opengeoai = None
-
 LOGGER = logging.getLogger(__name__)
 
 class OpenGeoAISAMCallbackBuilder:
     def __init__(self, model_type: str):
         self.model_type = model_type
-        if opengeoai is None:
-            LOGGER.warning("OpenGeoAI library not found. Operator will run in dummy mode.")
-            self.model = None
-        else:
+        try:
+            import opengeoai
             self.model = opengeoai.sam.load_model(model_type)
             LOGGER.info(f"Initialized OpenGeoAI SAM operator with model type: {model_type}")
+        except ImportError:
+            LOGGER.warning("OpenGeoAI library not found. Operator will run in dummy mode.")
+            self.model = None
 
     def __call__(self):
         def callback(input_raster: Raster) -> Dict[str, CategoricalRaster]:

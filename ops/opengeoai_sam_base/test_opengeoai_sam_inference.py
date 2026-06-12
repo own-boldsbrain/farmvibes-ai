@@ -1,5 +1,6 @@
 import pytest
 import os
+import sys
 from datetime import datetime
 import numpy as np
 import xarray as xr
@@ -8,6 +9,11 @@ from vibe_core.data import Raster
 from vibe_dev.testing.op_tester import OpTester
 from vibe_lib.raster import save_raster_to_asset
 from tempfile import TemporaryDirectory
+from unittest.mock import MagicMock
+
+# Mock opengeoai before it's imported by the operator
+mock_opengeoai = MagicMock()
+sys.modules["opengeoai"] = mock_opengeoai
 
 CONFIG_PATH = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "opengeoai_sam_base.yaml"
@@ -53,10 +59,7 @@ def tmp_dir():
     _tmp_dir.cleanup()
 
 
-from unittest.mock import patch, MagicMock
-
-@patch("opengeoai_sam_inference.opengeoai")
-def test_opengeoai_sam_base(mock_opengeoai, tmp_dir: str):
+def test_opengeoai_sam_base(tmp_dir: str):
     # Setup mock
     mock_sam = MagicMock()
     mock_opengeoai.sam.load_model.return_value = mock_sam
