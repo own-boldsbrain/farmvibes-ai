@@ -1,0 +1,10 @@
+name: opengeoai_sam_base
+inputs:
+  input_raster: Raster
+outputs:
+  segmentation_mask: CategoricalRaster
+parameters:
+  model_type: vit_b
+entrypoint:
+  file: opengeoai_sam_inference.py
+  callback_builder: OpenGeoAISAMCallbackBuilder
