@@ -87,9 +87,81 @@
             <span id="status-text">Initializing Engine...</span>
         </div>
         
-        <div id="map-container">
-            <!-- WebGL Canvas or Tile Layer will be injected here -->
+        <div class="toolbar" style="margin-top: 20px; display: flex; gap: 10px;">
+            <button id="add-point-btn" style="background: var(--blue-500); color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Add Prompt Point</button>
+            <button id="segment-btn" style="background: linear-gradient(90deg, #FFCE00 0%, #FF6600 50%, #FF0066 100%); color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">Run Segmentation</button>
+            <button id="clear-btn" style="background: #333; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Clear All</button>
         </div>
+        
+        <div id="map-container" style="position: relative; overflow: hidden; cursor: crosshair;">
+            <!-- Placeholder for map -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #666;">Map View Area</div>
+        </div>
+
+        <script>
+            // Mocking the UI interactions
+            const mapContainer = document.getElementById('map-container');
+            const addPointBtn = document.getElementById('add-point-btn');
+            const segmentBtn = document.getElementById('segment-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const points = [];
+
+            let isAddingPoint = false;
+
+            addPointBtn.addEventListener('click', () => {
+                isAddingPoint = true;
+                addPointBtn.style.backgroundColor = 'var(--whatsapp-green)';
+            });
+
+            mapContainer.addEventListener('click', (e) => {
+                if (!isAddingPoint) return;
+                
+                const rect = mapContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                points.push({x, y});
+                
+                const dot = document.createElement('div');
+                dot.className = 'prompt-dot';
+                dot.style.position = 'absolute';
+                dot.style.left = `${x - 5}px`;
+                dot.style.top = `${y - 5}px`;
+                dot.style.width = '10px';
+                dot.style.height = '10px';
+                dot.style.backgroundColor = 'var(--blue-500)';
+                dot.style.borderRadius = '50%';
+                mapContainer.appendChild(dot);
+                
+                isAddingPoint = false;
+                addPointBtn.style.backgroundColor = 'var(--blue-500)';
+            });
+
+            segmentBtn.addEventListener('click', () => {
+                if (points.length === 0) {
+                    alert("Please add at least one prompt point.");
+                    return;
+                }
+                
+                // Simulate segmentation drawing
+                const rect = document.createElement('div');
+                rect.className = 'segment-mask';
+                rect.style.position = 'absolute';
+                rect.style.left = `${points[0].x - 50}px`;
+                rect.style.top = `${points[0].y - 50}px`;
+                rect.style.width = '100px';
+                rect.style.height = '100px';
+                rect.style.backgroundColor = 'rgba(37, 211, 102, 0.4)';
+                rect.style.border = '2px solid var(--whatsapp-green)';
+                mapContainer.appendChild(rect);
+            });
+
+            clearBtn.addEventListener('click', () => {
+                const dots = document.querySelectorAll('.prompt-dot, .segment-mask');
+                dots.forEach(d => d.remove());
+                points.length = 0;
+            });
+        </script>
     </div>
 </body>
 </html>
