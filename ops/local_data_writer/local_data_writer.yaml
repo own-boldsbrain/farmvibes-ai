@@ -1,0 +1,10 @@
+name: local_data_writer
+inputs:
+  segmentation_mask: CategoricalRaster
+outputs:
+  saved_rasters: List[CategoricalRaster]
+parameters:
+  output_dir: 50_curated/segmentation
+entrypoint:
+  file: local_data_writer.py
+  callback_builder: LocalDataWriterCallbackBuilder
