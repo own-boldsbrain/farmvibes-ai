@@ -9,7 +9,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Setup Translation Pipeline' (Protocol in workflow.md) cf53d6c
 
 ## Phase 2: Execute Translation
-- [ ] Task: Run translation script
+- [~] Task: Run translation script
     - [ ] Execute the translation script over the identified files
     - [ ] Handle any command timeouts or errors gracefully
 - [ ] Task: Verify translations

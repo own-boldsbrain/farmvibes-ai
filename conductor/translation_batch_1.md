@@ -3,6 +3,7 @@
 This plan covers the translation of 18 markdown files from English to Brazilian Portuguese, adhering to the `translate-en-pt-br` skill mandates.
 
 ## Files to Translate
+
 1. docs/source/docfiles/markdown/workflow_yaml/data_processing/threshold/threshold_raster.md
 2. docs/source/docfiles/markdown/workflow_yaml/data_processing/outlier/detect_outlier.md
 3. docs/source/docfiles/markdown/workflow_yaml/data_processing/merge/match_merge_to_ref.md
@@ -23,6 +24,7 @@ This plan covers the translation of 18 markdown files from English to Brazilian 
 18. docs/source/docfiles/markdown/workflow_yaml/data_ingestion/weather/download_era5.md
 
 ## Methodology
+
 1. Read source content.
 2. Apply `translate-en-pt-br` skill rules (Formal PT-BR, preserve syntax, technical identifiers).
 3. Use glossary:
@@ -45,6 +47,7 @@ This plan covers the translation of 18 markdown files from English to Brazilian 
 5. Do not overwrite if file exists.
 
 ## Status
+
 - [ ] threshold_raster.md
 - [ ] detect_outlier.md
 - [ ] match_merge_to_ref.md
