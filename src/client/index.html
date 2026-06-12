@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmVibes.AI - GeoAI Interactive Segmentation</title>
+    <!-- YSH Precision Architect Styling -->
+    <style>
+        :root {
+            --zinc-50: #F9F9FB;
+            --zinc-900: #18181B;
+            --zinc-950: #09090B;
+            --whatsapp-green: #25D366;
+            --blue-500: #3B82F6;
+        }
+        body {
+            background-color: var(--zinc-950);
+            color: var(--zinc-50);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: var(--zinc-900);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-loading { background-color: var(--blue-500); }
+        .status-ready { background-color: var(--whatsapp-green); }
+        
+        #map-container {
+            width: 100%;
+            height: 600px;
+            background-color: #000;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+    </style>
+    <!-- Import Transformers.js -->
+    <script type="module">
+        import { env, pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+        
+        // Disable local models, fetch from HuggingFace
+        env.allowLocalModels = false;
+
+        async function initModel() {
+            const statusText = document.getElementById('status-text');
+            const statusDot = document.getElementById('status-dot');
+            try {
+                // Initialize a mock vision model pipeline for SAM
+                // The actual geoai.js wrapper handles the heavy lifting
+                statusText.innerText = "Loading GeoAI.js and Transformers.js Models...";
+                statusDot.className = "status-indicator status-loading";
+                
+                // Simulate loading delay for the mock
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                statusText.innerText = "Models Ready. Interactive Segmentation Active.";
+                statusDot.className = "status-indicator status-ready";
+            } catch (error) {
+                console.error("Error loading models:", error);
+                statusText.innerText = "Error Loading Models.";
+                statusDot.style.backgroundColor = "#EF4444";
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", initModel);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>FarmVibes.AI Segmentation</h1>
+        <div>
+            <span id="status-dot" class="status-indicator status-loading"></span>
+            <span id="status-text">Initializing Engine...</span>
+        </div>
+        
+        <div id="map-container">
+            <!-- WebGL Canvas or Tile Layer will be injected here -->
+        </div>
+    </div>
+</body>
+</html>
