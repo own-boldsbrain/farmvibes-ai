@@ -1,9 +1,0 @@
-name: opengeoai_sam_prompt
-inputs: {}
-output:
-  prompt_collection: GeometryCollection
-parameters:
-  points_file: quod__bdgd-points__br__2026__v1.geojson
-entrypoint:
-  file: opengeoai_sam_prompt.py
-  callback_builder: OpenGeoAISAMPromptCallbackBuilder
