@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: GeoAI Interactive Segmentation Integration**
+- [x] **Track: GeoAI Interactive Segmentation Integration**
   *Link: [./tracks/geoai_segmentation_20260611/](./tracks/geoai_segmentation_20260611/)*
