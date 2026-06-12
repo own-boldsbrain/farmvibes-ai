@@ -10,6 +10,7 @@ FarmVibes.AI is a geospatial ML platform designed to develop rich insights for a
 
 ## Core Value Proposition
 - **Multi-Modal Data Fusion:** Combine RGB, SAR, multispectral, and weather data into robust models.
+- **Interactive GeoAI:** WebGL/WebGPU-powered zero-shot interactive segmentation using GeoAI.js and OpenGeoAI for real-time mask generation.
 - **Workflow Automation:** Use Directed Acyclic Graphs (DAGs) to easily pre-process data and orchestrate workflows.
 - **Ready-To-Use Workflows:** Access pre-built pipelines for tasks like carbon footprint estimation, crop segmentation, and growth rate analysis.
 - **Scalability:** Leverage Kubernetes and Docker to run workflows efficiently locally or in the cloud.

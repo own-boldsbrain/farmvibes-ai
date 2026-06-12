@@ -8,6 +8,10 @@
 - **Sphinx:** Used for generating technical documentation.
 - **TypeSpec:** Used for defining APIs and shared data models.
 
+## GeoAI & Edge ML
+- **OpenGeoAI:** Backend Python library providing foundation models (e.g., SAM) for geospatial analysis.
+- **GeoAI.js & Transformers.js:** Frontend WebGL/WebGPU inferencing and map interaction.
+
 ## Infrastructure & Compute
 - **Docker:** Containerization of all core components (server, agent, operators).
 - **Kubernetes (k3d):** Orchestration of the local compute engine to execute geospatial DAG workflows.
