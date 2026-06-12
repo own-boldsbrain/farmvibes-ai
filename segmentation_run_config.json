@@ -1,0 +1,16 @@
+{
+  "name": "segmentation_run_1",
+  "workflow": "opengeoai_interactive_segmentation",
+  "parameters": {
+    "read_local_data": {
+      "data_dir": "20_raw",
+      "file_pattern": "*.tif"
+    },
+    "read_prompts": {
+      "points_file": "quod__bdgd-points__br__2026__v1.geojson"
+    },
+    "sam_segmentation": {
+      "model_type": "vit_b"
+    }
+  }
+}
