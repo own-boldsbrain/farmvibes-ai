@@ -1,6 +1,6 @@
 name: opengeoai_sam_prompt
 inputs: {}
-outputs:
+output:
   prompt_collection: GeometryCollection
 parameters:
   points_file: quod__bdgd-points__br__2026__v1.geojson

@@ -1,5 +1,6 @@
 import logging
 import os
+import geopandas as gpd
 from typing import Dict
 from datetime import datetime
 from shapely import geometry as shpg
@@ -11,22 +12,22 @@ class OpenGeoAISAMPromptCallbackBuilder:
     def __init__(self, points_file: str):
         self.points_file = points_file
         # Local paths mapped from standard repo design
-        self.base_path = f"/mnt/data/60_geospatial/geojson"
-        self.file_path = os.path.join(self.base_path, self.points_file)
+        # Using a relative path for the test environment
+        self.file_path = os.path.join("C:/Users/fjuni/Projects/01-Upstream/04-YSH-Energy/ysh-packages/infra/data/60_geospatial/geojson", self.points_file)
 
     def __call__(self):
         def callback() -> Dict[str, GeometryCollection]:
             LOGGER.info(f"Loading BDGD points for prompting SAM from {self.file_path}")
             
-            # Dummy logic representing reading the points from GeoJSON
-            # Usually we'd do something like `gpd.read_file(self.file_path)`
-            now = datetime.now()
+            # Read GeoJSON
+            gdf = gpd.read_file(self.file_path)
             
-            # Just create a dummy GeometryCollection
-            geom = {"type": "FeatureCollection", "features": []}
+            # Convert to GeometryCollection
+            geom = shpg.mapping(shpg.GeometryCollection(gdf.geometry.tolist()))
             
             asset = AssetVibe(reference=self.file_path, type="application/geo+json", id=gen_guid())
             
+            now = datetime.now()
             prompt_collection = GeometryCollection(
                 id=gen_guid(),
                 geometry=geom,
