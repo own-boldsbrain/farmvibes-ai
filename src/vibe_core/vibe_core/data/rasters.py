@@ -167,6 +167,16 @@ class GNATSGORaster(Raster, GNATSGOProduct):
 
 
 @dataclass
+class BuildingFootprintRaster(CategoricalRaster):
+    """Represent a raster with building footprint segmentation masks.
+
+    Each pixel indicates whether it belongs to a building footprint.
+    """
+
+    pass
+
+
+@dataclass
 class SamMaskRaster(CategoricalRaster):
     """Represent a raster with Segment Anything Model (SAM) masks.
 

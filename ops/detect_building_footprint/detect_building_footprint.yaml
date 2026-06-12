@@ -1,0 +1,20 @@
+name: detect_building_footprint
+inputs:
+  input_raster: Raster
+output:
+  footprint_mask: BuildingFootprintRaster
+parameters:
+  text_prompt: "buildings and rooftops"
+  threshold: 0.5
+entrypoint:
+  file: detect_building_footprint.py
+  callback_builder: CallbackBuilder
+dependencies:
+  parameters:
+    - text_prompt
+    - threshold
+description:
+  short_description: Detects building footprints from satellite/aerial imagery using CLIPSeg text-prompt segmentation.
+  parameters:
+    text_prompt: Text description of what to detect (e.g. "buildings", "buildings and rooftops").
+    threshold: Probability threshold for binary segmentation mask (0.0 to 1.0).

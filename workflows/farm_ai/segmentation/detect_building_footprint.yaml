@@ -1,0 +1,45 @@
+name: detect_building_footprint
+sources:
+  user_input:
+    - basemap_download.input_geometry
+    - detect.input_geometry
+sinks:
+  basemap: basemap_download.merged_basemap
+  footprint_mask: detect.footprint_mask
+parameters:
+  bingmaps_api_key:
+  basemap_zoom_level: 18
+  text_prompt: "buildings and rooftops"
+  threshold: 0.5
+tasks:
+  basemap_download:
+    workflow: data_ingestion/bing/basemap_download_merge
+    parameters:
+      api_key: "@from(bingmaps_api_key)"
+      zoom_level: "@from(basemap_zoom_level)"
+  detect:
+    op: detect_building_footprint
+    parameters:
+      text_prompt: "@from(text_prompt)"
+      threshold: "@from(threshold)"
+edges:
+  - origin: basemap_download.merged_basemap
+    destination:
+      - detect.input_raster
+description:
+  short_description: >-
+    Downloads basemap with BingMaps API and detects building footprints using CLIPSeg text-prompt segmentation.
+  long_description: >-
+    The workflow lists and downloads basemaps tiles with BingMaps API, and merges them into a
+    single raster. The raster is then processed by CLIPSeg with a text prompt to produce a binary
+    building footprint mask. Optimal zoom level for building detection is 18.
+  sources:
+    user_input: Time range and geometry of interest.
+  sinks:
+    basemap: Merged basemap used as input to the segmentation.
+    footprint_mask: Binary building footprint mask.
+  parameters:
+    bingmaps_api_key: API key for Bing Maps.
+    basemap_zoom_level: Zoom level for basemap download (18 recommended for buildings).
+    text_prompt: Text prompt for CLIPSeg (e.g. "buildings", "buildings and rooftops").
+    threshold: Probability threshold for the binary mask (0.0 to 1.0).

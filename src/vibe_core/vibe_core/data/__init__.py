@@ -57,6 +57,7 @@ from .products import (
     NaipProduct,
 )
 from .rasters import (
+    BuildingFootprintRaster,
     CategoricalRaster,
     ChunkLimits,
     CloudRaster,

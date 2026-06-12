@@ -1,0 +1,28 @@
+name: detect_building_footprint
+sources:
+  input_raster:
+    - detect.input_raster
+sinks:
+  footprint_mask: detect.footprint_mask
+parameters:
+  text_prompt: "buildings and rooftops"
+  threshold: 0.5
+tasks:
+  detect:
+    op: detect_building_footprint
+    parameters:
+      text_prompt: "@from(text_prompt)"
+      threshold: "@from(threshold)"
+description:
+  short_description: Detects building footprints from satellite/aerial imagery using CLIPSeg text-prompt segmentation.
+  long_description: >-
+    Runs the CLIPSeg model with a text prompt (default: "buildings and rooftops") over the input raster
+    to produce a binary building footprint mask. The raster is processed in tiles with overlap for
+    memory efficiency and seamless results.
+  sources:
+    input_raster: Aerial or satellite imagery of the region of interest (RGB).
+  sinks:
+    footprint_mask: Binary building footprint mask as a BuildingFootprintRaster.
+  parameters:
+    text_prompt: Text prompt for CLIPSeg (e.g. "buildings", "buildings and rooftops").
+    threshold: Probability threshold for the binary mask (0.0 to 1.0).
