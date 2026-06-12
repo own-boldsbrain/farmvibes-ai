@@ -6,11 +6,11 @@
     - [x] Write Failing Tests
     - [x] Implement to Pass Tests
     - [x] Refactor
-- [ ] Task: Integrate operator with local data infrastructure (read from `20_raw`/`60_geospatial`)
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
-- [ ] Task: Implement prompting operator using `bdgd-points` GeoJSON
+- [x] Task: Integrate operator with local data infrastructure (read from `20_raw`/`60_geospatial`) d1ab479
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
+- [~] Task: Implement prompting operator using `bdgd-points` GeoJSON
     - [ ] Write Failing Tests
     - [ ] Implement to Pass Tests
     - [ ] Refactor
