@@ -3,15 +3,18 @@
 
 import argparse
 import io
+import json
 import os
 import sys
 import tempfile
 import urllib.request
 
+import geopandas as gpd
 import mercantile
 import numpy as np
 import rasterio
 from rasterio.transform import from_bounds
+from shapely.geometry import box
 
 # ESRI World Imagery (free, reliable)
 TILE_URL = (

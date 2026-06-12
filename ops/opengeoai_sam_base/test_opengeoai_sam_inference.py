@@ -53,11 +53,19 @@ def tmp_dir():
     _tmp_dir.cleanup()
 
 
-def test_opengeoai_sam_base(tmp_dir: str):
+from unittest.mock import patch, MagicMock
+
+@patch("opengeoai_sam_inference.opengeoai")
+def test_opengeoai_sam_base(mock_opengeoai, tmp_dir: str):
+    # Setup mock
+    mock_sam = MagicMock()
+    mock_opengeoai.sam.load_model.return_value = mock_sam
+    mock_sam.generate_embeddings.return_value = np.zeros((1, 256, 64, 64))
+
     raster = create_base_raster(tmp_dir)
     op_tester = OpTester(CONFIG_PATH)
     
-    # This should fail since we haven't implemented OpenGeoAISAMCallbackBuilder yet
     output = op_tester.run(input_raster=raster)
     
     assert "segmentation_mask" in output
+    mock_opengeoai.sam.load_model.assert_called_once()
