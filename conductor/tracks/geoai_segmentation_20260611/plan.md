@@ -18,14 +18,14 @@
 
 ## Phase 2: Frontend Integration (geoai.js)
 
-- [ ] Task: Setup geoai.js and Transformers.js in the frontend application
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
-- [ ] Task: Develop interactive segmentation UI component adhering to YSH design
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
+- [x] Task: Setup geoai.js and Transformers.js in the frontend application
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
+- [x] Task: Develop interactive segmentation UI component adhering to YSH design
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
 - [ ] Task: Connect frontend UI to backend tile data
     - [ ] Write Failing Tests
     - [ ] Implement to Pass Tests

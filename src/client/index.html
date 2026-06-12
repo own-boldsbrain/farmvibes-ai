@@ -48,19 +48,21 @@
             border-radius: 4px;
         }
     </style>
-    <!-- Import Transformers.js -->
+    <!-- Import Transformers.js and GeoAI -->
     <script type="module">
         import { env, pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+        import { GeoAI } from './geoai.js';
         
         // Disable local models, fetch from HuggingFace
         env.allowLocalModels = false;
+
+        const geoai = new GeoAI();
 
         async function initModel() {
             const statusText = document.getElementById('status-text');
             const statusDot = document.getElementById('status-dot');
             try {
                 // Initialize a mock vision model pipeline for SAM
-                // The actual geoai.js wrapper handles the heavy lifting
                 statusText.innerText = "Loading GeoAI.js and Transformers.js Models...";
                 statusDot.className = "status-indicator status-loading";
                 
@@ -77,6 +79,8 @@
         }
         
         document.addEventListener("DOMContentLoaded", initModel);
+        
+        window.geoai = geoai; // Expose for UI scripts
     </script>
 </head>
 <body>
@@ -157,15 +161,16 @@
                     return;
                 }
                 
-                // Simulate backend embedding fetching + segmentation drawing
                 segmentBtn.innerText = "Running...";
-                await new Promise(r => setTimeout(r, 800));
+                
+                // Use GeoAI instance from module scope
+                const mask = await window.geoai.getSegmentationMask(points, "mock_image_url");
                 
                 const rect = document.createElement('div');
                 rect.className = 'segment-mask';
                 rect.style.position = 'absolute';
-                rect.style.left = `${points[0].x - 50}px`;
-                rect.style.top = `${points[0].y - 50}px`;
+                rect.style.left = `${mask.coordinates[0].x - 50}px`;
+                rect.style.top = `${mask.coordinates[0].y - 50}px`;
                 rect.style.width = '100px';
                 rect.style.height = '100px';
                 rect.style.backgroundColor = 'rgba(37, 211, 102, 0.4)';
