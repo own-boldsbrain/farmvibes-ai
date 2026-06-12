@@ -1,0 +1,248 @@
+{
+  "name": "pvgis-mcp-1to1",
+  "version": "0.2.0",
+  "defaultVersion": "v6",
+  "fallbackVersion": "v5_3",
+  "openapi": {
+    "v6": "openapi/pvgis-v6-openapi.json",
+    "v5_3": "openapi/pvgis-v5_3-fallback.openapi.json"
+  },
+  "toolCounts": {
+    "v6": 26,
+    "v5_3": 7,
+    "total": 33
+  },
+  "tools": [
+    {
+      "toolName": "pvgis_v6_coverage_map",
+      "method": "GET",
+      "path": "/coverage/map",
+      "sourceVersion": "v6",
+      "summary": "Get the PVGIS coverage map"
+    },
+    {
+      "toolName": "pvgis_v6_get_available_coverage_layers",
+      "method": "GET",
+      "path": "/coverage/layers",
+      "sourceVersion": "v6",
+      "summary": "Get all available coverage layers"
+    },
+    {
+      "toolName": "pvgis_v6_get_coverage_layer",
+      "method": "GET",
+      "path": "/coverage/layers/{name}",
+      "sourceVersion": "v6",
+      "summary": "Get a coverage layer as geojson"
+    },
+    {
+      "toolName": "pvgis_v6_get_location_within_selected_source",
+      "method": "GET",
+      "path": "/coverage/location-within-selected-source",
+      "sourceVersion": "v6",
+      "summary": "Get if a coordinate pair is within the given irradiance source coverage"
+    },
+    {
+      "toolName": "pvgis_v6_get_available_sources_based_on_location",
+      "method": "GET",
+      "path": "/coverage/available-sources-in-selected-location",
+      "sourceVersion": "v6",
+      "summary": "Get the available irradiance sources for a specific location"
+    },
+    {
+      "toolName": "pvgis_v6_get_photovoltaic_performance_analysis",
+      "method": "GET",
+      "path": "/performance/broadband",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic performance analysis"
+    },
+    {
+      "toolName": "pvgis_v6_post_photovoltaic_performance_analysis",
+      "method": "POST",
+      "path": "/performance/broadband",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic performance analysis by providing a horizon profile file"
+    },
+    {
+      "toolName": "pvgis_v6_get_photovoltaic_performance_analysis_multiple_surfaces",
+      "method": "GET",
+      "path": "/performance/broadband-multiple-surfaces",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic performance analysis for multiple surfaces"
+    },
+    {
+      "toolName": "pvgis_v6_post_photovoltaic_performance_analysis_multiple_surfaces",
+      "method": "POST",
+      "path": "/performance/broadband-multiple-surfaces",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic performance analysis for multiple surfaces by providing a horizon profile file"
+    },
+    {
+      "toolName": "pvgis_v6_get_power_broadband",
+      "method": "GET",
+      "path": "/power/broadband",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic power"
+    },
+    {
+      "toolName": "pvgis_v6_post_power_broadband",
+      "method": "POST",
+      "path": "/power/broadband",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic power by providing a horizon profile file"
+    },
+    {
+      "toolName": "pvgis_v6_get_power_broadband_multiple_surfaces",
+      "method": "GET",
+      "path": "/power/broadband-multiple-surfaces",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic power generated for multiple surfaces"
+    },
+    {
+      "toolName": "pvgis_v6_post_power_broadband_multiple_surfaces",
+      "method": "POST",
+      "path": "/power/broadband-multiple-surfaces",
+      "sourceVersion": "v6",
+      "summary": "Calculate the photovoltaic power generated for multiple surfaces by providing a horizon profile file"
+    },
+    {
+      "toolName": "pvgis_v6_get_optimal_surface_position",
+      "method": "GET",
+      "path": "/power/surface/optimisation",
+      "sourceVersion": "v6",
+      "summary": "Calculate the optimal surface position for a photovoltaic module"
+    },
+    {
+      "toolName": "pvgis_v6_post_optimal_surface_position",
+      "method": "POST",
+      "path": "/power/surface/optimisation",
+      "sourceVersion": "v6",
+      "summary": "Calculate the optimal surface position for a photovoltaic module by providing a horizon profile file"
+    },
+    {
+      "toolName": "pvgis_v6_get_citation_text",
+      "method": "GET",
+      "path": "/reference/citation",
+      "sourceVersion": "v6",
+      "summary": "Get citation text in BibTeX format"
+    },
+    {
+      "toolName": "pvgis_v6_get_publications",
+      "method": "GET",
+      "path": "/reference/publications",
+      "sourceVersion": "v6",
+      "summary": "Get the publications in the PVGIS Web API in `BibTeX` format."
+    },
+    {
+      "toolName": "pvgis_v6_get_conventions_in_pvgis",
+      "method": "GET",
+      "path": "/reference/conventions-in-pvgis",
+      "sourceVersion": "v6",
+      "summary": "Get the conventions in the PVGIS Web API in `JSON` format, i.e. a concise summary of the conventions."
+    },
+    {
+      "toolName": "pvgis_v6_get_license",
+      "method": "GET",
+      "path": "/reference/license",
+      "sourceVersion": "v6",
+      "summary": "Get the license of the PVGIS Web API in `JSON-LD` format."
+    },
+    {
+      "toolName": "pvgis_v6_get_solar_position_overview",
+      "method": "GET",
+      "path": "/solar-position/overview",
+      "sourceVersion": "v6",
+      "summary": "Calculate the solar position time series"
+    },
+    {
+      "toolName": "pvgis_v6_post_solar_position_overview",
+      "method": "POST",
+      "path": "/solar-position/overview",
+      "sourceVersion": "v6",
+      "summary": "Calculate the solar position time series by providing a horizon profile file"
+    },
+    {
+      "toolName": "pvgis_v6_get_features",
+      "method": "GET",
+      "path": "/features",
+      "sourceVersion": "v6",
+      "summary": "Get the features of the PVGIS Web API in `Markdown` format."
+    },
+    {
+      "toolName": "pvgis_v6_get_horizon_profile",
+      "method": "GET",
+      "path": "/topography/horizon-profile",
+      "sourceVersion": "v6",
+      "summary": "Get the horizon profile over a location"
+    },
+    {
+      "toolName": "pvgis_v6_post_horizon_profile",
+      "method": "POST",
+      "path": "/topography/horizon-profile",
+      "sourceVersion": "v6",
+      "summary": "Get the horizon profile over a location by providing a file"
+    },
+    {
+      "toolName": "pvgis_v6_elevation",
+      "method": "GET",
+      "path": "/topography/elevation",
+      "sourceVersion": "v6",
+      "summary": "Get the elevation over a location"
+    },
+    {
+      "toolName": "pvgis_v6_heating_and_cooling_degree_days",
+      "method": "GET",
+      "path": "/meteorological/degree-days",
+      "sourceVersion": "v6",
+      "summary": "Calculate the heating and cooling degree days"
+    },
+    {
+      "toolName": "pvgis_v5_3_pvcalc_get",
+      "method": "GET",
+      "path": "/PVcalc",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS grid-connected PV performance calculation"
+    },
+    {
+      "toolName": "pvgis_v5_3_seriescalc_get",
+      "method": "GET",
+      "path": "/seriescalc",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS hourly time series calculation"
+    },
+    {
+      "toolName": "pvgis_v5_3_tmy_get",
+      "method": "GET",
+      "path": "/tmy",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS Typical Meteorological Year"
+    },
+    {
+      "toolName": "pvgis_v5_3_mrcalc_get",
+      "method": "GET",
+      "path": "/MRcalc",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS monthly radiation calculation"
+    },
+    {
+      "toolName": "pvgis_v5_3_drcalc_get",
+      "method": "GET",
+      "path": "/DRcalc",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS daily radiation calculation"
+    },
+    {
+      "toolName": "pvgis_v5_3_shscalc_get",
+      "method": "GET",
+      "path": "/SHScalc",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS stand-alone PV system calculation"
+    },
+    {
+      "toolName": "pvgis_v5_3_printhorizon_get",
+      "method": "GET",
+      "path": "/printhorizon",
+      "sourceVersion": "v5_3",
+      "summary": "PVGIS horizon profile"
+    }
+  ]
+}

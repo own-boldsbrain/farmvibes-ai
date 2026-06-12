@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "generatedToolCount": 33,
+  "sources": [
+    {
+      "version": "v6",
+      "path": "/mnt/data/pvgis_v6_pkg/pvgis-mcp-1to1/openapi/pvgis-v6-openapi.json",
+      "prefix": "pvgis_v6",
+      "openApiExists": true,
+      "openApiOperationCount": 26,
+      "missingGeneratedTools": []
+    },
+    {
+      "version": "v5_3",
+      "path": "/mnt/data/pvgis_v6_pkg/pvgis-mcp-1to1/openapi/pvgis-v5_3-fallback.openapi.json",
+      "prefix": "pvgis_v5_3",
+      "openApiExists": true,
+      "openApiOperationCount": 7,
+      "missingGeneratedTools": []
+    }
+  ]
+}
