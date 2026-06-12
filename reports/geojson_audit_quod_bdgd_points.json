@@ -1,0 +1,14 @@
+{
+  "total_features": 102485,
+  "valid_point_features": 102485,
+  "null_geometry": 0,
+  "unique_doc_tokens": 22904,
+  "unique_cep": 38037,
+  "duplicate_key_count": 18147,
+  "bounds": [
+    -73.183192,
+    -33.661923,
+    -32.410012,
+    4.480715
+  ]
+}

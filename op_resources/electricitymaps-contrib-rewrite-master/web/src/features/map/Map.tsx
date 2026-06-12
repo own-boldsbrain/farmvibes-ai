@@ -4,7 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import { Layer, Map, MapRef, Source } from 'react-map-gl';
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
-import distributorColors from '../../../public/data/distribuidoras-colors.json';
+import distributorColors from '../../data/distribuidoras-colors.json';
 
 import useGetState from 'api/getState';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
@@ -523,31 +523,27 @@ export default function MapPage(): ReactElement {
         <Layer id="zones-hoverable-layer" type="fill" paint={styles.zonesHover} />
         <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
       </Source>
-      <Source id="bdgd" type="vector" tiles={["/data/tiles/bdgd/{z}/{x}/{y}.pbf"]} promoteId="objectid">
+      <Source id="bdgd" type="geojson" data="/data/bdgd.geojson" promoteId="ysh_agent_code">
         <Layer
           id="concessionarias-fill-layer"
-          sourceLayer="bdgd"
           type="fill-extrusion"
           paint={styles.concessionariasFill}
           filter={['==', ['get', 'ysh_boundary_type'], 'concessionaria']}
         />
         <Layer
           id="concessionarias-border"
-          sourceLayer="bdgd"
           type="line"
           paint={styles.concessionariasBorder}
           filter={['==', ['get', 'ysh_boundary_type'], 'concessionaria']}
         />
         <Layer
           id="permissionarias-fill-layer"
-          sourceLayer="bdgd"
           type="fill-extrusion"
           paint={styles.permissionariasFill}
           filter={['==', ['get', 'ysh_boundary_type'], 'permissionaria']}
         />
         <Layer
           id="permissionarias-border"
-          sourceLayer="bdgd"
           type="line"
           paint={styles.permissionariasBorder}
           filter={['==', ['get', 'ysh_boundary_type'], 'permissionaria']}
