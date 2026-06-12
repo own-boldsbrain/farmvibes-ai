@@ -31,10 +31,10 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Frontend Integration (geoai.js)' (Protocol in workflow.md)
 
 ## Phase 3: End-to-End Pipeline & Storage
-- [ ] Task: Create complete FarmVibes.AI workflow DAG for the segmentation pipeline
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
+- [x] Task: Create complete FarmVibes.AI workflow DAG for the segmentation pipeline d98a896
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
 - [ ] Task: Implement output sink to save masks/polygons to `50_curated` and `70_artifacts`
     - [ ] Write Failing Tests
     - [ ] Implement to Pass Tests
