@@ -20,10 +20,10 @@
     - [x] Write Failing Tests
     - [x] Implement to Pass Tests
     - [x] Refactor
-- [ ] Task: Develop interactive segmentation UI component adhering to YSH design
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
+- [x] Task: Develop interactive segmentation UI component adhering to YSH design 203741a
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
 - [ ] Task: Connect frontend UI to backend tile data
     - [ ] Write Failing Tests
     - [ ] Implement to Pass Tests
