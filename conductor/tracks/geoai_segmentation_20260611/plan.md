@@ -35,8 +35,8 @@
     - [x] Write Failing Tests
     - [x] Implement to Pass Tests
     - [x] Refactor
-- [ ] Task: Implement output sink to save masks/polygons to `50_curated` and `70_artifacts`
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
+- [x] Task: Implement output sink to save masks/polygons to `50_curated` and `70_artifacts` 2079fae
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: End-to-End Pipeline & Storage' (Protocol in workflow.md)
