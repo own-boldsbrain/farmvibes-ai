@@ -1,9 +1,0 @@
-{
-  "openapi": "3.0.3",
-  "info": {
-    "title": "PVGIS 5.3 Fallback API Skeleton",
-    "version": "5.3-fallback",
-    "description": "Fallback skeleton used by the MCP scaffold. Replace with the official OpenAPI if available."
-  },
-  "paths": {}
-}

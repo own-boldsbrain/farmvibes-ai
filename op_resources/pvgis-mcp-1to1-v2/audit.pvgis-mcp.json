@@ -4,7 +4,7 @@
   "sources": [
     {
       "version": "v6",
-      "path": "/mnt/data/pvgis_v6_pkg/pvgis-mcp-1to1/openapi/pvgis-v6-openapi.json",
+      "path": "C:\\Users\\fjuni\\Projects\\01-Upstream\\04-YSH-Energy\\farmvibes-ai\\op_resources\\pvgis-mcp-1to1-v2\\openapi\\pvgis-v6-openapi.json",
       "prefix": "pvgis_v6",
       "openApiExists": true,
       "openApiOperationCount": 26,
@@ -12,7 +12,7 @@
     },
     {
       "version": "v5_3",
-      "path": "/mnt/data/pvgis_v6_pkg/pvgis-mcp-1to1/openapi/pvgis-v5_3-fallback.openapi.json",
+      "path": "C:\\Users\\fjuni\\Projects\\01-Upstream\\04-YSH-Energy\\farmvibes-ai\\op_resources\\pvgis-mcp-1to1-v2\\openapi\\pvgis-v5_3-fallback.openapi.json",
       "prefix": "pvgis_v5_3",
       "openApiExists": true,
       "openApiOperationCount": 7,
