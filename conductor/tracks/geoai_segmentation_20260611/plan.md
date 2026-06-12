@@ -9,10 +9,10 @@
     - [x] Write Failing Tests
     - [x] Implement to Pass Tests
     - [x] Refactor
-- [ ] Task: Implement prompting operator using `bdgd-points` GeoJSON
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
+- [x] Task: Implement prompting operator using `bdgd-points` GeoJSON 7809d06
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Backend Operators (OpenGeoAI)' (Protocol in workflow.md)
 
 ## Phase 2: Frontend Integration (geoai.js)
