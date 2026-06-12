@@ -1,0 +1,11 @@
+{
+  "id": "codegraph_evolution_20260612",
+  "title": "Evolution of CodeGraph: The Void Cockpit",
+  "description": "Transforming the standalone codegraph.html into a high-performance, feature-rich UX/UI cockpit for codebase exploration.",
+  "status": "in_progress",
+  "priority": "high",
+  "owner": "Gemini CLI",
+  "tags": ["frontend", "visualization", "ux", "d3", "canvas"],
+  "created_at": "2026-06-12T00:00:00Z",
+  "updated_at": "2026-06-12T00:00:00Z"
+}

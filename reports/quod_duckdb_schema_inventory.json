@@ -1,0 +1,3880 @@
+{
+  "backtest_credsolaris": [
+    {
+      "column_name": "cadastro_pessoas_fisicas",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_criacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "quod_score_3g",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "flag_negativa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "atraso_negativa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "valor_total_negativa",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "quantidade_total_negativa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_referencia_renda",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "renda_2g_valor",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "renda_2g_faixa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "renda_2g_faixa_descricao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "renda_2g_faixa_valor",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "positivo",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_gasto",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_comprometimento",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_gasto_cartao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_comprometimento_cartao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_gasto_parcelados",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_comprometimento_parcelados",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "imobiliario",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "veiculo",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "consorcio",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "outros",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "confianca",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "backtest_pessoa_fisica_atributos": [
+    {
+      "column_name": "cadastro_pessoas_fisicas",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_av_grv01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_em_its01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pc_tdc01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pd_rec01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_cnt01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol03_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol04_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_vlr01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv03_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv04_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv05_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_frq01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_rec01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_vpg01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_frq01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_amp01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod01_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod02_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod03_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod04_pf",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "backtest_pessoa_juridica_atributos": [
+    {
+      "column_name": "cadastro_nacional_pessoa_juridica",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_criacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cenario_cliente",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_av_grv01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_av_grv01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_av_grv01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_av_grv01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_em_its01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_em_its01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_em_its01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_em_its01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pc_tdc01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pc_tdc01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pc_tdc01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pc_tdc01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pd_rec01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pd_rec01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pd_rec01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "gc_pd_rec01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_cnt01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_cnt01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_cnt01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_cnt01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_cnt02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol03_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol04_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol04_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_cp_vol05_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_hbt02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_em_its02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_cpr02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_prd02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_tpr02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_vlr01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_vlr01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_vlr01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pf_pc_vlr01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_amp03_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv03_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv03_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv03_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv03_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv04_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv04_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv04_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv04_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_grv05_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc03_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_mrc04_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_av_tdc02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_amp02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_frq01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_frq01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_frq01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_frq01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_rec01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_rec01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_rec01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_rec01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_ha_vlr02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_cpg02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_vpg01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_vpg01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_vpg01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pp_pd_vpg01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_frq01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_frq01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_frq01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_frq01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_bc_rec02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_amp01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_amp01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_amp01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_amp01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_etb02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod01_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod01_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod01_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod01_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod02_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod02_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod02_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod02_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod03_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod03_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod03_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod03_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod04_cliente",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod04_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod04_sc",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod04_scpj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod05_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "rm_pr_mod06_pj",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "backtest_pessoa_juridica_faturamento": [
+    {
+      "column_name": "cadastro_nacional_pessoa_juridica",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_criacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_referencia_faturamento",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "porte",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_faturamento_quod",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "backtest_pessoa_juridica_gasto_estimado": [
+    {
+      "column_name": "chave_cadastro_nacional_pessoa_juridica",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cadastro_nacional_pessoa_juridica",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_criacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_gasto_estimado",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "faixa_comprometimento_percentual",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "nivel_confianca",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "backtest_pessoa_juridica_limites": [
+    {
+      "column_name": "cadastro_nacional_pessoa_juridica",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_criacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "probabilidade_limite_conservador",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "probabilidade_limite_moderado",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "probabilidade_limite_arriscado",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "valor_limite_conservador",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "valor_limite_moderado",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "valor_limite_arriscado",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "backtest_pessoa_juridica_score": [
+    {
+      "column_name": "cadastro_nacional_pessoa_juridica",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_criacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "identificador",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cad_ttimsc01_rd",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "flag_informacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "segmento_score_pessoa_juridica",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "score_pessoa_juridica",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "classificacao_rating",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "pontuacao",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "flag_negativa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "atraso_negativa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "valor_total_negativa",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "quantidade_total_negativa",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "enriquecimento_pessoa_fisica": [
+    {
+      "column_name": "cpf",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "return_code",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "nome",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_nascimento",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "genero",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "situacao_cadastral",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_situacao_cadastral",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "flag_obito",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_obito",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "nome_mae",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "participacao_empresas",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "razao_social_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_cnpj_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "percentual_participacao_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_entrada_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "razao_social_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_cnpj_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "percentual_participacao_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_entrada_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "razao_social_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_cnpj_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "percentual_participacao_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_entrada_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "razao_social_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_cnpj_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "percentual_participacao_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_entrada_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "razao_social_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_cnpj_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "percentual_participacao_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_entrada_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "municipio_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "uf_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep_1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "municipio_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "uf_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep_2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "municipio_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "uf_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep_3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "municipio_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "uf_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep_4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "municipio_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "uf_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep_5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "enriquecimento_pessoa_juridica_empresas": [
+    {
+      "column_name": "codigo_registro",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_referencia",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_cnpj",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "razao_social",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "nome_fantasia",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "natureza_juridica",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "descricao_natureza_juridica",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_de_fundacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnae_primario",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnae_secundario",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "descricao_cnae_primario",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "descricao_cnae_secundario",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "nire",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "quantidade_filiais",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cidade1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "estado1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cidade2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "estado2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cidade3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "estado3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cidade4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "estado4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "logradouro5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_logradouro5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "complemento5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "bairro5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cidade5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "estado5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cep5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ddd5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email1",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email2",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email3",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email4",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email5",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "codigo_retorno",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "enriquecimento_pessoa_juridica_socios": [
+    {
+      "column_name": "codigo_registro",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj_etl",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cnpj",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_referencia",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "capital_social",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "moeda_capital_social",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "tipo_documento_socio",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_documento_socio",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "nome_socio",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "funcao_socio",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "data_entrada_socio",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "percentual_participacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "valor_participacao",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "codigo_retorno",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "identity_validation": [
+    {
+      "column_name": "status",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "message",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "query_id",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "transaction_id",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "model_code",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cadastro_pessoas_fisicas",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone",
+      "column_type": "BIGINT",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "codigo_enderecamento_postal",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "numero_residencia",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_falecido",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_pessoa_politicamente_exposta",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_pessoa_importante",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_inativo",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_menor_de_idade",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "codigo_motivo",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "status_confirmacao_endereco",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_telefone_confirmado",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_email_confirmado",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "telefone_quod",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "email_quod",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "endereco_quod",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ]
+}

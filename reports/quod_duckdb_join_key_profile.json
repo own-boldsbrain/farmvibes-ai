@@ -1,0 +1,27 @@
+{
+  "enriquecimento_pessoa_fisica.cpf": {
+    "total": 21189,
+    "unique_count": 20328,
+    "null_count": 0.0
+  },
+  "enriquecimento_pessoa_juridica_empresas.cnpj": {
+    "total": 2843,
+    "unique_count": 2843,
+    "null_count": 0.0
+  },
+  "enriquecimento_pessoa_juridica_empresas.codigo_registro": {
+    "total": 2843,
+    "unique_count": 1,
+    "null_count": 0.0
+  },
+  "enriquecimento_pessoa_juridica_socios.cnpj": {
+    "total": 3579,
+    "unique_count": 2824,
+    "null_count": 0.0
+  },
+  "enriquecimento_pessoa_juridica_socios.codigo_registro": {
+    "total": 3579,
+    "unique_count": 1,
+    "null_count": 0.0
+  }
+}
