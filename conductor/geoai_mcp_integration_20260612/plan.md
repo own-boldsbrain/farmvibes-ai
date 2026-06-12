@@ -2,12 +2,13 @@
 
 ## Phase 1: Infrastructure & Backend Integration
 
-- [~] Task: Enable GeoAI MCP Server for local persistence
+- [x] Task: Enable GeoAI MCP Server for local persistence
     - [x] Configure `geoai-mcp-server` environment variables for shared storage.
-    - [ ] Verify server connectivity within the local cluster/development environment.
-- [~] Task: Create MCP Bridge in `vibe_server`
-    - [~] Implement MCP client module to invoke GeoAI tools programmatically.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure & Backend Integration' (Protocol in workflow.md)
+    - [x] Verify server connectivity within the local cluster/development environment.
+- [x] Task: Create MCP Bridge in `vibe_server`
+    - [x] Implement MCP client module to invoke GeoAI tools programmatically.
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure & Backend Integration' (Protocol in workflow.md)
+
 
 
 ## Phase 2: Frontend Refactoring
