@@ -2,10 +2,10 @@
 
 ## Phase 1: Backend Operators (OpenGeoAI)
 
-- [~] Task: Implement SAM base operator using OpenGeoAI
-    - [ ] Write Failing Tests
-    - [ ] Implement to Pass Tests
-    - [ ] Refactor
+- [x] Task: Implement SAM base operator using OpenGeoAI 561177f
+    - [x] Write Failing Tests
+    - [x] Implement to Pass Tests
+    - [x] Refactor
 - [ ] Task: Integrate operator with local data infrastructure (read from `20_raw`/`60_geospatial`)
     - [ ] Write Failing Tests
     - [ ] Implement to Pass Tests
