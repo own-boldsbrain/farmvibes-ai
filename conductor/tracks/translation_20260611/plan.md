@@ -1,8 +1,8 @@
 # Implementation Plan: Translate mapbox-agent-skills to pt-br
 
 ## Phase 1: Setup Translation Pipeline
-- [ ] Task: List all `.md` files in the target directory
-    - [ ] List all markdown files recursively in `op_resources/mapbox-gl-js/mapbox-agent-skills/`
+- [x] Task: List all `.md` files in the target directory df46d14
+    - [x] List all markdown files recursively in `op_resources/mapbox-gl-js/mapbox-agent-skills/`
 - [ ] Task: Develop translation script
     - [ ] Write a script that iterates through the files and runs `gemma translate` with `deeplx`
     - [ ] Configure script to save output with `.pt-br.md` suffix alongside the original files
