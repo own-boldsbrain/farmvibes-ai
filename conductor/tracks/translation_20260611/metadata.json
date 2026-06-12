@@ -1,0 +1,8 @@
+{
+  "track_id": "translation_20260611",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-11T00:00:00Z",
+  "updated_at": "2026-06-11T00:00:00Z",
+  "description": "Translate mapbox-agent-skills documentation to pt-br using gemma translate with deeplx"
+}
