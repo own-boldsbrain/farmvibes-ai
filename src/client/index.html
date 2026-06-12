@@ -108,6 +108,20 @@
 
             let isAddingPoint = false;
 
+            // Mock connecting to backend tile data
+            async function loadTiles() {
+                try {
+                    // Simulate fetching tile from FarmVibes.AI API
+                    await new Promise(r => setTimeout(r, 500));
+                    mapContainer.style.backgroundColor = '#1a1a1a';
+                    mapContainer.style.backgroundImage = 'radial-gradient(#333 1px, transparent 1px)';
+                    mapContainer.style.backgroundSize = '20px 20px';
+                    mapContainer.innerHTML = '<div style="position: absolute; top: 10px; left: 10px; color: var(--whatsapp-green); font-family: monospace; font-size: 12px;">Connected to Tile Server: XYZ (Mock)</div>';
+                } catch (e) {
+                    console.error("Failed to load tiles");
+                }
+            }
+
             addPointBtn.addEventListener('click', () => {
                 isAddingPoint = true;
                 addPointBtn.style.backgroundColor = 'var(--whatsapp-green)';
@@ -137,13 +151,16 @@
                 addPointBtn.style.backgroundColor = 'var(--blue-500)';
             });
 
-            segmentBtn.addEventListener('click', () => {
+            segmentBtn.addEventListener('click', async () => {
                 if (points.length === 0) {
                     alert("Please add at least one prompt point.");
                     return;
                 }
                 
-                // Simulate segmentation drawing
+                // Simulate backend embedding fetching + segmentation drawing
+                segmentBtn.innerText = "Running...";
+                await new Promise(r => setTimeout(r, 800));
+                
                 const rect = document.createElement('div');
                 rect.className = 'segment-mask';
                 rect.style.position = 'absolute';
@@ -154,6 +171,8 @@
                 rect.style.backgroundColor = 'rgba(37, 211, 102, 0.4)';
                 rect.style.border = '2px solid var(--whatsapp-green)';
                 mapContainer.appendChild(rect);
+                
+                segmentBtn.innerText = "Run Segmentation";
             });
 
             clearBtn.addEventListener('click', () => {
@@ -161,6 +180,9 @@
                 dots.forEach(d => d.remove());
                 points.length = 0;
             });
+            
+            // Auto-load tiles on start
+            loadTiles();
         </script>
     </div>
 </body>
