@@ -27,6 +27,7 @@ Para cada produto Sentinel-1, encontra todos os tiles Sentinel-2 com os quais el
 5. Gera hash único por combinação S1_id + tile_id
 
 ## Use Cases
+
 1. **Automação**: Para cada produto Sentinel-1, encontra todos os tiles Sentinel-2 com os quais ele intersecta espacialmente, gerando um item por combinação produto×tile de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.

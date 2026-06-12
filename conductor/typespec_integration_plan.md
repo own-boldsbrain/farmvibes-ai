@@ -4,6 +4,7 @@
 Prepare the FarmVibes.AI repository for the adoption of TypeSpec as the standard for API and data model definitions. This includes setting up the build infrastructure, documentation, and a foundational project structure.
 
 ## Key Files & Context
+
 - `typespec/package.json`: Will host NPM scripts for TypeSpec CLI.
 - `Makefile`: Will expose TypeSpec commands to the repository's standard build workflow.
 - `GEMINI.md`: Will document the new standard and how to use it.
@@ -12,6 +13,7 @@ Prepare the FarmVibes.AI repository for the adoption of TypeSpec as the standard
 ## Implementation Steps
 
 ### 1. Update `typespec/package.json`
+
 Add standard scripts for building and formatting TypeSpec files to make local development easier:
 - `"build": "tsp compile ."`
 - `"format": "tsp format **/*.tsp"`

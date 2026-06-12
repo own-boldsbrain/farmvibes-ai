@@ -160,6 +160,7 @@ Before marking any task complete, verify:
 ```
 
 ### Daily Development
+
 ```bash
 # Example: Commands for common daily tasks (e.g., start dev server, run tests, lint, format)
 # e.g., for a Node.js project: npm run dev, npm test, npm run lint
@@ -167,6 +168,7 @@ Before marking any task complete, verify:
 ```
 
 ### Before Committing
+
 ```bash
 # Example: Commands to run all pre-commit checks (e.g., format, lint, type check, run tests)
 # e.g., for a Node.js project: npm run check
@@ -176,12 +178,14 @@ Before marking any task complete, verify:
 ## Testing Requirements
 
 ### Unit Testing
+
 - Every module must have corresponding tests.
 - Use appropriate test setup/teardown mechanisms (e.g., fixtures, beforeEach/afterEach).
 - Mock external dependencies.
 - Test both success and failure cases.
 
 ### Integration Testing
+
 - Test complete user flows
 - Verify database transactions
 - Test authentication and authorization
