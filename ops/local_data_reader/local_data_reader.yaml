@@ -1,0 +1,10 @@
+name: local_data_reader
+inputs: {}
+outputs:
+  rasters: List[Raster]
+parameters:
+  data_dir: 20_raw
+  file_pattern: "*.tif"
+entrypoint:
+  file: local_data_reader.py
+  callback_builder: LocalDataReaderCallbackBuilder
