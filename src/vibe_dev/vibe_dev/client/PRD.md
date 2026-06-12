@@ -38,6 +38,7 @@ Implementações alternativas do cliente FarmVibes para ambientes de desenvolvim
 ## 5. Lógicas e Cálculos
 
 **`SubprocessClient.run`:**
+
 1. Cria uma instância `SubprocessWorkflowRun` com callbacks assíncronos.
 2. Verifica se `workflow_name` está registrado em `list_workflows()`:
    - Sim: carrega com `load_workflow_by_name`.
@@ -50,10 +51,12 @@ Implementações alternativas do cliente FarmVibes para ambientes de desenvolvim
 8. Em caso de exceção: dispara callback `WORKFLOW_FAILED` com a mensagem de erro; relança se `raise_exception=True`.
 
 **`SubprocessWorkflowRun._workflow_callback`:**
+
 - Retorna closure assíncrono que mapeia `WorkflowChange` para `RunStatus` (`pending → running → done/failed`).
 - Em caso de falha, armazena `reason` para exposição via `status`.
 
 **`get_default_subprocess_client`:**
+
 - Cria `LocalStorageConfig` com `local_path=cache_dir` e `LocalFileAssetManager` em subdiretório `assets/`.
 - Monta `OperationFactoryConfig` com storage local + `AzureSecretProviderConfig`.
 - Retorna `SubprocessClient` com `raise_exception=False`.

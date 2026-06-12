@@ -20,3 +20,42 @@ Baixa o raster de um atributo de solo do gNATSGO (ex.: capacidade de armazenamen
 2. Baixa o asset da variável especificada para diretório temporário
 3. Comprime o raster usando `compress_raster` com parâmetros `FLOAT_COMPRESSION_KWARGS`
 4. Gera hash único e retorna como `GNATSGORaster` com banda mapeada para a variável
+
+## Use Cases
+1. **Ingestão de Gnatsgo**: Baixar dados Gnatsgo para uma região e período específicos.
+2. **Atualização de catálogo**: Manter uma base local atualizada com dados Gnatsgo mais recentes.
+3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
+
+## Faz / Não Faz
+
+- **Faz**: Download de dados da fonte original para armazenamento local.
+- **Faz**: Validação de integridade dos dados baixados.
+- **Não Faz**: Não processa ou analisa o conteúdo baixado — apenas transfere.
+- **Não Faz**: Não modifica os dados originais.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `gnatsgo_product` | — | Conforme especificação da operação |
+| `variable` | — | Conforme especificação da operação |
+| `api_key` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Raster geoespacial pronto para visualização e análises subsequentes.
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `download_gnatsgo` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Microsoft Planetary Computer**: Catálogo STAC e API de dados.
+
+## Datasets / Fontes de Dados
+
+- **Dados de solo**: SoilGrids, USDA, GNATSGO.
+

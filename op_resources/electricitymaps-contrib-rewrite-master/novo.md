@@ -1,0 +1,204 @@
+# Resumo de Dependencias do Projeto
+
+## Python (Poetry)
+
+- dependencies:
+	- python: >= 3.8, < 4.0
+	- pydantic: ^1.9.0
+	- arrow: 0.16.0 (optional)
+	- beautifulsoup4: ~4.6.0 (optional)
+	- demjson3: ^3.0.5 (optional)
+	- freezegun: ^0.3.15 (optional)
+	- html5lib: ^1.1 (optional)
+	- imageio: ^2.18.0 (optional)
+	- lxml: ^4.9.1 (optional)
+	- mock: ^2.0.0 (optional)
+	- opencv-python: 4.6.0.66 (optional)
+	- pandas: ^1.4.4 (optional)
+	- Pillow: ^9.1.1 (optional)
+	- pytesseract: 0.2.0 (optional)
+	- ree: 2.3.2 (optional)
+	- requests: ~2.25.1 (optional)
+	- signalr-client-threads: ~0.0.12 (optional)
+	- tablib: ~0.12.1 (optional)
+	- tqdm: ^4.64.0 (optional)
+	- xlrd: ^2.0.1 (optional)
+	- xmltodict: ^0.13.0 (optional)
+	- black: 22.12.0
+	- isort: 5.12.0
+	- deepdiff: ^5.8.1
+	- PyYAML: ^6.0
+- dev-dependencies:
+	- flake8: ^3.9.2
+	- mock: ^2.0.0
+	- pylint: ^2.13.7
+	- requests-mock: ~1.3.0
+	- testfixtures: ^7.0.0
+	- click: <=8.0
+	- pytest: ^7.1.2
+- nota: existem extras definidos no Poetry (parsers, validators e scripts).
+
+## Web
+
+- dependencies:
+	- @capacitor/core: ^4.6.2
+	- @mapbox/point-geometry: ^0.1.0
+	- @radix-ui/react-accordion: ^1.0.1
+	- @radix-ui/react-dialog: ^1.0.2
+	- @radix-ui/react-navigation-menu: ^1.1.1
+	- @radix-ui/react-portal: ^1.0.1
+	- @radix-ui/react-slider: ^1.1.0
+	- @radix-ui/react-toast: ^1.1.2
+	- @radix-ui/react-toggle: ^1.0.1
+	- @radix-ui/react-toggle-group: ^1.0.1
+	- @radix-ui/react-tooltip: ^1.0.2
+	- @react-spring/web: ^9.5.5
+	- @sentry/react: ^7.27.0
+	- @sentry/tracing: ^7.28.0
+	- @tailwindcss/typography: ^0.5.8
+	- @tanstack/react-query: 4.13.0
+	- @tanstack/react-query-devtools: ^4.13.0
+	- @turf/helpers: ^6.5.0
+	- @types/d3: ^7.4.0
+	- @types/d3-array: ^3.0.3
+	- @types/d3-selection: ^3.0.3
+	- @types/d3-shape: ^3.1.0
+	- @types/sprintf-js: ^1.1.2
+	- country-flag-icons: ^1.5.5
+	- currency-symbol-map: ^5.1.0
+	- d3-array: ^3.2.0
+	- d3-format: ^3.1.0
+	- d3-interpolate: ^3.0.1
+	- d3-scale: ^4.0.2
+	- d3-selection: ^3.0.0
+	- d3-shape: ^3.1.0
+	- date-fns: ^2.29.3
+	- geojson: ^0.5.0
+	- i18next: ^22.0.5
+	- i18next-browser-languagedetector: ^7.0.1
+	- i18next-http-backend: ^2.0.1
+	- jotai: ^1.9.1
+	- js-yaml: ^4.1.0
+	- mapbox-gl: npm:empty-npm-package@1.0.0
+	- maplibre-gl: ^2.4.0
+	- react: 18.2.0
+	- react-dom: 18.2.0
+	- react-i18next: ^12.0.0
+	- react-icons: ^4.7.0
+	- react-map-gl: ^7.0.19
+	- react-router-dom: 6.3.0
+	- react-spinners: ^0.13.6
+	- react-spring-bottom-sheet: 3.5.0-alpha.0
+	- recharts: ^2.1.16
+	- sprintf-js: ^1.1.2
+	- tailwind-merge: ^1.8.1
+	- tailwindcss: ^3.2.4
+	- tailwindcss-radix: ^2.6.1
+	- tiny-invariant: ^1.3.1
+	- topojson-client: ^3.1.0
+	- topojson-server: ^3.0.1
+- devDependencies:
+	- @mdx-js/react: ^2.1.5
+	- @nabla/vite-plugin-eslint: 1.4.1
+	- @sentry/vite-plugin: ^0.3.0
+	- @storybook/addon-actions: 7.0.0-alpha.47
+	- @storybook/addon-backgrounds: 7.0.0-alpha.47
+	- @storybook/addon-docs: 7.0.0-alpha.47
+	- @storybook/addon-essentials: ^7.0.0-alpha.47
+	- @storybook/addon-highlight: 7.0.0-alpha.47
+	- @storybook/addon-interactions: ^7.0.0-alpha.47
+	- @storybook/addon-links: ^7.0.0-alpha.47
+	- @storybook/addon-measure: 7.0.0-alpha.47
+	- @storybook/addon-outline: 7.0.0-alpha.47
+	- @storybook/addon-postcss: ^2.0.0
+	- @storybook/react: ^7.0.0-alpha.47
+	- @storybook/react-vite: ^7.0.0-alpha.47
+	- @storybook/testing-library: ^0.0.13
+	- @tailwindcss/forms: 0.5.3
+	- @testing-library/cypress: 8.0.3
+	- @testing-library/dom: 8.19.0
+	- @testing-library/jest-dom: 5.16.5
+	- @testing-library/react: 13.4.0
+	- @testing-library/user-event: 14.4.3
+	- @turf/turf: ^6.5.0
+	- @types/css-mediaquery: 0.1.1
+	- @types/d3-format: ^3.0.1
+	- @types/d3-interpolate: ^3.0.1
+	- @types/d3-scale: ^4.0.2
+	- @types/geojson: ^7946.0.10
+	- @types/js-yaml: ^4.0.5
+	- @types/mapbox-gl: ^2.7.7
+	- @types/node: ^18.11.17
+	- @types/react: 18.0.22
+	- @types/react-dom: 18.0.7
+	- @types/react-router-dom: 5.3.3
+	- @types/react-transition-group: ^4.4.5
+	- @types/testing-library__jest-dom: 5.14.5
+	- @types/topojson: ^3.2.3
+	- @types/topojson-client: ^3.1.1
+	- @types/topojson-server: ^3.0.1
+	- @typescript-eslint/eslint-plugin: 5.41.0
+	- @typescript-eslint/parser: 5.41.0
+	- @vitejs/plugin-react: 2.1.0
+	- @vitest/coverage-istanbul: 0.24.3
+	- autoprefixer: 10.4.12
+	- colors: ^1.4.0
+	- css-mediaquery: 0.1.2
+	- cypress: 10.10.0
+	- eslint: 8.26.0
+	- eslint-config-airbnb: 19.0.4
+	- eslint-config-airbnb-base: 15.0.0
+	- eslint-config-airbnb-typescript: 17.0.0
+	- eslint-config-prettier: 8.5.0
+	- eslint-plugin-cypress: 2.12.1
+	- eslint-plugin-import: 2.26.0
+	- eslint-plugin-jsx-a11y: 6.6.1
+	- eslint-plugin-react: 7.31.10
+	- eslint-plugin-react-hooks: 4.6.0
+	- eslint-plugin-react-prefer-function-component: 3.0.0
+	- eslint-plugin-storybook: ^0.6.7
+	- eslint-plugin-testing-library: 5.9.1
+	- eslint-plugin-unicorn: 44.0.2
+	- husky: 8.0.1
+	- jsdom: 20.0.1
+	- lint-staged: 13.0.3
+	- msw: 0.47.4
+	- npm-run-all: 4.1.5
+	- postcss: 8.4.18
+	- prettier: 2.7.1
+	- prettier-plugin-tailwindcss: 0.1.13
+	- readline-sync: ^1.4.10
+	- start-server-and-test: 1.14.0
+	- storybook: ^7.0.0-alpha.47
+	- tailwindcss: 3.1.8
+	- ts-node: ^10.9.1
+	- typescript: 4.8.4
+	- vite: 3.1.8
+	- vite-plugin-pwa: 0.13.1
+	- vite-tsconfig-paths: 3.5.2
+	- vitest: 0.24.3
+	- whatwg-fetch: 3.6.2
+	- workbox-build: 6.5.4
+	- workbox-window: 6.5.4
+
+## Mobile
+
+- dependencies:
+	- @capacitor/android: ^4.6.2
+	- @capacitor/core: ^4.6.2
+	- @capacitor/ios: ^4.6.2
+- devDependencies:
+	- @capacitor/assets: ^1.0.14
+	- @capacitor/cli: ^4.4.0
+	- @types/node: ^18.11.7
+	- typescript: ^4.8.4
+
+## Mockserver
+
+- dependencies:
+	- axios: ^0.27.2
+	- cors: ^2.8.5
+	- express: ^4.17.3
+	- nodemon: ^2.0.18
+- devDependencies:
+	- (nao ha)

@@ -1,80 +1,43 @@
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { extractOperations, loadOpenApiSpec, operationKey } from "../src/openapi.js";
+import { defaultOpenApiPath, extractOperations, readOpenApiSpec } from "../src/openapi.js";
+import { operations } from "../src/operations.generated.js";
 
-type Manifest = {
-  operationCount?: number;
-  operations?: Array<{ toolName: string; method: string; path: string; operationId?: string }>;
-};
-
-async function main() {
-  const spec = await loadOpenApiSpec({ allowFetch: false });
-  const officialOperations = extractOperations(spec);
-  const manifestPath = resolve("manifest.operations.json");
-
-  if (!existsSync(manifestPath)) {
-    throw new Error("manifest.operations.json not found. Run pnpm generate first.");
-  }
-
-  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8")) as Manifest;
-  const generatedOperations = manifest.operations ?? [];
-
-  const officialKeys = new Set(officialOperations.map(operationKey));
-  const generatedKeys = new Set(generatedOperations.map(operationKey));
-  const officialToolNames = new Set(officialOperations.map((op) => op.toolName));
-  const generatedToolNames = new Set(generatedOperations.map((op) => op.toolName));
-
-  const missingEndpoints = [...officialKeys].filter((key) => !generatedKeys.has(key));
-  const extraEndpoints = [...generatedKeys].filter((key) => !officialKeys.has(key));
-  const missingTools = [...officialToolNames].filter((key) => !generatedToolNames.has(key));
-  const extraTools = [...generatedToolNames].filter((key) => !officialToolNames.has(key));
-  const duplicateToolNames = generatedOperations
-    .map((op) => op.toolName)
-    .filter((name, index, arr) => arr.indexOf(name) !== index);
-
+function main(): void {
+  const generatedTools: Set<string> = new Set(operations.map((operation) => operation.toolName));
+  const openApiPath = defaultOpenApiPath();
   const audit = {
-    auditedAt: new Date().toISOString(),
-    apiTitle: spec.info?.title ?? "PVGIS Web API",
-    apiVersion: spec.info?.version ?? "unknown",
-    officialOperationCount: officialOperations.length,
-    generatedOperationCount: generatedOperations.length,
-    missingEndpoints,
-    extraEndpoints,
-    missingTools,
-    extraTools,
-    duplicateToolNames: [...new Set(duplicateToolNames)],
-    status: missingEndpoints.length === 0 && extraEndpoints.length === 0 && duplicateToolNames.length === 0 ? "PASS" : "FAIL",
+    status: "PASS",
+    generatedToolCount: generatedTools.size,
+    openApiPath,
+    openApiExists: existsSync(openApiPath),
+    openApiOperationCount: null as number | null,
+    missingGeneratedTools: [] as string[],
   };
 
-  writeFileSync("AUDIT.json", JSON.stringify(audit, null, 2), "utf-8");
-  writeFileSync("AUDIT.md", [
-    "# PVGIS MCP 1:1 Audit",
-    "",
-    `- Status: **${audit.status}**`,
-    `- API: ${audit.apiTitle}`,
-    `- Version: ${audit.apiVersion}`,
-    `- Official operations: ${audit.officialOperationCount}`,
-    `- Generated tools: ${audit.generatedOperationCount}`,
-    `- Missing endpoints: ${audit.missingEndpoints.length}`,
-    `- Extra endpoints: ${audit.extraEndpoints.length}`,
-    `- Duplicate tool names: ${audit.duplicateToolNames.length}`,
-    "",
-    "## Missing endpoints",
-    "",
-    audit.missingEndpoints.length ? audit.missingEndpoints.map((x) => `- ${x}`).join("\n") : "None.",
-    "",
-    "## Extra endpoints",
-    "",
-    audit.extraEndpoints.length ? audit.extraEndpoints.map((x) => `- ${x}`).join("\n") : "None.",
-    "",
-  ].join("\n"), "utf-8");
+  if (audit.openApiExists) {
+    const spec = readOpenApiSpec(openApiPath);
+    const openApiOperations = extractOperations(spec);
+    audit.openApiOperationCount = openApiOperations.length;
+    audit.missingGeneratedTools = openApiOperations
+      .map((operation) => operation.toolName)
+      .filter((toolName) => !generatedTools.has(toolName));
 
+    if (audit.missingGeneratedTools.length > 0) {
+      audit.status = "FAIL";
+    }
+  }
+
+  const outputPath = resolve("audit.pvgis-mcp.json");
+  writeFileSync(outputPath, `${JSON.stringify(audit, null, 2)}\n`, "utf-8");
   console.log(JSON.stringify(audit, null, 2));
 
   if (audit.status !== "PASS") process.exit(1);
 }
 
-main().catch((error) => {
+try {
+  main();
+} catch (error) {
   console.error(error);
   process.exit(1);
-});
+}

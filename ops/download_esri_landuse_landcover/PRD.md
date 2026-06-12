@@ -19,3 +19,41 @@ Baixa rasters de uso e cobertura do solo ESRI (10m resolução, 9 classes) da Pl
 - Faz download dos assets do item encontrado
 - Gera asset de visualização com banda única
 - Retorna `CategoricalRaster` com ID hash único e categorias pré-definidas da coleção ESRI
+
+## Use Cases
+1. **Ingestão de Esri Landuse Landcover**: Baixar dados Esri Landuse Landcover para uma região e período específicos.
+2. **Atualização de catálogo**: Manter uma base local atualizada com dados Esri Landuse Landcover mais recentes.
+3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
+
+## Faz / Não Faz
+
+- **Faz**: Download de dados da fonte original para armazenamento local.
+- **Faz**: Validação de integridade dos dados baixados.
+- **Não Faz**: Não processa ou analisa o conteúdo baixado — apenas transfere.
+- **Não Faz**: Não modifica os dados originais.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `input_product` | — | Conforme especificação da operação |
+| `EsriLandUseLandCoverProduct` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Raster geoespacial pronto para visualização e análises subsequentes.
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `download_esri_landuse_landcover` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Microsoft Planetary Computer**: Catálogo STAC e API de dados.
+
+## Datasets / Fontes de Dados
+
+- **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
+

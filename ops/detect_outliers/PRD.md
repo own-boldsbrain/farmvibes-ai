@@ -27,3 +27,41 @@ Ajusta um Gaussian Mixture Model (GMM) monocomonente sobre os rasters de entrada
 3. Atribui rótulos de cluster e calcula log-verossimilhança
 4. Aplica limiar threshold para classificar outliers
 5. Reconstroi as médias no espaço original via inverse_transform
+
+## Use Cases
+1. **Automação**: Ajusta um Gaussian Mixture Model (GMM) monocomonente sobre os rasters de entrada para detectar outliers conforme o parâmetro de limiar de forma programática e escalável.
+2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
+3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
+
+## Faz / Não Faz
+
+- **Faz**: Executa a operação conforme parâmetros fornecidos.
+- **Faz**: Processa rasters geoespaciais com suporte a múltiplas bandas.
+- **Não Faz**: Não modifica os dados de entrada originais.
+- **Não Faz**: Não valida resultados contra referências externas.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `rasters: List[Raster]` | — | Conforme especificação da operação |
+| `threshold: float = -60` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Raster geoespacial pronto para visualização e análises subsequentes.
+- Lista de produtos disponíveis com metadados completos.
+- Estrutura de dados organizada para encadeamento em workflows.
+
+## Workflows Utilizados
+
+- Operação atômica `detect_outliers` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Scikit-learn (GMM)**: Clusterização Gaussiana.
+
+## Datasets / Fontes de Dados
+
+- **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
+

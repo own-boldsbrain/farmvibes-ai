@@ -39,6 +39,15 @@ define transform_image_name
 $(shell docker ps | grep registry | rev | cut -d ' ' -f 1 | rev):5000/$(1)
 endef
 
+typespec-install: ## Installs TypeSpec dependencies
+	cd typespec && npm install
+
+typespec-compile: ## Compiles TypeSpec definitions
+	cd typespec && npm run build
+
+typespec-format: ## Formats TypeSpec files
+	cd typespec && npm run format
+
 help: ## Shows this help message
 	@echo -e This is the farmvibes.ai makefile. Supported targets are:\\n
 	@grep -E -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'

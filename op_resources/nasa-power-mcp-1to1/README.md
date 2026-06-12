@@ -60,3 +60,27 @@ INVENTORY.md                  # Mapa completo: tool → endpoint
 ## Observação de compatibilidade
 
 Este scaffold usa o padrão atual documentado para o SDK TypeScript com `McpServer`, `registerTool` e `StdioServerTransport`. Caso seu ambiente use o pacote legado `@modelcontextprotocol/sdk`, ajuste apenas os imports no topo de `src/server.ts`.
+
+
+## Build fix notes
+
+This patched package uses the production v1 TypeScript MCP SDK package (`@modelcontextprotocol/sdk`) and imports:
+
+```ts
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+```
+
+If this folder is nested inside a parent pnpm workspace and dependencies are not linked locally, run one of these from this folder:
+
+```bash
+pnpm install --config.recursive-install=false
+pnpm build
+```
+
+or isolate completely:
+
+```bash
+npm install
+npm run build
+```

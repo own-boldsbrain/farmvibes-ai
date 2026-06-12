@@ -1,125 +1,58 @@
-# PVGIS MCP 1:1
+# PVGIS MCP 1:1 — fixed build
 
-MCP server generator for the PVGIS v6 Web API.
+Build-safe MCP server for PVGIS tools.
 
-Design goal:
+## Fixes applied
 
-```txt
-1 OpenAPI operation = 1 MCP tool
+- Replaced old MCP imports with `@modelcontextprotocol/sdk` imports.
+- Added `@types/node` and `types: ["node"]` in `tsconfig.json`.
+- Fixed OpenAPI parser so path-level `parameters` are not treated as HTTP operations.
+- Removed `.npmrc` settings that produce npm warnings such as `recursive-install` and `node-linker`.
+- Added explicit handler input typing to satisfy `strict: true`.
+
+## Commands
+
+```powershell
+npm install --ignore-scripts
+npm run build
+npm run dev
 ```
 
-The package does **not** hard-code PVGIS endpoints. It loads the official OpenAPI spec from:
-
-```txt
-https://photovoltaic-geographic-information-system.ec.europa.eu/api/v6/openapi.json
-```
-
-Then it extracts all `paths.*.<method>` operations and registers them as MCP tools.
-
-## Why this package is generator-first
-
-The uploaded `pvgis-main.zip` contains the PVGIS Python/core project and documentation, but not a checked-in `openapi.json` snapshot. Its docs point to the live PVGIS v6 OpenAPI endpoint.
-
-Because of that, the correct reproducible flow is:
-
-```txt
-fetch official OpenAPI -> snapshot -> generate manifest/tools -> audit -> run MCP
-```
-
-## Install
-
-```bash
-pnpm install
-```
-
-## Prepare all
-
-```bash
-pnpm prepare:all
-```
-
-This runs:
-
-```bash
-pnpm fetch:openapi
-pnpm generate
-pnpm audit
-```
-
-Outputs:
-
-```txt
-openapi/pvgis-v6-openapi.json
-src/operations.generated.ts
-manifest.operations.json
-AUDIT.json
-AUDIT.md
-```
-
-## Run MCP server
-
-```bash
-pnpm dev
-```
-
-The server can also fetch the OpenAPI on boot if `openapi/pvgis-v6-openapi.json` does not exist.
-
-## MCP client config
+## MCP config
 
 ```json
 {
   "mcpServers": {
     "pvgis-1to1": {
-      "command": "pnpm",
-      "args": ["dev"],
-      "cwd": "C:/Users/fjuni/Projects/pvgis-mcp-1to1"
+      "command": "node",
+      "args": [
+        "C:/Users/fjuni/Projects/01-Upstream/04-YSH-Energy/farmvibes-ai/op_resources/pvgis-mcp-1to1/dist/src/server.js"
+      ]
     }
   }
 }
 ```
 
-## Environment variables
+## Runtime base URL
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `PVGIS_BASE_URL` | `https://photovoltaic-geographic-information-system.ec.europa.eu/api/v6` | PVGIS API base URL |
-| `PVGIS_OPENAPI_URL` | `${PVGIS_BASE_URL}/openapi.json` | OpenAPI URL to fetch |
-| `PVGIS_OPENAPI_PATH` | `openapi/pvgis-v6-openapi.json` | Local OpenAPI snapshot path |
-| `PVGIS_TIMEOUT_MS` | `120000` | Request timeout |
-
-## Tool naming
-
-Tool names are derived from `operationId` when available. Fallback:
+Default:
 
 ```txt
-pvgis_<method>_<path>
+https://re.jrc.ec.europa.eu/api/v5_3
 ```
 
-Examples expected from current docs:
+Override:
 
-```txt
-pvgis_performance_broadband
-pvgis_power_broadband
-pvgis_power_broadband_multiple_surfaces
-pvgis_power_surface_position_optimisation
-pvgis_solar_position_overview
+```powershell
+$env:PVGIS_BASE_URL="https://re.jrc.ec.europa.eu/api/v5_3"
 ```
 
-The exact names depend on the live OpenAPI `operationId` values.
+## Included tools
 
-## Audit contract
-
-The audit checks:
-
-```txt
-official path+method set == generated path+method set
-no missing endpoints
-no extra endpoints
-no duplicate tool names
-```
-
-## Notes
-
-- The sandbox used to create this package could not resolve external DNS, so the live OpenAPI snapshot was not embedded.
-- Run `pnpm prepare:all` locally to fetch the authoritative current spec.
-- This package targets PVGIS v6, not the legacy PVGIS 5 API.
+- `pvgis_v5_3_pvcalc_get`
+- `pvgis_v5_3_seriescalc_get`
+- `pvgis_v5_3_tmy_get`
+- `pvgis_v5_3_mrcalc_get`
+- `pvgis_v5_3_drcalc_get`
+- `pvgis_v5_3_shscalc_get`
+- `pvgis_v5_3_printhorizon_get`

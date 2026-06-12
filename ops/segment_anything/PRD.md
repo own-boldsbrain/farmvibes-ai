@@ -22,3 +22,48 @@ Duas modalidades: `automatic_segmentation` (grade de pontos regular) e `prompt_s
 - `process_crop`: crops adicionais com `crop_n_points_downscale_factor` por layer
 - `generate_masks_from_grid`: itera batches/chips, escreve máscaras em GeoTIFF
 - Cada `SamMaskRaster` armazena `mask_score`, `mask_bbox` e `chip_window` para pós-processamento
+
+## Use Cases
+1. **Automação**: Duas modalidades: `automatic_segmentation` (grade de pontos regular) e `prompt_segmentation` (geometrias de entrada como prompts) de forma programática e escalável.
+2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
+3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
+
+## Faz / Não Faz
+
+- **Faz**: Executa a operação conforme parâmetros fornecidos.
+- **Faz**: Processa rasters geoespaciais com suporte a múltiplas bandas.
+- **Faz**: Suporte a geometrias delimitadoras para recorte espacial.
+- **Não Faz**: Não modifica os dados de entrada originais.
+- **Não Faz**: Não valida resultados contra referências externas.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `input_raster` | — | Conforme especificação da operação |
+| `prompt_segmentation` | — | Conforme especificação da operação |
+| `input_prompts` | — | Conforme especificação da operação |
+| `model_type` | — | Conforme especificação da operação |
+| `points_per_side` | — | Conforme especificação da operação |
+| `n_crop_layers` | — | Conforme especificação da operação |
+| `pred_iou_thresh` | — | Conforme especificação da operação |
+| `stability_score_thresh` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Raster geoespacial pronto para visualização e análises subsequentes.
+- Lista de produtos disponíveis com metadados completos.
+- Estrutura de dados organizada para encadeamento em workflows.
+
+## Workflows Utilizados
+
+- Operação atômica `segment_anything` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **ONNX Runtime**: Inferência de modelos de machine learning.
+
+## Datasets / Fontes de Dados
+
+- **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
+

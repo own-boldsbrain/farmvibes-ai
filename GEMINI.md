@@ -54,7 +54,24 @@ Tests are located in `src/tests` and can be run using `pytest`.
 
 - **Linting & Formatting:** The project uses `ruff` (configured in `.ruff.toml`).
 - **Type Checking:** `pyright` is used for static type analysis (`pyrightconfig.json`).
+- **API & Data Models:** `TypeSpec` is the standard for defining APIs and shared data models. Definitions are located in the `typespec/` directory. Use `make typespec-compile` to generate OpenAPI specs.
 - **Configuration:** 
   - Operators: Defined by `name.py` and `name.yaml` in `ops/`.
   - Workflows: Defined by `name.yaml` in `workflows/`.
 - **Geospatial Standards:** Heavy use of `shapely`, `geopandas`, `rasterio`, and `pystac` (STAC items).
+
+## Design Standards (YSH: The Precision Architect & The Void)
+
+All interfaces and visualizations must adhere to the official YSH color specification:
+
+- **Zero-Line Integrity:** Contrast is created by tonal stacking (adjacent plans) instead of borders or shadows.
+- **Tonal Scale (Zinc):** Uses Zinc 50 (#F9F9FB) through Zinc 950 (#09090B).
+- **Kinetic Gradient:** Used for primary triggers and high-energy states.
+  - `linear-gradient(90deg, #FFCE00 0%, #FF6600 50%, #FF0066 100%)`
+- **Themes:**
+  - **The Precision Architect (Light):** Focus on clarity and daylight surfaces.
+  - **The Void (Dark):** High-performance terminal aesthetics using deep planes.
+- **Hardware Indicators:**
+  - Active/Network: #25D366 (WhatsApp Green)
+  - Alert/Error: #EF4444 (Red 500)
+  - Cache/Fallback: #3B82F6 (Blue 500)

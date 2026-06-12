@@ -1,21 +1,22 @@
 {
   "name": "nasa-power-mcp-1to1",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@11.5.2",
   "scripts": {
     "dev": "tsx src/server.ts",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
     "inspect": "npx @modelcontextprotocol/inspector pnpm dev"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "latest",
-    "zod": "latest"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "tsx": "latest",
-    "typescript": "latest"
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.3"
   }
 }

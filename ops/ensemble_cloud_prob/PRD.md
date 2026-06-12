@@ -17,3 +17,38 @@ Calcula a média pixel-a-pixel das probabilidades de nuvem de 5 modelos independ
 - Carrega os 5 rasters de probabilidade
 - Concatena ao longo do eixo "band" e calcula a média
 - Salva raster resultante como novo asset
+
+## Use Cases
+1. **Automação**: Calcula a média pixel-a-pixel das probabilidades de nuvem de 5 modelos independentes, gerando uma máscara ensemble mais robusta de forma programática e escalável.
+2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
+3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
+
+## Faz / Não Faz
+
+- **Faz**: Executa a operação conforme parâmetros fornecidos.
+- **Não Faz**: Não modifica os dados de entrada originais.
+- **Não Faz**: Não valida resultados contra referências externas.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `cloud1..cloud5: Sentinel2CloudProbability` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `ensemble_cloud_prob` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **N/A**: Operação puramente computacional, sem dependências externas de API.
+
+## Datasets / Fontes de Dados
+
+- **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
+

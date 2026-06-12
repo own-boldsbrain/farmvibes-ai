@@ -1,0 +1,24 @@
+*.pyc
+*.env
+web/public/dist
+**/node_modules
+.ipynb_checkpoints/
+*.pyproj
+*.sln
+*.suo
+*.user
+/.vs/config
+/App_Data/PublishProfiles
+*.publishproj
+.DS_Store
+/.vs
+/.venv
+Thumbs.db
+mobileapp/*.zip
+dist
+
+# Ignore top level vscode folder as it is symlinked
+#.vscode
+
+## Pycharm IDE
+.idea

@@ -1,0 +1,126 @@
+/**
+ * THE PRECISION ARCHITECT - GLOBAL STYLES & RESET
+ * * Sistema de regras CSS estritas para interfaces industriais.
+ * * Força ortogonalidade absoluta (0px radius) e elimina bordas de 1px.
+ */
+
+/* 1. RESET INDUSTRIAL DE SISTEMA */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  /* Garante ortogonalidade estrita em todo o DOM */
+  border-radius: 0px !important; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbars industriais integradas nas massas de Zinco */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--elevation-low, #F1F1F4);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-secondary, #71717A);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary, #FF6600);
+}
+
+body {
+  background-color: var(--color-bg, #F9F9FB);
+  color: var(--color-text-primary, #09090B);
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Ativação do Gradiente Cinético em seleções de texto */
+::selection {
+  background-color: var(--color-accent-primary, #FF6600);
+  color: #FFFFFF;
+}
+
+/* 2. TIPOGRAFIA EDITORIAL (THE BLUEPRINT SPEC) */
+.display-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+.headline-sm {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.body-md {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.label-sm {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* 3. UTILITÁRIOS ZERO-LINE INTEGRITY */
+/* Separação puramente tonal ou por vácuo matemático */
+.zero-line-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit, 8px);
+}
+
+.zero-line-grid {
+  display: grid;
+  gap: calc(var(--spacing-unit, 8px) * 2);
+}
+
+/* Alternância suave de plano de elevação por hover sem usar sombras */
+.hover-elevation-shift {
+  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-elevation-shift:hover {
+  background-color: var(--elevation-high, #E4E4E7);
+}
+
+/* 4. ANIMAÇÕES E GRADIENTE CINÉTICO */
+.bg-kinetic {
+  background: var(--kinetic-gradient, linear-gradient(90deg, #FFCE00 0%, #FF6600 50%, #FF0066 100%));
+}
+
+.hover-trigger-kinetic {
+  position: relative;
+  overflow: hidden;
+}
+.hover-trigger-kinetic::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--kinetic-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-trigger-kinetic:hover::after {
+  transform: scaleX(1);
+}

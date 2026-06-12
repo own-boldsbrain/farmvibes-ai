@@ -1,0 +1,167 @@
+Only in /mnt/data/nasa-patch/nasa-power-mcp-1to1: .npmrc
+Only in /mnt/data/nasa-patch/nasa-power-mcp-1to1: PATCH.diff
+diff -ru /mnt/data/nasa-original/nasa-power-mcp-1to1/README.md /mnt/data/nasa-patch/nasa-power-mcp-1to1/README.md
+--- /mnt/data/nasa-original/nasa-power-mcp-1to1/README.md	2026-06-11 18:43:06.000000000 +0000
++++ /mnt/data/nasa-patch/nasa-power-mcp-1to1/README.md	2026-06-11 22:17:05.813014329 +0000
+@@ -60,3 +60,27 @@
+ ## Observação de compatibilidade
+ 
+ Este scaffold usa o padrão atual documentado para o SDK TypeScript com `McpServer`, `registerTool` e `StdioServerTransport`. Caso seu ambiente use o pacote legado `@modelcontextprotocol/sdk`, ajuste apenas os imports no topo de `src/server.ts`.
++
++
++## Build fix notes
++
++This patched package uses the production v1 TypeScript MCP SDK package (`@modelcontextprotocol/sdk`) and imports:
++
++```ts
++import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
++import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
++```
++
++If this folder is nested inside a parent pnpm workspace and dependencies are not linked locally, run one of these from this folder:
++
++```bash
++pnpm install --config.recursive-install=false
++pnpm build
++```
++
++or isolate completely:
++
++```bash
++npm install
++npm run build
++```
+Only in /mnt/data/nasa-patch/nasa-power-mcp-1to1: dist
+diff -ru /mnt/data/nasa-original/nasa-power-mcp-1to1/package.json /mnt/data/nasa-patch/nasa-power-mcp-1to1/package.json
+--- /mnt/data/nasa-original/nasa-power-mcp-1to1/package.json	2026-06-11 18:43:06.000000000 +0000
++++ /mnt/data/nasa-patch/nasa-power-mcp-1to1/package.json	2026-06-11 22:17:05.812670995 +0000
+@@ -1,21 +1,22 @@
+ {
+   "name": "nasa-power-mcp-1to1",
+-  "version": "0.1.0",
++  "version": "0.1.1",
+   "type": "module",
+   "private": true,
++  "packageManager": "pnpm@11.5.2",
+   "scripts": {
+     "dev": "tsx src/server.ts",
+-    "build": "tsc",
++    "build": "tsc -p tsconfig.json",
+     "start": "node dist/server.js",
+     "inspect": "npx @modelcontextprotocol/inspector pnpm dev"
+   },
+   "dependencies": {
+-    "@modelcontextprotocol/server": "latest",
+-    "zod": "latest"
++    "@modelcontextprotocol/sdk": "^1.29.0",
++    "zod": "^3.25.76"
+   },
+   "devDependencies": {
+-    "@types/node": "latest",
+-    "tsx": "latest",
+-    "typescript": "latest"
++    "@types/node": "^24.0.0",
++    "tsx": "^4.20.0",
++    "typescript": "^5.8.3"
+   }
+-}
+\ No newline at end of file
++}
+diff -ru /mnt/data/nasa-original/nasa-power-mcp-1to1/src/server.ts /mnt/data/nasa-patch/nasa-power-mcp-1to1/src/server.ts
+--- /mnt/data/nasa-original/nasa-power-mcp-1to1/src/server.ts	2026-06-11 18:43:06.000000000 +0000
++++ /mnt/data/nasa-patch/nasa-power-mcp-1to1/src/server.ts	2026-06-11 22:17:05.812328452 +0000
+@@ -1,7 +1,7 @@
+-import { McpServer } from "@modelcontextprotocol/server";
+-import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
+-import * as z from "zod/v4";
+-import { operations, type PowerOperation } from "./operations.generated.js";
++import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
++import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
++import { z } from "zod";
++import { operations } from "./operations.generated.js";
+ 
+ const POWER_BASE_URL = process.env.POWER_BASE_URL ?? "https://power.larc.nasa.gov";
+ const REQUEST_TIMEOUT_MS = Number(process.env.POWER_TIMEOUT_MS ?? "60000");
+@@ -29,6 +29,21 @@
+   schema?: JsonSchemaLite;
+ };
+ 
++type RuntimePowerOperation = {
++  toolName: string;
++  sourceFile: string;
++  apiTitle: string;
++  apiVersion: string;
++  method: string;
++  path: string;
++  operationId: string;
++  summary?: string;
++  description?: string;
++  parameters: readonly ParamMeta[];
++};
++
++const runtimeOperations = operations as readonly RuntimePowerOperation[];
++
+ function withDescription<T extends z.ZodTypeAny>(schema: T, description?: string): T {
+   return description ? schema.describe(description) as T : schema;
+ }
+@@ -87,7 +102,7 @@
+   return zod;
+ }
+ 
+-function inputSchemaFor(operation: PowerOperation): z.ZodObject<Record<string, z.ZodTypeAny>> {
++function inputSchemaFor(operation: RuntimePowerOperation): Record<string, z.ZodTypeAny> {
+   const shape: Record<string, z.ZodTypeAny> = {};
+ 
+   for (const param of operation.parameters as readonly ParamMeta[]) {
+@@ -98,7 +113,7 @@
+     shape[param.name] = paramSchema;
+   }
+ 
+-  return z.object(shape);
++  return shape;
+ }
+ 
+ function encodeQueryValue(value: unknown): string {
+@@ -107,8 +122,8 @@
+   return String(value);
+ }
+ 
+-function buildUrl(operation: PowerOperation, input: Record<string, unknown>): URL {
+-  let path = operation.path;
++function buildUrl(operation: RuntimePowerOperation, input: Record<string, unknown>): URL {
++  let path: string = operation.path;
+ 
+   for (const param of operation.parameters as readonly ParamMeta[]) {
+     if (param.in !== "path") continue;
+@@ -131,7 +146,7 @@
+   return url;
+ }
+ 
+-async function executePowerOperation(operation: PowerOperation, input: Record<string, unknown>) {
++async function executePowerOperation(operation: RuntimePowerOperation, input: Record<string, unknown>) {
+   const url = buildUrl(operation, input);
+   const controller = new AbortController();
+   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+@@ -198,7 +213,7 @@
+   version: "0.1.0",
+ });
+ 
+-for (const operation of operations) {
++for (const operation of runtimeOperations) {
+   const description = [
+     operation.summary,
+     operation.description,
+@@ -211,11 +226,11 @@
+   server.registerTool(
+     operation.toolName,
+     {
+-      title: operation.summary || operation.toolName,
++      title: operation.summary ?? operation.toolName,
+       description,
+       inputSchema: inputSchemaFor(operation),
+     },
+-    async (input) => executePowerOperation(operation, input as Record<string, unknown>)
++    async (input: Record<string, unknown>) => executePowerOperation(operation, input)
+   );
+ }
+ 

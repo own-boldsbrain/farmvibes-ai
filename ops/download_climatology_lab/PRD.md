@@ -17,3 +17,39 @@ Baixa produtos de dados climáticos do Climatology Lab (TerraClimate e GridMET) 
 - Gera GUID único para o asset
 - Faz download do arquivo NetCDF da URL fornecida usando `download_file`
 - Clona metadados do produto de entrada e gera novo ID hash baseado no produto, geometria e período
+
+## Use Cases
+1. **Ingestão de Climatology Lab**: Baixar dados Climatology Lab para uma região e período específicos.
+2. **Atualização de catálogo**: Manter uma base local atualizada com dados Climatology Lab mais recentes.
+3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
+
+## Faz / Não Faz
+
+- **Faz**: Download de dados da fonte original para armazenamento local.
+- **Faz**: Validação de integridade dos dados baixados.
+- **Não Faz**: Não processa ou analisa o conteúdo baixado — apenas transfere.
+- **Não Faz**: Não modifica os dados originais.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `input_product` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `download_climatology_lab` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Fonte externa**: API de dados conforme especificação do produto.
+
+## Datasets / Fontes de Dados
+
+- **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
+

@@ -1,0 +1,45 @@
+infrastructure:
+  - .github/**/*
+  - docker-compose.yml
+  - web/Dockerfile
+
+dependencies:
+  - poetry.lock
+  - pyproject.toml
+  - mobileapp/package.json
+  - mobileapp/package-lock.json
+  - mockserver/package.json
+  - mockserver/yarn.lock
+  - web/package.json
+  - web/yarn.lock
+
+frontend 🎨:
+  - any: ['web/**/*', '!web/public/locales/**/*']
+
+translations 🗣:
+  - web/public/locales/**/*
+
+tests:
+  - tests/**/*
+  - parsers/test/**/*
+
+javascript:
+  - .**/*.js
+
+python:
+  - .**/*.py
+
+parser:
+  - any: ['parsers/**/*', '!parsers/archive/**/*']
+
+archived parser:
+  - parsers/archive/**/*
+
+mobile app 📱:
+  - mobileapp/**/*
+
+exchange config:
+  - config/exchanges/**/*.yaml
+
+zone config:
+  - config/zones/**/*.yaml

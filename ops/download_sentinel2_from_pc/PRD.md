@@ -21,3 +21,41 @@ Baixa as bandas de um produto Sentinel-2 L2A do Planetary Computer e a máscara 
 4. Baixa cada banda listada em `asset_keys` da coleção via `download_asset`
 5. Obtém máscara de nuvens GML via `get_cloud_mask` e baixa se o blob existir
 6. Adiciona bandas e máscara ao `DownloadedSentinel2Product`
+
+## Use Cases
+1. **Ingestão de Sentinel2 From Pc**: Baixar dados Sentinel2 From Pc para uma região e período específicos.
+2. **Atualização de catálogo**: Manter uma base local atualizada com dados Sentinel2 From Pc mais recentes.
+3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
+
+## Faz / Não Faz
+
+- **Faz**: Download de dados da fonte original para armazenamento local.
+- **Faz**: Validação de integridade dos dados baixados.
+- **Não Faz**: Não processa ou analisa o conteúdo baixado — apenas transfere.
+- **Não Faz**: Não modifica os dados originais.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `sentinel_product` | — | Conforme especificação da operação |
+| `api_key` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `download_sentinel2_from_pc` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Microsoft Planetary Computer**: Catálogo STAC e API de dados.
+- **Copernicus Open Access Hub (SciHub)**: Dados Sentinel.
+
+## Datasets / Fontes de Dados
+
+- **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
+

@@ -1,7 +1,7 @@
-import { McpServer } from "@modelcontextprotocol/server";
-import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import * as z from "zod/v4";
-import { operations, type PowerOperation } from "./operations.generated.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { operations } from "./operations.generated.js";
 
 const POWER_BASE_URL = process.env.POWER_BASE_URL ?? "https://power.larc.nasa.gov";
 const REQUEST_TIMEOUT_MS = Number(process.env.POWER_TIMEOUT_MS ?? "60000");
@@ -28,6 +28,21 @@ type ParamMeta = {
   description?: string;
   schema?: JsonSchemaLite;
 };
+
+type RuntimePowerOperation = {
+  toolName: string;
+  sourceFile: string;
+  apiTitle: string;
+  apiVersion: string;
+  method: string;
+  path: string;
+  operationId: string;
+  summary?: string;
+  description?: string;
+  parameters: readonly ParamMeta[];
+};
+
+const runtimeOperations = operations as readonly RuntimePowerOperation[];
 
 function withDescription<T extends z.ZodTypeAny>(schema: T, description?: string): T {
   return description ? schema.describe(description) as T : schema;
@@ -87,7 +102,7 @@ function zodFromSchema(schema: JsonSchemaLite = {}, description?: string): z.Zod
   return zod;
 }
 
-function inputSchemaFor(operation: PowerOperation): z.ZodObject<Record<string, z.ZodTypeAny>> {
+function inputSchemaFor(operation: RuntimePowerOperation): Record<string, z.ZodTypeAny> {
   const shape: Record<string, z.ZodTypeAny> = {};
 
   for (const param of operation.parameters as readonly ParamMeta[]) {
@@ -98,7 +113,7 @@ function inputSchemaFor(operation: PowerOperation): z.ZodObject<Record<string, z
     shape[param.name] = paramSchema;
   }
 
-  return z.object(shape);
+  return shape;
 }
 
 function encodeQueryValue(value: unknown): string {
@@ -107,8 +122,8 @@ function encodeQueryValue(value: unknown): string {
   return String(value);
 }
 
-function buildUrl(operation: PowerOperation, input: Record<string, unknown>): URL {
-  let path = operation.path;
+function buildUrl(operation: RuntimePowerOperation, input: Record<string, unknown>): URL {
+  let path: string = operation.path;
 
   for (const param of operation.parameters as readonly ParamMeta[]) {
     if (param.in !== "path") continue;
@@ -131,7 +146,7 @@ function buildUrl(operation: PowerOperation, input: Record<string, unknown>): UR
   return url;
 }
 
-async function executePowerOperation(operation: PowerOperation, input: Record<string, unknown>) {
+async function executePowerOperation(operation: RuntimePowerOperation, input: Record<string, unknown>) {
   const url = buildUrl(operation, input);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -198,7 +213,7 @@ const server = new McpServer({
   version: "0.1.0",
 });
 
-for (const operation of operations) {
+for (const operation of runtimeOperations) {
   const description = [
     operation.summary,
     operation.description,
@@ -211,11 +226,11 @@ for (const operation of operations) {
   server.registerTool(
     operation.toolName,
     {
-      title: operation.summary || operation.toolName,
+      title: operation.summary ?? operation.toolName,
       description,
       inputSchema: inputSchemaFor(operation),
     },
-    async (input) => executePowerOperation(operation, input as Record<string, unknown>)
+    async (input: Record<string, unknown>) => executePowerOperation(operation, input)
   );
 }
 

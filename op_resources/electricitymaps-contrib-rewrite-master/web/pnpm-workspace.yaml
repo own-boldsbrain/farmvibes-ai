@@ -1,0 +1,8 @@
+allowBuilds:
+  '@sentry/cli': true
+  core-js: true
+  core-js-pure: true
+  cypress: true
+  esbuild: true
+  maplibre-gl: true
+  msw: true

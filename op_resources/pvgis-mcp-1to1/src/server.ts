@@ -1,74 +1,57 @@
-import { McpServer } from "@modelcontextprotocol/server";
-import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import * as z from "zod/v4";
-import {
-  DEFAULT_PVGIS_BASE_URL,
-  extractOperations,
-  loadOpenApiSpec,
-  type JsonSchemaLite,
-  type OpenApiParameter,
-  type OpenApiSpec,
-  type PvgisOperation,
-} from "./openapi.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { operations } from "./operations.generated.js";
 
+const DEFAULT_PVGIS_BASE_URL = "https://re.jrc.ec.europa.eu/api/v5_3";
 const PVGIS_BASE_URL = process.env.PVGIS_BASE_URL ?? DEFAULT_PVGIS_BASE_URL;
 const REQUEST_TIMEOUT_MS = Number(process.env.PVGIS_TIMEOUT_MS ?? "120000");
-const DEFAULT_USER_AGENT = "pvgis-mcp-1to1/0.1.0";
+const DEFAULT_USER_AGENT = "pvgis-mcp-1to1/0.1.1";
 
-function resolveRef(spec: OpenApiSpec, ref: string): JsonSchemaLite {
-  if (!ref.startsWith("#/")) return {};
-  const parts = ref.slice(2).split("/").map((part) => part.replace(/~1/g, "/").replace(/~0/g, "~"));
-  let current: any = spec;
-  for (const part of parts) current = current?.[part];
-  return current ?? {};
-}
+type JsonSchemaLite = {
+  type?: string;
+  enum?: readonly unknown[];
+  default?: unknown;
+  minimum?: number;
+  maximum?: number;
+  minLength?: number;
+  maxLength?: number;
+  minItems?: number;
+  maxItems?: number;
+  items?: JsonSchemaLite;
+};
+
+type ParamMeta = {
+  name: string;
+  in: "query" | "path" | "header" | "cookie";
+  required: boolean;
+  description?: string;
+  schema?: JsonSchemaLite;
+};
+
+type RuntimePvgisOperation = {
+  toolName: string;
+  method: string;
+  path: string;
+  operationId: string;
+  summary?: string;
+  description?: string;
+  tags?: readonly string[];
+  parameters: readonly ParamMeta[];
+};
+
+const runtimeOperations = operations as readonly RuntimePvgisOperation[];
 
 function withDescription<T extends z.ZodTypeAny>(schema: T, description?: string): T {
   return description ? (schema.describe(description) as T) : schema;
 }
 
-function zodFromSchema(spec: OpenApiSpec, schema: JsonSchemaLite = {}, description?: string, depth = 0): z.ZodTypeAny {
-  if (depth > 12) return z.unknown();
-  if (schema.$ref) return zodFromSchema(spec, resolveRef(spec, schema.$ref), description, depth + 1);
-
-  const unionSchemas = schema.anyOf ?? schema.oneOf;
-  if (unionSchemas?.length) {
-    const variants = unionSchemas.map((item) => zodFromSchema(spec, item, undefined, depth + 1));
-    const nullable = unionSchemas.some((item) => item.type === "null");
-    const nonNullVariants = variants.filter((_, index) => unionSchemas[index].type !== "null");
-    let zod: z.ZodTypeAny;
-    if (nonNullVariants.length === 0) {
-      zod = z.null();
-    } else if (nonNullVariants.length === 1) {
-      zod = nonNullVariants[0];
-    } else {
-      zod = z.union(nonNullVariants as [z.ZodTypeAny, z.ZodTypeAny, ...z.ZodTypeAny[]]);
-    }
-    if (nullable && nonNullVariants.length > 0) zod = zod.nullable();
-    if (schema.default !== undefined) zod = zod.default(schema.default as never);
-    return withDescription(zod, description ?? schema.description);
-  }
-
-  if (schema.allOf?.length) {
-    const merged = schema.allOf.reduce<JsonSchemaLite>((acc, item) => ({
-      ...acc,
-      ...item,
-      properties: { ...(acc.properties ?? {}), ...(item.properties ?? {}) },
-      required: [...(acc.required ?? []), ...(item.required ?? [])],
-    }), {});
-    return zodFromSchema(spec, merged, description, depth + 1);
-  }
-
+function zodFromSchema(schema: JsonSchemaLite = {}, description?: string): z.ZodTypeAny {
   let zod: z.ZodTypeAny;
 
   if (schema.enum && schema.enum.length > 0) {
-    const values = schema.enum.filter((value) => value !== null).map(String);
-    if (values.length === 0) {
-      zod = z.null();
-    } else {
-      zod = values.length === 1 ? z.literal(values[0]) : z.enum(values as [string, ...string[]]);
-      if (schema.enum.includes(null)) zod = zod.nullable();
-    }
+    const values = schema.enum.map(String);
+    zod = values.length === 1 ? z.literal(values[0]) : z.enum(values as [string, ...string[]]);
   } else {
     switch (schema.type) {
       case "integer":
@@ -81,22 +64,10 @@ function zodFromSchema(spec: OpenApiSpec, schema: JsonSchemaLite = {}, descripti
         zod = z.boolean();
         break;
       case "array":
-        zod = z.array(zodFromSchema(spec, schema.items ?? {}, undefined, depth + 1));
+        zod = z.array(zodFromSchema(schema.items ?? {}));
         break;
-      case "object": {
-        const properties = schema.properties ?? {};
-        const required = new Set(schema.required ?? []);
-        const shape: Record<string, z.ZodTypeAny> = {};
-        for (const [key, value] of Object.entries(properties)) {
-          let child = zodFromSchema(spec, value, value.description, depth + 1);
-          if (!required.has(key) && value.default === undefined) child = child.optional();
-          shape[key] = child;
-        }
-        zod = Object.keys(shape).length ? z.object(shape).passthrough() : z.record(z.string(), z.unknown());
-        break;
-      }
-      case "null":
-        zod = z.null();
+      case "object":
+        zod = z.record(z.string(), z.unknown());
         break;
       case "string":
       default:
@@ -120,8 +91,7 @@ function zodFromSchema(spec: OpenApiSpec, schema: JsonSchemaLite = {}, descripti
     if (typeof schema.maxItems === "number") zod = (zod as z.ZodArray<any>).max(schema.maxItems);
   }
 
-  if (schema.nullable) zod = zod.nullable();
-  zod = withDescription(zod, description ?? schema.description);
+  zod = withDescription(zod, description);
 
   if (schema.default !== undefined) {
     zod = zod.default(schema.default as never);
@@ -130,49 +100,31 @@ function zodFromSchema(spec: OpenApiSpec, schema: JsonSchemaLite = {}, descripti
   return zod;
 }
 
-function inputSchemaFor(spec: OpenApiSpec, operation: PvgisOperation): z.ZodObject<Record<string, z.ZodTypeAny>> {
+function inputSchemaFor(operation: RuntimePvgisOperation): Record<string, z.ZodTypeAny> {
   const shape: Record<string, z.ZodTypeAny> = {};
 
-  for (const param of operation.parameters as readonly OpenApiParameter[]) {
-    let paramSchema = zodFromSchema(spec, param.schema ?? { type: "string" }, param.description);
-    if (!param.required && param.schema?.default === undefined) paramSchema = paramSchema.optional();
+  for (const param of operation.parameters) {
+    let paramSchema = zodFromSchema(param.schema, param.description);
+    if (!param.required && param.schema?.default === undefined) {
+      paramSchema = paramSchema.optional();
+    }
     shape[param.name] = paramSchema;
   }
 
-  if (operation.requestBody) {
-    shape.body = z.record(z.string(), z.unknown()).optional().describe("JSON request body for this PVGIS operation.");
-  }
-
-  return z.object(shape).passthrough();
+  return shape;
 }
 
 function encodeQueryValue(value: unknown): string {
   if (Array.isArray(value)) return value.join(",");
+  if (typeof value === "boolean") return value ? "1" : "0";
   if (typeof value === "object" && value !== null) return JSON.stringify(value);
   return String(value);
 }
 
-function getOrigin(value: string): string {
-  const url = new URL(value);
-  return url.origin;
-}
+function buildUrl(operation: RuntimePvgisOperation, input: Record<string, unknown>): URL {
+  let path: string = operation.path;
 
-function buildApiUrl(path: string): URL {
-  if (/^https?:\/\//i.test(path)) return new URL(path);
-
-  if (path.startsWith("/api/v6/")) {
-    return new URL(path, getOrigin(PVGIS_BASE_URL));
-  }
-
-  const base = PVGIS_BASE_URL.endsWith("/") ? PVGIS_BASE_URL : `${PVGIS_BASE_URL}/`;
-  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-  return new URL(cleanPath, base);
-}
-
-function buildUrl(operation: PvgisOperation, input: Record<string, unknown>): URL {
-  let path = operation.path;
-
-  for (const param of operation.parameters as readonly OpenApiParameter[]) {
+  for (const param of operation.parameters) {
     if (param.in !== "path") continue;
     const value = input[param.name];
     if (value === undefined || value === null || value === "") {
@@ -181,9 +133,9 @@ function buildUrl(operation: PvgisOperation, input: Record<string, unknown>): UR
     path = path.replace(`{${param.name}}`, encodeURIComponent(String(value)));
   }
 
-  const url = buildApiUrl(path);
+  const url = new URL(path, PVGIS_BASE_URL.endsWith("/") ? PVGIS_BASE_URL : `${PVGIS_BASE_URL}/`);
 
-  for (const param of operation.parameters as readonly OpenApiParameter[]) {
+  for (const param of operation.parameters) {
     if (param.in !== "query") continue;
     const value = input[param.name];
     if (value === undefined || value === null || value === "") continue;
@@ -193,35 +145,21 @@ function buildUrl(operation: PvgisOperation, input: Record<string, unknown>): UR
   return url;
 }
 
-async function executePvgisOperation(operation: PvgisOperation, input: Record<string, unknown>) {
+async function executePvgisOperation(operation: RuntimePvgisOperation, input: Record<string, unknown>) {
   const url = buildUrl(operation, input);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const headers: Record<string, string> = {
-      "User-Agent": DEFAULT_USER_AGENT,
-      Accept: "application/json,text/csv,text/plain,text/html,image/png,*/*",
-    };
-
-    for (const param of operation.parameters as readonly OpenApiParameter[]) {
-      if (param.in !== "header") continue;
-      const value = input[param.name];
-      if (value !== undefined && value !== null && value !== "") headers[param.name] = String(value);
-    }
-
-    const init: RequestInit = {
+    const response = await fetch(url, {
       method: operation.method,
       signal: controller.signal,
-      headers,
-    };
+      headers: {
+        "User-Agent": DEFAULT_USER_AGENT,
+        "Accept": "application/json,text/csv,text/plain,text/html,application/octet-stream,*/*",
+      },
+    });
 
-    if (operation.requestBody && input.body !== undefined) {
-      headers["Content-Type"] = "application/json";
-      init.body = JSON.stringify(input.body);
-    }
-
-    const response = await fetch(url, init);
     const contentType = response.headers.get("content-type") ?? "";
 
     if (!response.ok) {
@@ -229,79 +167,60 @@ async function executePvgisOperation(operation: PvgisOperation, input: Record<st
       throw new Error(`PVGIS ${response.status} ${response.statusText}: ${errorBody}`);
     }
 
-    if (contentType.includes("image/")) {
+    if (contentType.includes("application/json")) {
+      const json = await response.json();
+      return {
+        content: [{ type: "text" as const, text: JSON.stringify(json, null, 2) }],
+      };
+    }
+
+    if (contentType.includes("application/octet-stream") || contentType.includes("application/zip")) {
       const arrayBuffer = await response.arrayBuffer();
       const data = Buffer.from(arrayBuffer).toString("base64");
       return {
         content: [
           {
-            type: "image",
-            data,
-            mimeType: contentType.split(";")[0],
-          },
-        ],
-      } as any;
-    }
-
-    if (contentType.includes("application/json")) {
-      const json = await response.json();
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify(json, null, 2),
+            type: "text" as const,
+            text: JSON.stringify({ mimeType: contentType.split(";")[0], base64: data }, null, 2),
           },
         ],
       };
     }
 
     const text = await response.text();
-    return {
-      content: [
-        {
-          type: "text",
-          text,
-        },
-      ],
-    };
+    return { content: [{ type: "text" as const, text }] };
   } finally {
     clearTimeout(timeout);
   }
 }
 
+const server = new McpServer({
+  name: "pvgis-mcp-1to1",
+  version: "0.1.1",
+});
+
+for (const operation of runtimeOperations) {
+  const description = [
+    operation.summary,
+    operation.description,
+    `HTTP: ${operation.method} ${operation.path}`,
+    `Base URL: ${PVGIS_BASE_URL}`,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  server.registerTool(
+    operation.toolName,
+    {
+      title: operation.summary ?? operation.toolName,
+      description,
+      inputSchema: inputSchemaFor(operation),
+    },
+    async (input: Record<string, unknown>) => executePvgisOperation(operation, input),
+  );
+}
+
 async function main() {
-  const spec = await loadOpenApiSpec({ allowFetch: true });
-  const operations = extractOperations(spec);
-
-  if (!operations.length) throw new Error("No PVGIS OpenAPI operations were found.");
-
-  const server = new McpServer({
-    name: "pvgis-mcp-1to1",
-    version: "0.1.0",
-  });
-
-  for (const operation of operations) {
-    const description = [
-      operation.summary,
-      operation.description,
-      `Tags: ${operation.tags.join(", ") || "none"}`,
-      `HTTP: ${operation.method} ${operation.path}`,
-      `OpenAPI operationId: ${operation.operationId || "none"}`,
-    ]
-      .filter(Boolean)
-      .join("\n\n");
-
-    server.registerTool(
-      operation.toolName,
-      {
-        title: operation.summary || operation.toolName,
-        description,
-        inputSchema: inputSchemaFor(spec, operation),
-      },
-      async (input) => executePvgisOperation(operation, input as Record<string, unknown>)
-    );
-  }
-
   const transport = new StdioServerTransport();
   await server.connect(transport);
 }

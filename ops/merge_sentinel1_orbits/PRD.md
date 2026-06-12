@@ -19,3 +19,44 @@ Recebe um `Sentinel1RasterOrbitGroup` (raster da mesma orbita/tile) e mescla usa
 - Projeta bounds da geometria para o CRS UTM
 - Abre cada raster com `rasterio.open` + `WarpedVRT` para reprojetar para o CRS destino
 - `merge()` com bounds, resampling e `FLOAT_COMPRESSION_KWARGS` (blocos 512x512)
+
+## Use Cases
+1. **Mosaico de imagens**: Unir múltiplos rasters adjacentes em uma única cena contínua.
+2. **Fusão de dados**: Combinar coberturas de diferentes datas ou sensores.
+3. **Preparação de dado único**: Consolidar sequência de rasters para análise integrada.
+
+## Faz / Não Faz
+
+- **Faz**: Mesclagem de múltiplos rasters em um único arquivo.
+- **Faz**: Validação de compatibilidade entre rasters (CRS, dtype, bandas).
+- **Não Faz**: Não faz interpolação entre rasters sobrepostos — usa o primeiro disponível.
+- **Não Faz**: Não recorta ou reprojeta — opera no CRS herdado da entrada.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `raster_group` | — | Conforme especificação da operação |
+| `Sentinel1RasterOrbitGroup` | — | Conforme especificação da operação |
+| `resampling` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Raster geoespacial pronto para visualização e análises subsequentes.
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `merge_sentinel1_orbits` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Copernicus Open Access Hub (SciHub)**: Dados Sentinel.
+- **Rasterio/GDAL**: Leitura e escrita de rasters geoespaciais.
+
+## Datasets / Fontes de Dados
+
+- **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
+- **Sentinel-1 (SAR)**: Radar C-band, GRD e RTC.
+

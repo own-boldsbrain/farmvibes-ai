@@ -20,3 +20,40 @@ Agrupa valores de índices espectrais de um raster (ex: bandas de satélite) usa
 3. Prediz clusters e aplica sieve para agrupar pixels pequenos
 4. Converte clusters em polígonos, calcula ponto representativo de cada zona
 5. Exporta boundaries e sample locations como shapefile em zip
+
+## Use Cases
+1. **Automação**: Agrupa valores de índices espectrais de um raster (ex: bandas de satélite) usando Gaussian Mixture Models para determinar zonas homogêneas e sugerir pontos de amostragem de solo representativos de forma programática e escalável.
+2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
+3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
+
+## Faz / Não Faz
+
+- **Faz**: Executa a operação conforme parâmetros fornecidos.
+- **Faz**: Processa rasters geoespaciais com suporte a múltiplas bandas.
+- **Não Faz**: Não modifica os dados de entrada originais.
+- **Não Faz**: Não valida resultados contra referências externas.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `raster` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Arquivo compactado (ZIP) com resultados prontos para download.
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `minimum_samples` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Scikit-learn (GMM)**: Clusterização Gaussiana.
+
+## Datasets / Fontes de Dados
+
+- **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
+

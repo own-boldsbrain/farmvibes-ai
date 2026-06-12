@@ -19,3 +19,41 @@ Baixa as 4 bandas (R, G, B, NIR) de uma cena NAIP do Planetary Computer e retorn
 2. Baixa todos os assets do item para diretório temporário
 3. Gera asset de visualização RGB via `json_to_asset` com as 3 primeiras bandas
 4. Mapeia bandas para `("red", "green", "blue", "nir")` e retorna `NaipRaster`
+
+## Use Cases
+1. **Ingestão de Naip**: Baixar dados Naip para uma região e período específicos.
+2. **Atualização de catálogo**: Manter uma base local atualizada com dados Naip mais recentes.
+3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
+
+## Faz / Não Faz
+
+- **Faz**: Download de dados da fonte original para armazenamento local.
+- **Faz**: Validação de integridade dos dados baixados.
+- **Não Faz**: Não processa ou analisa o conteúdo baixado — apenas transfere.
+- **Não Faz**: Não modifica os dados originais.
+
+## Variáveis
+
+| Variável | Tipo | Descrição |
+|----------|------|-----------|
+| `input_product` | — | Conforme especificação da operação |
+| `api_key` | — | Conforme especificação da operação |
+
+## Outcomes Esperados
+
+- Raster geoespacial pronto para visualização e análises subsequentes.
+- Dados de saída formatados e prontos para consumo por operações posteriores.
+- Rastreabilidade completa via metadados do asset.
+
+## Workflows Utilizados
+
+- Operação atômica `download_naip` — utilizada como componente de workflows maiores.
+
+## APIs / Conectores
+
+- **Microsoft Planetary Computer**: Catálogo STAC e API de dados.
+
+## Datasets / Fontes de Dados
+
+- **NAIP**: Imagens aéreas RGB/NIR dos EUA (1m).
+
