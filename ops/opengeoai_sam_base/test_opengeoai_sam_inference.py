@@ -5,7 +5,7 @@ from datetime import datetime
 import numpy as np
 import xarray as xr
 from shapely import geometry as shpg
-from vibe_core.data import Raster
+from vibe_core.data import Raster, GeometryCollection
 from vibe_dev.testing.op_tester import OpTester
 from vibe_lib.raster import save_raster_to_asset
 from tempfile import TemporaryDirectory
@@ -51,6 +51,14 @@ def create_base_raster(tmp_dir_name: str, raster_size: int = 256) -> Raster:
 
     return raster
 
+def create_geometry_collection() -> GeometryCollection:
+    now = datetime.now()
+    return GeometryCollection(
+        id="prompts",
+        time_range=(now, now),
+        geometry=shpg.mapping(shpg.GeometryCollection([shpg.Point(100, 100)])),
+        assets=[],
+    )
 
 @pytest.fixture
 def tmp_dir():
@@ -66,9 +74,10 @@ def test_opengeoai_sam_base(tmp_dir: str):
     mock_sam.generate_embeddings.return_value = np.zeros((1, 256, 64, 64))
 
     raster = create_base_raster(tmp_dir)
+    prompts = create_geometry_collection()
     op_tester = OpTester(CONFIG_PATH)
     
-    output = op_tester.run(input_raster=raster)
+    output = op_tester.run(input_raster=raster, input_prompts=prompts)
     
     assert "segmentation_mask" in output
     mock_opengeoai.sam.load_model.assert_called_once()

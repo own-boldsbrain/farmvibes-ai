@@ -4,7 +4,7 @@ import numpy as np
 import xarray as xr
 from shapely import geometry as shpg
 
-from vibe_core.data import Raster, CategoricalRaster, AssetVibe, gen_guid
+from vibe_core.data import Raster, CategoricalRaster, AssetVibe, GeometryCollection, gen_guid
 
 LOGGER = logging.getLogger(__name__)
 
@@ -20,14 +20,14 @@ class OpenGeoAISAMCallbackBuilder:
             self.model = None
 
     def __call__(self):
-        def callback(input_raster: Raster) -> Dict[str, CategoricalRaster]:
+        def callback(input_raster: Raster, input_prompts: GeometryCollection) -> Dict[str, CategoricalRaster]:
             LOGGER.info(f"Processing raster {input_raster.id} with OpenGeoAI SAM ({self.model_type})")
             
             if self.model is not None:
                 # Actual implementation using OpenGeoAI
                 # This is a simplified representation of what would happen
                 embeddings = self.model.generate_embeddings(input_raster.assets[0].path_or_url)
-                # In a real scenario, we'd do more here.
+                # In a real scenario, we'd do more here, e.g. using input_prompts.
             
             # Dummy implementation: create a fake mask the same size as input
             asset = AssetVibe(reference="dummy_mask.tif", type="image/tiff", id=gen_guid())
