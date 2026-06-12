@@ -29,6 +29,16 @@ class GeoAIClient:
         return result
 
 # Example Usage:
-# client = GeoAIClient("python", ["-m", "geoai_mcp_server.server"], {"GEOAI_INPUT_DIR": "..."})
-# await client.connect()
-# await client.call_tool("segment_objects_with_prompts", {...})
+if __name__ == "__main__":
+    async def main():
+        # Adjust command/args if necessary for your environment
+        client = GeoAIClient("python", ["-m", "geoai_mcp_server.server"], {
+            "GEOAI_INPUT_DIR": r"C:\Users\fjuni\Projects\01-Upstream\04-YSH-Energy\farmvibes-ai\op_resources\input",
+            "GEOAI_OUTPUT_DIR": r"C:\Users\fjuni\Projects\01-Upstream\04-YSH-Energy\farmvibes-ai\op_resources\output",
+            "GEOAI_LOG_LEVEL": "DEBUG"
+        })
+        await client.connect()
+        # Verify connection
+        print("Successfully connected to MCP Server")
+
+    asyncio.run(main())
