@@ -1,0 +1,16 @@
+name: opengeoai_interactive_segmentation
+sources: {}
+sinks:
+  segmentation_mask: sam_segmentation.segmentation_mask
+tasks:
+  read_local_data:
+    op: local_data_reader
+  
+  read_prompts:
+    op: opengeoai_sam_prompt
+
+  sam_segmentation:
+    op: opengeoai_sam_base
+    edges:
+      input_raster: read_local_data.rasters
+      input_prompts: read_prompts.prompt_collection
