@@ -1,0 +1,8 @@
+{
+  "track_id": "geoai_mcp_integration_20260612",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-12T04:13:00Z",
+  "updated_at": "2026-06-12T04:13:00Z",
+  "description": "Integrate GeoAI MCP Server into FarmVibes.AI platform for interactive segmentation."
+}
