@@ -9,17 +9,17 @@ from vibe_core.data import Raster, GeometryCollection
 from vibe_dev.testing.op_tester import OpTester
 from vibe_lib.raster import save_raster_to_asset
 from tempfile import TemporaryDirectory
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch, PropertyMock
 
-# Mock opengeoai before it's imported by the operator
-mock_opengeoai = MagicMock()
-sys.modules["opengeoai"] = mock_opengeoai
+# Remove the global mock of opengeoai
+# sys.modules["opengeoai"] = mock_opengeoai
 
 CONFIG_PATH = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "opengeoai_sam_base.yaml"
 )
 
 def create_base_raster(tmp_dir_name: str, raster_size: int = 256) -> Raster:
+    # ... (rest of the helper remains the same)
     now = datetime.now()
     geom = shpg.mapping(shpg.box(0, 0, raster_size, raster_size))
 
@@ -67,11 +67,13 @@ def tmp_dir():
     _tmp_dir.cleanup()
 
 
-def test_opengeoai_sam_base(tmp_dir: str):
+@patch("geoai.segment.GroundedSAM")
+@patch("vibe_core.data.AssetVibe.local_path", new_callable=PropertyMock)
+def test_opengeoai_sam_base(mock_local_path, mock_grounded_sam, tmp_dir: str):
     # Setup mock
-    mock_sam = MagicMock()
-    mock_opengeoai.sam.load_model.return_value = mock_sam
-    mock_sam.generate_embeddings.return_value = np.zeros((1, 256, 64, 64))
+    mock_model = MagicMock()
+    mock_grounded_sam.return_value = mock_model
+    mock_local_path.return_value = os.path.join(tmp_dir, "test.tif")
 
     raster = create_base_raster(tmp_dir)
     prompts = create_geometry_collection()
@@ -80,4 +82,5 @@ def test_opengeoai_sam_base(tmp_dir: str):
     output = op_tester.run(input_raster=raster, input_prompts=prompts)
     
     assert "segmentation_mask" in output
-    mock_opengeoai.sam.load_model.assert_called_once()
+    mock_grounded_sam.assert_called_once()
+    mock_model.segment_image.assert_called_once()

@@ -5,32 +5,35 @@ import xarray as xr
 from shapely import geometry as shpg
 
 from vibe_core.data import Raster, CategoricalRaster, AssetVibe, GeometryCollection, gen_guid
+from geoai.segment import GroundedSAM
 
 LOGGER = logging.getLogger(__name__)
 
 class OpenGeoAISAMCallbackBuilder:
     def __init__(self, model_type: str):
         self.model_type = model_type
-        try:
-            import opengeoai
-            self.model = opengeoai.sam.load_model(model_type)
-            LOGGER.info(f"Initialized OpenGeoAI SAM operator with model type: {model_type}")
-        except ImportError:
-            LOGGER.warning("OpenGeoAI library not found. Operator will run in dummy mode.")
-            self.model = None
+        # Initialize the real GroundedSAM model
+        self.model = GroundedSAM(segmenter_id=model_type)
+        LOGGER.info(f"Initialized real GeoAI GroundedSAM operator with model type: {model_type}")
 
     def __call__(self):
         def callback(input_raster: Raster, input_prompts: GeometryCollection) -> Dict[str, CategoricalRaster]:
-            LOGGER.info(f"Processing raster {input_raster.id} with OpenGeoAI SAM ({self.model_type})")
+            LOGGER.info(f"Processing raster {input_raster.id} with GeoAI GroundedSAM ({self.model_type})")
             
-            if self.model is not None:
-                # Actual implementation using OpenGeoAI
-                # This is a simplified representation of what would happen
-                embeddings = self.model.generate_embeddings(input_raster.assets[0].path_or_url)
-                # In a real scenario, we'd do more here, e.g. using input_prompts.
+            # Temporary output path for segmentation
+            # In a real workflow, this should be handled by the VibeCore pipeline
+            output_path = f"segmentation_{gen_guid()}.tif"
             
-            # Dummy implementation: create a fake mask the same size as input
-            asset = AssetVibe(reference="dummy_mask.tif", type="image/tiff", id=gen_guid())
+            # Run actual segmentation
+            self.model.segment_image(
+                input_path=input_raster.assets[0].local_path,
+                output_path=output_path,
+                text_prompts="object", # This is a placeholder; need to map prompts
+                export_polygons=False
+            )
+            
+            # Create categorical raster asset
+            asset = AssetVibe(reference=output_path, type="image/tiff", id=gen_guid())
             
             segmentation_mask = CategoricalRaster.clone_from(
                 input_raster,
