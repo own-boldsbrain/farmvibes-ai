@@ -1,0 +1,36 @@
+[
+  {
+    "location_kpis": {
+      "lat": -12.9714,
+      "lon": -38.5014,
+      "distribuidora_id": null,
+      "distribuidora_name": "neoenergia-coelba",
+      "agent_code": "47",
+      "concession_type": null
+    },
+    "cost_kpis": {
+      "tarifa_tusd": 0.50862,
+      "tarifa_te": 0.24693,
+      "tarifa_total_com_impostos": 0.7555499999999999,
+      "modalidade": "Convencional",
+      "subgrupo": "B1"
+    },
+    "solar_kpis": {
+      "annual_generation": 9720.0,
+      "solar_resource": 4.5
+    },
+    "financial_kpis": {
+      "payback_years": 3.5894802518516395,
+      "npv": 66819.98393175022,
+      "irr": 0.30721237384865124,
+      "lcoe": 0.3463424375163747,
+      "total_savings": 326171.4540195157
+    },
+    "carbon_kpis": {
+      "tco2e_evitado_ano": 0.6803999999999999,
+      "arvores_equivalentes_ano": 4,
+      "gasolina_litros_evitados": 292
+    },
+    "cidade": "Salvador / BA"
+  }
+]

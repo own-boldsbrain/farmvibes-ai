@@ -1,6 +1,7 @@
 import sqlite3
 import json
 import os
+import re
 
 def generate_graph():
     db_path = '.codegraph/codegraph.db'
@@ -12,23 +13,91 @@ def generate_graph():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
+    # Query edges first to calculate degrees
+    cursor.execute("SELECT source, target, kind FROM edges")
+    raw_edges = cursor.fetchall()
+    degrees = {}
+    for row in raw_edges:
+        s, t = row["source"], row["target"]
+        degrees[s] = degrees.get(s, 0) + 1
+        degrees[t] = degrees.get(t, 0) + 1
+
     # Query nodes
     cursor.execute("SELECT id, kind, name, file_path FROM nodes WHERE kind != 'import'")
     nodes = []
     for row in cursor.fetchall():
+        n_id = row["id"]
+        kind = row["kind"]
+        name = row["name"]
+        file_path = row["file_path"] or ""
+        
+        # 1. Component Layer
+        layer = "other"
+        file_lower = file_path.lower()
+        if "src/vibe_core" in file_lower or "vibe-core" in file_lower:
+            layer = "core"
+        elif "src/vibe_agent" in file_lower or "vibe-agent" in file_lower:
+            layer = "agent"
+        elif "src/vibe_server" in file_lower or "vibe-server" in file_lower:
+            layer = "server"
+        elif "src/vibe_lib" in file_lower or "vibe-lib" in file_lower:
+            layer = "lib"
+        elif "notebooks/" in file_lower:
+            layer = "notebook"
+        elif "ops/" in file_lower:
+            layer = "operator"
+        elif "workflows/" in file_lower:
+            layer = "workflow"
+        elif "tests/" in file_lower:
+            layer = "test"
+            
+        # 2. Business Domain
+        domain = "general"
+        name_lower = name.lower()
+        path_lower = file_path.lower()
+        
+        climate_kws = ["weather", "era5", "climate", "deepmc", "forecast", "precipitation", "temp", "chirps", "wind", "rain"]
+        agri_kws = ["crop", "farm", "segmentation", "ndvi", "vegetation", "field", "harvest", "yield", "soil"]
+        sustain_kws = ["carbon", "greenhouse", "co2", "scheduler", "sustainability", "ghg", "emission"]
+        geospatial_kws = ["satellite", "sentinel", "landsat", "raster", "spaceeye", "tiff", "geojson", "shapefile", "geom", "crs", "bbox", "dem", "elevation"]
+        platform_kws = ["api", "server", "client", "agent", "runner", "workflow", "op", "connection", "rest", "docker", "cluster", "k8s"]
+        
+        if any(k in name_lower or k in path_lower for k in climate_kws):
+            domain = "climate & weather"
+        elif any(k in name_lower or k in path_lower for k in agri_kws):
+            domain = "agriculture"
+        elif any(k in name_lower or k in path_lower for k in sustain_kws):
+            domain = "sustainability & carbon"
+        elif any(k in name_lower or k in path_lower for k in geospatial_kws):
+            domain = "geospatial"
+        elif any(k in name_lower or k in path_lower for k in platform_kws):
+            domain = "platform core"
+
+        # 3. Complexity Tier
+        deg = degrees.get(n_id, 0)
+        if deg > 20:
+            complexity = "high"
+        elif deg > 5:
+            complexity = "medium"
+        else:
+            complexity = "low"
+
         nodes.append({
-            "id": row["id"],
-            "name": row["name"],
-            "val": 5 if row["kind"] == "file" else (3 if row["kind"] == "class" else 1),
-            "kind": row["kind"],
-            "file": row["file_path"]
+            "id": n_id,
+            "name": name,
+            "val": 5 if kind == "file" else (3 if kind == "class" else 1),
+            "kind": kind,
+            "file": file_path,
+            "layer": layer,
+            "domain": domain,
+            "complexity": complexity,
+            "degree": deg
         })
 
-    # Query edges
+    # Query edges for graph links (filtering to existing nodes)
     node_ids = {n["id"] for n in nodes}
-    cursor.execute("SELECT source, target, kind FROM edges")
     links = []
-    for row in cursor.fetchall():
+    for row in raw_edges:
         if row["source"] in node_ids and row["target"] in node_ids:
             links.append({
                 "source": row["source"],
@@ -38,180 +107,30 @@ def generate_graph():
 
     conn.close()
 
-    # Generate HTML with YSH "The Void" Design System
-    html_content = f"""
-<!DOCTYPE html>
-<html>
-<head>
-    <title>YSH CodeGraph - The Void</title>
-    <script src="https://unpkg.com/force-graph"></script>
-    <style>
-        :root {{
-            --zinc-50: #F9F9FB;
-            --zinc-100: #F1F1F4;
-            --zinc-500: #71717A;
-            --zinc-800: #27272A;
-            --zinc-900: #18181B;
-            --zinc-950: #09090B;
-            --deep-orange: #FF6600;
-            --safety-gold: #FFCE00;
-            --vivid-magenta: #FF0066;
-            --kinetic-gradient: linear-gradient(90deg, #FFCE00 0%, #FF6600 50%, #FF0066 100%);
-        }}
+    # Load from temp_head.html as the layout template
+    template_path = 'temp_head.html'
+    if not os.path.exists(template_path):
+        print(f"Error: {template_path} template not found.")
+        return
 
-        body {{ 
-            margin: 0; 
-            background-color: var(--zinc-950); 
-            color: var(--zinc-100); 
-            font-family: 'Inter', system-ui, sans-serif; 
-            overflow: hidden; 
-        }}
+    with open(template_path, 'r', encoding='utf-8') as f:
+        html_template = f.read()
 
-        #graph {{ width: 100vw; height: 100vh; }}
+    # Reconstruct the gData block
+    g_data_str = f"const gData = {{\n            nodes: {json.dumps(nodes)},\n            links: {json.dumps(links)}\n        }};"
 
-        #controls {{ 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            background: var(--zinc-900); 
-            padding: 20px; 
-            border: none;
-            border-bottom: 1px solid var(--zinc-800);
-            border-right: 1px solid var(--zinc-800);
-            pointer-events: auto;
-            width: 280px;
-        }}
+    # Find and replace the gData definition in the template
+    # We will use re.sub with DOTALL to replace const gData = { ... };
+    pattern = re.compile(r'const gData = \{.*?\};', re.DOTALL)
+    if not pattern.search(html_template):
+        print("Error: Could not find const gData declaration in template.")
+        return
 
-        .legend-item {{ 
-            margin: 8px 0; 
-            display: flex; 
-            align-items: center; 
-            font-size: 13px;
-            color: var(--zinc-500);
-        }}
+    updated_html = pattern.sub(g_data_str, html_template)
 
-        .dot {{ 
-            width: 10px; 
-            height: 10px; 
-            margin-right: 12px; 
-        }}
-
-        h1 {{ 
-            margin: 0 0 15px 0; 
-            font-size: 14px; 
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--zinc-50); 
-            border-left: 3px solid var(--deep-orange);
-            padding-left: 10px;
-        }}
-
-        #info {{ 
-            position: absolute; 
-            bottom: 0; 
-            right: 0; 
-            background: var(--zinc-900); 
-            padding: 8px 15px; 
-            font-size: 11px; 
-            color: var(--zinc-500);
-            border-top: 1px solid var(--zinc-800);
-            border-left: 1px solid var(--zinc-800);
-        }}
-
-        .kinetic-bar {{
-            height: 2px;
-            width: 100%;
-            background: var(--kinetic-gradient);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }}
-    </style>
-</head>
-<body>
-    <div id="graph"></div>
-    <div id="controls">
-        <div class="kinetic-bar"></div>
-        <h1>YSH Intelligence</h1>
-        <div class="legend-item"><div class="dot" style="background: var(--deep-orange);"></div> FILE (Kinetic)</div>
-        <div class="legend-item"><div class="dot" style="background: var(--safety-gold);"></div> CLASS (Structural)</div>
-        <div class="legend-item"><div class="dot" style="background: var(--vivid-magenta);"></div> METHOD (Active)</div>
-        <div class="legend-item"><div class="dot" style="background: var(--zinc-500);"></div> OTHER</div>
-        <div style="margin-top: 20px; font-size: 11px; color: var(--zinc-500); line-height: 1.5;">
-            SYSTEM: FARMVIBES.AI<br>
-            MODE: ZERO-LINE INTEGRITY<br>
-            THEME: THE VOID
-        </div>
-    </div>
-    <div id="info">NODES: {len(nodes)} | EDGES: {len(links)} | PRECISION: 99.8%</div>
-
-    <script>
-        const gData = {{
-            nodes: {json.dumps(nodes)},
-            links: {json.dumps(links)}
-        }};
-
-        const colorMap = {{
-            'file': '#FF6600',
-            'class': '#FFCE00',
-            'function': '#FF0066',
-            'method': '#FF0066',
-            'variable': '#71717A',
-            'constant': '#D4D4D8'
-        }};
-
-        const Graph = ForceGraph()
-            (document.getElementById('graph'))
-            .graphData(gData)
-            .nodeId('id')
-            .nodeLabel(node => `[${{node.kind}}] ${{node.name}}`)
-            .nodeColor(node => colorMap[node.kind] || '#27272A')
-            .nodeRelSize(5)
-            .nodeVal('val')
-            .nodeCanvasObject((node, ctx, globalScale) => {{
-                const label = node.name;
-                const fontSize = 12/globalScale;
-                ctx.font = `${{fontSize}}px monospace`;
-                
-                // Draw Node
-                ctx.fillStyle = colorMap[node.kind] || '#27272A';
-                ctx.beginPath(); 
-                ctx.arc(node.x, node.y, node.val * 1.2, 0, 2 * Math.PI, false);
-                ctx.fill();
-
-                // Draw Label on high zoom or important nodes
-                if (globalScale > 3 || node.val > 3) {{
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillStyle = '#F9F9FB';
-                    ctx.fillText(label, node.x, node.y + (node.val * 2.5));
-                }}
-            }})
-            .linkDirectionalArrowLength(3)
-            .linkDirectionalArrowRelPos(1)
-            .linkColor(link => {{
-                if (link.kind === 'contains') return 'rgba(241, 241, 244, 0.05)';
-                if (link.kind === 'calls') return '#FF0066';
-                if (link.kind === 'extends') return '#FFCE00';
-                return 'rgba(113, 113, 122, 0.1)';
-            }})
-            .linkWidth(link => link.kind === 'calls' ? 1 : 0.5)
-            .backgroundColor('#09090B')
-            .onNodeClick(node => {{
-                Graph.centerAt(node.x, node.y, 1000);
-                Graph.zoom(6, 2000);
-            }});
-
-        Graph.d3Force('charge').strength(-150);
-        Graph.d3Force('link').distance(link => link.kind === 'contains' ? 40 : 120);
-
-    </script>
-</body>
-</html>
-"""
-    with open('codegraph.html', 'w') as f:
-        f.write(html_content)
-    print("YSH Graph updated: codegraph.html")
+    with open('codegraph.html', 'w', encoding='utf-8') as f:
+        f.write(updated_html)
+    print("YSH Graph updated successfully: codegraph.html using temp_head.html template.")
 
 if __name__ == "__main__":
     generate_graph()

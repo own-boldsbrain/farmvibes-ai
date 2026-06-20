@@ -128,3 +128,8 @@ test-output.xml
 venv/
 
 makeenv
+
+# YSH Rooftop Segmentation
+/70_artifacts/
+/masks/
+*.parquet

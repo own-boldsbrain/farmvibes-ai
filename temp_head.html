@@ -13,7 +13,6 @@
             --zinc-50: #F9F9FB; --zinc-100: #F1F1F4; --zinc-200: #E4E4E7; --zinc-300: #D4D4D8;
             --zinc-400: #A1A1AA; --zinc-500: #71717A; --zinc-600: #52525B; --zinc-700: #3F3F46;
             --zinc-800: #27272A; --zinc-900: #18181B; --zinc-950: #09090B;
-            --void-bg: #050507;
             --deep-orange: #FF6600;
             --safety-gold: #FFCE00;
             --vivid-magenta: #FF0066;
@@ -28,7 +27,7 @@
         * { box-sizing: border-box; }
         body { 
             margin: 0; padding: 0;
-            background-color: var(--void-bg);
+            background-color: var(--zinc-950);
             color: var(--zinc-300);
             font-family: 'Inter', sans-serif;
             overflow: hidden;
@@ -39,18 +38,17 @@
         #app { display: flex; width: 100%; height: 100%; position: relative; }
 
         aside {
-            background-color: rgba(9, 9, 11, 0.95);
-            backdrop-filter: blur(12px);
+            background-color: var(--zinc-900);
             z-index: 100;
             display: flex;
             flex-direction: column;
             transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
         }
 
-        #left-panel { width: var(--panel-width); border-right: 1px solid var(--zinc-800); }
+        #left-panel { width: var(--panel-width); }
         #right-panel { 
             width: 300px; 
-            border-left: 1px solid var(--zinc-800);
+            background-color: var(--zinc-900);
             position: absolute;
             right: 0;
             height: 100%;
@@ -60,73 +58,106 @@
         #left-panel.collapsed { transform: translateX(-100%); }
         #right-panel.collapsed { transform: translateX(100%); }
 
-        main { flex-grow: 1; position: relative; background-color: var(--void-bg); }
+        main { flex-grow: 1; position: relative; background-color: var(--zinc-950); }
 
-        .panel-header { padding: 24px; border-bottom: 1px solid var(--zinc-800); position: relative; }
+        .panel-header { padding: 24px; position: relative; background-color: var(--zinc-900); }
         .kinetic-line { height: 2px; width: 100%; background: var(--kinetic-gradient); position: absolute; top: 0; left: 0; }
-        h1 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--zinc-100); margin: 0; font-weight: 800; }
+        h1 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--zinc-100); margin: 0; font-weight: 600; }
 
-        .panel-section { padding: 20px; border-bottom: 1px solid var(--zinc-900); }
-        .section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--zinc-500); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .panel-section { padding: 20px; background-color: var(--zinc-900); margin-bottom: 2px; }
+        .section-title { font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--zinc-500); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
 
         input[type="text"] {
-            width: 100%; background: var(--zinc-900); border: 1px solid var(--zinc-800);
+            width: 100%; background: var(--zinc-950); border: none; border-bottom: 2px solid transparent;
             padding: 10px 14px; color: var(--zinc-100); font-family: 'JetBrains Mono', monospace;
-            font-size: 12px; border-radius: 4px; outline: none;
+            font-size: 0.875rem; border-radius: 0; outline: none; transition: border-image 0.2s;
         }
-        input[type="text"]:focus { border-color: var(--deep-orange); }
+        input[type="text"]:focus { 
+            border-bottom: 2px solid; 
+            border-image: var(--kinetic-gradient) 1; 
+        }
 
         .filter-group { display: flex; flex-direction: column; gap: 8px; }
-        .filter-item { display: flex; align-items: center; font-size: 11px; cursor: pointer; user-select: none; }
-        .filter-item input { margin-right: 10px; }
-        .color-dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+        .filter-item { display: flex; align-items: center; font-size: 0.875rem; cursor: pointer; user-select: none; }
+        .filter-item input { margin-right: 10px; border-radius: 0; }
+        .color-dot { width: 8px; height: 8px; border-radius: 0; margin-right: 8px; }
 
         .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .stat-item { background: var(--zinc-900); padding: 12px; border-radius: 4px; }
+        .stat-item { background: var(--zinc-800); padding: 12px; border-radius: 0; }
         .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: var(--zinc-100); font-weight: 700; }
-        .stat-label { font-size: 9px; text-transform: uppercase; color: var(--zinc-500); margin-top: 4px; }
+        .stat-label { font-size: 0.6875rem; text-transform: uppercase; color: var(--zinc-500); margin-top: 4px; font-weight: 500; }
 
         .btn {
             background: var(--zinc-800); border: none; color: var(--zinc-300); padding: 8px 12px;
-            font-size: 10px; cursor: pointer; border-radius: 4px; text-transform: uppercase;
-            letter-spacing: 0.05em; transition: background 0.2s; outline: none;
+            font-size: 0.6875rem; cursor: pointer; border-radius: 0; text-transform: uppercase;
+            letter-spacing: 0.05em; transition: background 0.2s; outline: none; font-weight: 500;
         }
         .btn:hover { background: var(--zinc-700); color: var(--zinc-50); }
-        .btn-primary { background: var(--deep-orange); color: white; }
+        .btn-primary { background: var(--kinetic-gradient); color: white; border: none; }
 
         #hud-bottom {
             position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(8px);
-            padding: 8px 20px; border-radius: 20px; border: 1px solid var(--zinc-800);
-            display: flex; gap: 24px; font-size: 10px; font-family: 'JetBrains Mono', monospace; z-index: 200;
+            background: var(--zinc-900); 
+            padding: 8px 20px; border-radius: 0; border: none;
+            display: flex; gap: 24px; font-size: 0.875rem; font-family: 'JetBrains Mono', monospace; z-index: 200;
         }
         .hud-metric { display: flex; align-items: center; gap: 8px; }
-        .hud-indicator { width: 6px; height: 6px; border-radius: 50%; background: var(--zinc-700); }
-        .hud-indicator.active { background: var(--active-green); box-shadow: 0 0 8px var(--active-green); }
+        .hud-indicator { width: 6px; height: 6px; border-radius: 0; background: var(--zinc-700); }
+        .hud-indicator.active { background: var(--active-green); box-shadow: none; }
 
         #command-palette {
             position: fixed; top: 20%; left: 50%; transform: translateX(-50%);
-            width: 500px; background: var(--zinc-900); border: 1px solid var(--zinc-700);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 1000; border-radius: 8px; display: none;
+            width: 500px; background: var(--zinc-900); border: none;
+            box-shadow: none; z-index: 1000; border-radius: 0; display: none;
             flex-direction: column; overflow: hidden;
         }
-        #command-input { padding: 16px; border: none; border-bottom: 1px solid var(--zinc-800); background: transparent; color: white; font-size: 14px; outline: none; width: 100%; }
+        #command-input { padding: 16px; border: none; background: var(--zinc-950); color: white; font-size: 0.875rem; outline: none; width: 100%; }
         .command-list { max-height: 300px; overflow-y: auto; }
-        .command-item { padding: 12px 16px; font-size: 12px; cursor: pointer; display: flex; justify-content: space-between; }
+        .command-item { padding: 12px 16px; font-size: 0.875rem; cursor: pointer; display: flex; justify-content: space-between; }
         .command-item:hover, .command-item.active { background: var(--zinc-800); }
         .command-shortcut { color: var(--zinc-500); font-family: 'JetBrains Mono'; }
 
         #minimap {
             position: absolute; bottom: 20px; right: 20px; width: 150px; height: 150px;
-            background: rgba(0,0,0,0.5); border: 1px solid var(--zinc-800); border-radius: 4px;
+            background: var(--zinc-900); border: none; border-radius: 0;
             z-index: 150; pointer-events: none; overflow: hidden;
         }
         #minimap-canvas { width: 100%; height: 100%; }
 
         .tooltip {
-            position: fixed; background: var(--zinc-900); border: 1px solid var(--zinc-700);
-            padding: 8px 12px; border-radius: 4px; pointer-events: none; z-index: 1000;
-            font-size: 11px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            position: fixed; background: var(--zinc-800); border: none;
+            padding: 8px 12px; border-radius: 0; pointer-events: none; z-index: 1000;
+            font-size: 0.6875rem; display: none; box-shadow: none; font-weight: 500; text-transform: uppercase;
+        }
+
+        select {
+            width: 100%; background: var(--zinc-950); border: none; border-bottom: 2px solid transparent;
+            padding: 10px 14px; color: var(--zinc-100); font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem; border-radius: 0; outline: none; appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            cursor: pointer;
+        }
+        select:focus {
+            border-bottom: 2px solid; 
+            border-image: var(--kinetic-gradient) 1; 
+        }
+
+        .group-item input[type="text"] {
+            border-bottom: 1px solid var(--zinc-800) !important;
+            padding: 4px 8px !important;
+            font-size: 0.75rem !important;
+        }
+        .group-item input[type="text"]:focus {
+            border-bottom: 1px solid white !important;
+            border-image: none !important;
+        }
+        .group-item input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .group-item input[type="color"]::-webkit-color-swatch {
+            border: 1px solid var(--zinc-800);
         }
     </style>
 </head>
@@ -136,7 +167,7 @@
             <div class="kinetic-line"></div>
             <header class="panel-header">
                 <h1>YSH Intelligence</h1>
-                <div style="font-size: 9px; color: var(--zinc-500); margin-top: 4px;">CODEGRAPH / THE VOID</div>
+                <div style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500); margin-top: 4px;">CODEGRAPH / THE VOID</div>
             </header>
 
             <div class="panel-section">
@@ -146,14 +177,72 @@
             </div>
 
             <div class="panel-section">
+                <div class="section-title"><span>Multi-Dimension Filter</span></div>
+                <div class="filter-group">
+                    <div style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500); margin-bottom: 4px;">Layer / Component</div>
+                    <select id="layer-select">
+                        <option value="all">ALL LAYERS</option>
+                        <option value="core">CORE</option>
+                        <option value="agent">AGENT</option>
+                        <option value="server">SERVER</option>
+                        <option value="lib">LIB</option>
+                        <option value="notebook">NOTEBOOK</option>
+                        <option value="operator">OPERATOR</option>
+                        <option value="workflow">WORKFLOW</option>
+                        <option value="test">TEST</option>
+                        <option value="other">OTHER</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="margin-top: 12px;">
+                    <div style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500); margin-bottom: 4px;">Business Domain</div>
+                    <select id="domain-select">
+                        <option value="all">ALL DOMAINS</option>
+                        <option value="geospatial">GEOSPATIAL</option>
+                        <option value="agriculture">AGRICULTURE</option>
+                        <option value="climate & weather">CLIMATE & WEATHER</option>
+                        <option value="sustainability & carbon">SUSTAINABILITY & CARBON</option>
+                        <option value="platform core">PLATFORM CORE</option>
+                        <option value="general">GENERAL</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="margin-top: 12px;">
+                    <div style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500); margin-bottom: 4px;">Complexity Tier</div>
+                    <select id="complexity-select">
+                        <option value="all">ALL COMPLEXITIES</option>
+                        <option value="high">HIGH (HUB)</option>
+                        <option value="medium">MEDIUM</option>
+                        <option value="low">LOW</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title"><span>Groups (Obsidian Color)</span></div>
+                <div id="groups-list" class="filter-group" style="margin-bottom: 12px;"></div>
+                <button id="add-group-btn" class="btn" style="width: 100%;">+ Add Color Group</button>
+            </div>
+
+            <div class="panel-section">
                 <div class="section-title"><span>Layout Engine</span></div>
                 <div class="filter-group">
                     <input type="range" id="force-strength" min="-1000" max="0" value="-150" style="width: 100%">
-                    <div style="display: flex; justify-content: space-between; font-size: 9px; color: var(--zinc-500);">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500);">
                         <span>Repulsion</span><span id="force-val">-150</span>
                     </div>
                 </div>
-                <button id="reheat-btn" class="btn" style="width: 100%; margin-top: 10px;">Reheat Simulation</button>
+                <div class="filter-group" style="margin-top: 15px;">
+                    <input type="range" id="link-distance" min="20" max="300" value="120" style="width: 100%">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500);">
+                        <span>Link Distance</span><span id="link-dist-val">120</span>
+                    </div>
+                </div>
+                <div class="filter-group" style="margin-top: 15px;">
+                    <input type="range" id="link-strength" min="0.1" max="2" step="0.1" value="1" style="width: 100%">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; color: var(--zinc-500);">
+                        <span>Link Strength</span><span id="link-strength-val">1.0</span>
+                    </div>
+                </div>
+                <button id="reheat-btn" class="btn" style="width: 100%; margin-top: 15px;">Reheat Simulation</button>
             </div>
 
             <div class="panel-section">
@@ -162,6 +251,19 @@
                     <div class="filter-item"><input type="checkbox" id="anim-pulse" checked> <span>Pulse Hubs</span></div>
                     <div class="filter-item"><input type="checkbox" id="anim-flow" checked> <span>Edge Flow</span></div>
                     <div class="filter-item"><input type="checkbox" id="show-labels" checked> <span>Show Labels</span></div>
+                    <div class="filter-item"><input type="checkbox" id="label-size-constant" checked> <span>Constant Text Size</span></div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title"><span>Local Graph Filter</span></div>
+                <div class="filter-group">
+                    <select id="depth-select">
+                        <option value="all">ALL NODES</option>
+                        <option value="1">1 HOP DEPTH</option>
+                        <option value="2">2 HOPS DEPTH</option>
+                        <option value="3">3 HOPS DEPTH</option>
+                    </select>
                 </div>
             </div>
 
@@ -213,7 +315,9 @@
         // 01. Constants & Data
         const colorMap = {
             'file': '#FF6600', 'class': '#FFCE00', 'function': '#FF0066',
-            'method': '#FF0066', 'variable': '#71717A', 'constant': '#D4D4D8'
+            'method': '#FF0066', 'variable': '#71717A', 'constant': '#D4D4D8',
+            'interface': '#3B82F6', 'type_alias': '#A78BFA', 'property': '#F43F5E',
+            'enum': '#10B981', 'enum_member': '#34D399', 'namespace': '#60A5FA'
         };
 
         const gData = {
@@ -224,43 +328,95 @@
         // 02. Application State
         const state = {
             graph: { raw: gData, visible: { nodes: [...gData.nodes], links: [...gData.links] } },
-            filters: { query: "", kinds: {}, labels: true },
-            selection: { hovered: null, selected: null },
+            filters: { query: "", kinds: {}, labels: true, depth: 'all', labelSizeConstant: true, layer: 'all', domain: 'all', complexity: 'all' },
+            selection: { hovered: null, selected: null, neighbors: new Set() },
             animation: { pulse: true, flow: true, time: 0 },
-            ui: { zoom: 1, paletteOpen: false }
+            ui: { zoom: 1, paletteOpen: false },
+            layout: { repulsion: -150, linkDistance: 120, linkStrength: 1.0 },
+            groups: [
+                { query: 'path:notebooks', color: '#25D366' },
+                { query: 'type:class', color: '#3B82F6' },
+                { query: 'type:function', color: '#FF0066' }
+            ]
         };
 
         const kinds = [...new Set(gData.nodes.map(n => n.kind))];
         kinds.forEach(k => state.filters.kinds[k] = true);
 
         // 03. Graph Engine
+        function matchQuery(node, query) {
+            if (!query) return false;
+            const q = query.toLowerCase();
+            let typeF = null, extF = null, pathF = null, cleanQ = q;
+            const tM = q.match(/type:(\w+)/); if(tM){typeF=tM[1]; cleanQ=cleanQ.replace(tM[0],'');}
+            const eM = q.match(/ext:(\w+)/); if(eM){extF=eM[1]; cleanQ=cleanQ.replace(eM[0],'');}
+            const pM = q.match(/path:([\w/.-]+)/); if(pM){pathF=pM[1]; cleanQ=cleanQ.replace(pM[0],'');}
+            cleanQ = cleanQ.trim();
+
+            if (typeF && node.kind !== typeF) return false;
+            if (extF && !node.file.endsWith('.'+extF)) return false;
+            if (pathF && !node.file.includes(pathF)) return false;
+            if (cleanQ && !node.name.toLowerCase().includes(cleanQ) && !node.file.toLowerCase().includes(cleanQ)) return false;
+            return true;
+        }
+
+        function getNodeColor(node) {
+            for (let i = state.groups.length - 1; i >= 0; i--) {
+                const group = state.groups[i];
+                if (group.query && matchQuery(node, group.query)) {
+                    return group.color;
+                }
+            }
+            return colorMap[node.kind] || '#27272A';
+        }
+
         const Graph = ForceGraph()
             (document.getElementById('graph'))
             .graphData(state.graph.visible)
             .nodeId('id')
             .nodeLabel(null)
-            .nodeColor(node => colorMap[node.kind] || '#27272A')
+            .nodeColor(getNodeColor)
             .nodeRelSize(5)
             .nodeVal('val')
             .backgroundColor('#050507')
             .linkDirectionalArrowLength(3)
             .linkDirectionalArrowRelPos(1)
             .linkColor(link => {
+                const focusNode = state.selection.selected || state.selection.hovered;
+                if (focusNode) {
+                    const isNeighborLink = (link.source.id || link.source) === focusNode.id || (link.target.id || link.target) === focusNode.id;
+                    if(!isNeighborLink) return 'rgba(39, 39, 42, 0.03)';
+                }
                 if (link.kind === 'contains') return 'rgba(241, 241, 244, 0.05)';
                 if (link.kind === 'calls') return '#FF0066';
                 if (link.kind === 'extends') return '#FFCE00';
                 return 'rgba(113, 113, 122, 0.1)';
             })
-            .linkWidth(link => link.kind === 'calls' ? 1 : 0.5)
-            .linkDirectionalParticles(link => (state.animation.flow && link.kind === 'calls') ? 2 : 0)
+            .linkWidth(link => link.kind === 'calls' ? 1.2 : 0.6)
+            .linkDirectionalParticles(link => {
+                const focusNode = state.selection.selected || state.selection.hovered;
+                if (focusNode) {
+                    const isNeighborLink = (link.source.id || link.source) === focusNode.id || (link.target.id || link.target) === focusNode.id;
+                    if (!isNeighborLink) return 0;
+                }
+                return (state.animation.flow && link.kind === 'calls') ? 3 : 0;
+            })
             .linkDirectionalParticleSpeed(0.005)
             .nodeCanvasObject((node, ctx, globalScale) => {
                 const radius = node.val * 1.2;
                 const isHovered = state.selection.hovered === node;
                 const isSelected = state.selection.selected === node;
 
+                let dimNode = false;
+                const focusNode = state.selection.selected || state.selection.hovered;
+                if (focusNode) {
+                    if (focusNode !== node && !state.selection.neighbors.has(node.id)) {
+                        dimNode = true;
+                    }
+                }
+
                 let pulseScale = 1;
-                if (state.animation.pulse && node.val > 4) {
+                if (state.animation.pulse && node.val > 4 && !dimNode) {
                     pulseScale = 1 + Math.sin(state.animation.time / 200) * 0.1;
                 }
 
@@ -271,19 +427,25 @@
                     ctx.fill();
                 }
 
-                ctx.fillStyle = colorMap[node.kind] || '#27272A';
+                ctx.fillStyle = dimNode ? 'rgba(39, 39, 42, 0.2)' : getNodeColor(node);
                 ctx.beginPath(); 
                 ctx.arc(node.x, node.y, radius * pulseScale, 0, 2 * Math.PI, false);
                 ctx.fill();
 
-                if (state.filters.labels) {
+                if (state.filters.labels && !dimNode) {
                     if (globalScale > 2.5 || node.val > 4 || isHovered || isSelected) {
-                        const fontSize = 12/globalScale;
+                        const fontSize = state.filters.labelSizeConstant ? (11 / globalScale) : 4.5;
                         ctx.font = `${fontSize}px 'JetBrains Mono'`;
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
+                        
+                        // Text outline (halo) for high legibility
+                        ctx.strokeStyle = '#050507';
+                        ctx.lineWidth = state.filters.labelSizeConstant ? (4.5 / globalScale) : 1.5;
+                        ctx.strokeText(node.name, node.x, node.y + (radius * 2.3));
+
                         ctx.fillStyle = (isHovered || isSelected) ? '#FFFFFF' : '#D4D4D8';
-                        ctx.fillText(node.name, node.x, node.y + (radius * 2.5));
+                        ctx.fillText(node.name, node.x, node.y + (radius * 2.3));
                     }
                 }
             })
@@ -291,12 +453,30 @@
                 state.selection.hovered = node;
                 document.body.style.cursor = node ? 'pointer' : 'default';
                 showTooltip(node);
+
+                if (!state.selection.selected) {
+                    if (node) {
+                        state.selection.neighbors = new Set(gData.links.filter(l => (l.source.id || l.source) === node.id || (l.target.id || l.target) === node.id).map(l => (l.source.id || l.source) === node.id ? (l.target.id || l.target) : (l.source.id || l.source)));
+                        state.selection.neighbors.add(node.id);
+                    } else {
+                        state.selection.neighbors = new Set();
+                    }
+                }
             })
             .onNodeClick(node => {
                 state.selection.selected = node;
+                if(node) {
+                    state.selection.neighbors = new Set(gData.links.filter(l => (l.source.id || l.source) === node.id || (l.target.id || l.target) === node.id).map(l => (l.source.id || l.source) === node.id ? (l.target.id || l.target) : (l.source.id || l.source)));
+                    state.selection.neighbors.add(node.id);
+                } else {
+                    state.selection.neighbors = new Set();
+                }
                 updateInspector(node);
-                Graph.centerAt(node.x, node.y, 1000);
-                Graph.zoom(6, 1000);
+                applyFilters();
+                if(node) {
+                    Graph.centerAt(node.x, node.y, 1000);
+                    Graph.zoom(6, 1000);
+                }
             })
             .onZoom(transform => {
                 state.ui.zoom = transform.k;
@@ -304,7 +484,9 @@
             });
 
         Graph.d3Force('charge').strength(-150);
-        Graph.d3Force('link').distance(link => link.kind === 'contains' ? 40 : 120);
+        Graph.d3Force('link')
+            .distance(link => link.kind === 'contains' ? 40 : 120)
+            .strength(link => (link.kind === 'contains' ? 1.0 : 0.3) * state.layout.linkStrength);
 
         // 04. UI & Logic
         function initFilters() {
@@ -323,19 +505,59 @@
 
         function applyFilters() {
             const query = state.filters.query.toLowerCase();
-            let typeF = null, extF = null, pathF = null, cleanQ = query;
+            let typeF = null, extF = null, pathF = null, layerF = null, domainF = null, complexityF = null, cleanQ = query;
             const tM = query.match(/type:(\w+)/); if(tM){typeF=tM[1]; cleanQ=cleanQ.replace(tM[0],'');}
             const eM = query.match(/ext:(\w+)/); if(eM){extF=eM[1]; cleanQ=cleanQ.replace(eM[0],'');}
-            const pM = query.match(/path:([\w/]+)/); if(pM){pathF=pM[1]; cleanQ=cleanQ.replace(pM[0],'');}
+            const pM = query.match(/path:([\w/.-]+)/); if(pM){pathF=pM[1]; cleanQ=cleanQ.replace(pM[0],'');}
+            const lM = query.match(/layer:(\w+)/); if(lM){layerF=lM[1]; cleanQ=cleanQ.replace(lM[0],'');}
+            const dM = query.match(/domain:([a-z0-9&\s]+?)(?=\s+\w+:|$)/); if(dM){domainF=dM[1].trim(); cleanQ=cleanQ.replace(dM[0],'');}
+            const cM = query.match(/complexity:(\w+)/); if(cM){complexityF=cM[1]; cleanQ=cleanQ.replace(cM[0],'');}
             cleanQ = cleanQ.trim();
 
-            const visibleNodes = gData.nodes.filter(n => {
+            let visibleNodes = gData.nodes.filter(n => {
                 if(!state.filters.kinds[n.kind]) return false;
                 if(typeF && n.kind !== typeF) return false;
                 if(extF && !n.file.endsWith('.'+extF)) return false;
                 if(pathF && !n.file.includes(pathF)) return false;
+                
+                if(layerF && n.layer !== layerF) return false;
+                if(domainF && n.domain !== domainF) return false;
+                if(complexityF && n.complexity !== complexityF) return false;
+                
+                if(state.filters.layer !== 'all' && n.layer !== state.filters.layer) return false;
+                if(state.filters.domain !== 'all' && n.domain !== state.filters.domain) return false;
+                if(state.filters.complexity !== 'all' && n.complexity !== state.filters.complexity) return false;
+                
                 return n.name.toLowerCase().includes(cleanQ) || n.file.toLowerCase().includes(cleanQ);
             });
+
+            // Local Graph Depth Filter (Obsidian-like)
+            if (state.selection.selected && state.filters.depth !== 'all') {
+                const depthLimit = parseInt(state.filters.depth);
+                const localSet = new Set([state.selection.selected.id]);
+                let currentRing = new Set([state.selection.selected.id]);
+
+                for (let d = 0; d < depthLimit; d++) {
+                    const nextRing = new Set();
+                    gData.links.forEach(l => {
+                        const sId = l.source.id || l.source;
+                        const tId = l.target.id || l.target;
+                        if (currentRing.has(sId)) {
+                            nextRing.add(tId);
+                        }
+                        if (currentRing.has(tId)) {
+                            nextRing.add(sId);
+                        }
+                    });
+                    nextRing.forEach(id => {
+                        if (!localSet.has(id)) {
+                            localSet.add(id);
+                        }
+                    });
+                    currentRing = nextRing;
+                }
+                visibleNodes = visibleNodes.filter(n => localSet.has(n.id));
+            }
 
             const nodeIds = new Set(visibleNodes.map(n => n.id));
             const visibleLinks = gData.links.filter(l => nodeIds.has(l.source.id || l.source) && nodeIds.has(l.target.id || l.target));
@@ -351,15 +573,25 @@
             const content = document.getElementById('inspector-content');
             if(!node) { panel.classList.add('collapsed'); return; }
             panel.classList.remove('collapsed');
-            const neighbors = gData.links.filter(l => (l.source.id || l.source) === node.id || (l.target.id || l.target) === node.id).length;
+            
+            const layerBadge = `<span style="background: var(--zinc-800); color: var(--zinc-100); padding: 4px 8px; font-size: 10px; font-weight: 600; text-transform: uppercase;">${node.layer || 'other'}</span>`;
+            const domainBadge = `<span style="background: var(--zinc-800); color: var(--zinc-300); padding: 4px 8px; font-size: 10px; font-weight: 600; text-transform: uppercase;">${node.domain || 'general'}</span>`;
+            
+            let complexityColor = 'var(--active-green)';
+            if (node.complexity === 'high') complexityColor = 'var(--alert-red)';
+            else if (node.complexity === 'medium') complexityColor = 'var(--safety-gold)';
+            
+            const complexityBadge = `<span style="background: ${complexityColor}; color: black; padding: 4px 8px; font-size: 10px; font-weight: 700; text-transform: uppercase;">${node.complexity || 'low'} (${node.degree || 0} EDGES)</span>`;
+
             content.innerHTML = `
                 <div style="margin-bottom: 20px"><div style="color: var(--zinc-500); font-size: 9px;">NAME</div><div style="color: white; font-size: 16px; font-weight: 700; word-break: break-all">${node.name}</div></div>
-                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px;">TYPE</div><div style="color: ${colorMap[node.kind]}; font-weight: 600;">${node.kind.toUpperCase()}</div></div>
-                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px;">PATH</div><div style="color: var(--zinc-300); font-size: 10px; font-family: 'JetBrains Mono'">${node.file}</div></div>
-                <div class="stat-grid" style="margin-top: 25px">
-                    <div class="stat-item"><div class="stat-value">${neighbors}</div><div class="stat-label">Edges</div></div>
-                    <div class="stat-item"><div class="stat-value">${node.val}</div><div class="stat-label">Val</div></div>
-                </div>
+                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px;">TYPE</div><div style="color: ${colorMap[node.kind] || '#A1A1AA'}; font-weight: 600;">${node.kind.toUpperCase()}</div></div>
+                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px;">PATH</div><div style="color: var(--zinc-300); font-size: 10px; font-family: 'JetBrains Mono'; word-break: break-all">${node.file}</div></div>
+                
+                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px; margin-bottom: 4px;">LAYER</div>${layerBadge}</div>
+                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px; margin-bottom: 4px;">DOMAIN</div>${domainBadge}</div>
+                <div style="margin-bottom: 15px"><div style="color: var(--zinc-500); font-size: 9px; margin-bottom: 4px;">COMPLEXITY</div>${complexityBadge}</div>
+                
                 <button class="btn btn-primary" style="width: 100%; margin-top: 30px" onclick="Graph.centerAt(${node.x}, ${node.y}, 1000); Graph.zoom(8, 1000);">CENTER CAMERA</button>
             `;
         }
@@ -373,9 +605,11 @@
         }
 
         // 05. Command Palette
+        let commandIndex = 0;
         const commands = [
             { name: 'Fit Graph', shortcut: 'F', action: () => Graph.zoomToFit(1000) },
             { name: 'Reset Camera', shortcut: '0', action: () => { Graph.centerAt(0,0,1000); Graph.zoom(1,1000); } },
+            { name: 'Deselect Node', shortcut: 'Esc', action: () => { state.selection.selected = null; state.selection.neighbors.clear(); updateInspector(null); } },
             { name: 'Toggle Left Panel', shortcut: '[', action: () => document.getElementById('left-panel').classList.toggle('collapsed') },
             { name: 'Toggle Right Panel', shortcut: ']', action: () => document.getElementById('right-panel').classList.toggle('collapsed') },
             { name: 'Reheat Simulation', shortcut: 'R', action: () => Graph.d3ReheatSimulation() },
@@ -391,6 +625,7 @@
             if(state.ui.paletteOpen) {
                 const input = document.getElementById('command-input');
                 input.value = ''; input.focus();
+                commandIndex = 0;
                 renderCommands('');
             }
         }
@@ -398,9 +633,12 @@
         function renderCommands(filter) {
             const list = document.getElementById('command-list');
             list.innerHTML = '';
-            commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase())).forEach((c, i) => {
+            const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
+            if(commandIndex >= filtered.length) commandIndex = 0;
+
+            filtered.forEach((c, i) => {
                 const item = document.createElement('div');
-                item.className = 'command-item' + (i === 0 ? ' active' : '');
+                item.className = 'command-item' + (i === commandIndex ? ' active' : '');
                 item.innerHTML = `<span>${c.name}</span> <span class="command-shortcut">${c.shortcut || ''}</span>`;
                 item.onclick = () => { c.action(); togglePalette(); };
                 list.appendChild(item);
@@ -426,7 +664,7 @@
             
             const rangeX = maxX - minX, rangeY = maxY - minY;
             const padding = 10;
-            const scale = Math.min((150 - 2 * padding) / rangeX, (150 - 2 * padding) / rangeY);
+            const scale = Math.min((150 - 2 * padding) / (rangeX || 1), (150 - 2 * padding) / (rangeY || 1));
             
             nodes.forEach(n => {
                 const x = padding + (n.x - minX) * scale;
@@ -437,9 +675,19 @@
             
             // Viewport rect
             const transform = Graph.zoom();
-            const viewX = padding + (-Graph.centerAt().x - minX) * scale;
-            const viewY = padding + (-Graph.centerAt().y - minY) * scale;
-            // ... (Simplified viewport for standalone demo)
+            if (transform > 0 && Graph.centerAt()) {
+                const center = Graph.centerAt();
+                const vW = window.innerWidth / transform;
+                const vH = window.innerHeight / transform;
+                const viewX = padding + (center.x - vW/2 - minX) * scale;
+                const viewY = padding + (center.y - vH/2 - minY) * scale;
+                const viewW = vW * scale;
+                const viewH = vH * scale;
+
+                ctx.strokeStyle = 'rgba(255, 0, 102, 0.8)';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(viewX, viewY, viewW, viewH);
+            }
         }
 
         // 07. Exports
@@ -476,7 +724,7 @@
             if((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); togglePalette(); }
             if(e.key === 'Escape') {
                 if(state.ui.paletteOpen) togglePalette();
-                else { state.selection.selected = null; updateInspector(null); }
+                else { state.selection.selected = null; state.selection.neighbors.clear(); updateInspector(null); Graph.d3ReheatSimulation(); }
             }
             if(!state.ui.paletteOpen) {
                 if(e.key === 'f') Graph.zoomToFit(1000);
@@ -488,22 +736,92 @@
             }
         });
 
-        document.getElementById('command-input').addEventListener('input', e => renderCommands(e.target.value));
+        function renderGroups() {
+            const container = document.getElementById('groups-list');
+            container.innerHTML = '';
+            state.groups.forEach((group, index) => {
+                const item = document.createElement('div');
+                item.className = 'group-item';
+                item.style.display = 'flex';
+                item.style.alignItems = 'center';
+                item.style.gap = '8px';
+                item.style.marginBottom = '8px';
+                item.innerHTML = `
+                    <input type="color" value="${group.color}" style="width: 24px; height: 24px; border: none; background: none; cursor: pointer; padding: 0; border-radius: 0;" data-index="${index}">
+                    <input type="text" value="${group.query}" placeholder="Query (e.g. path:notebooks)..." style="flex-grow: 1; padding: 4px 8px; font-size: 0.75rem; font-family: 'JetBrains Mono'; background: var(--zinc-950); color: white; border: none; outline: none;" data-index="${index}">
+                    <button class="btn btn-remove" style="padding: 4px 8px; background: var(--zinc-800); color: var(--alert-red);" data-index="${index}">×</button>
+                `;
+                
+                item.querySelector('input[type="color"]').addEventListener('input', e => {
+                    const idx = parseInt(e.target.dataset.index);
+                    state.groups[idx].color = e.target.value;
+                    Graph.nodeColor(getNodeColor);
+                });
+                
+                item.querySelector('input[type="text"]').addEventListener('input', e => {
+                    const idx = parseInt(e.target.dataset.index);
+                    state.groups[idx].query = e.target.value;
+                    Graph.nodeColor(getNodeColor);
+                });
+
+                item.querySelector('.btn-remove').addEventListener('click', () => {
+                    state.groups.splice(index, 1);
+                    renderGroups();
+                    Graph.nodeColor(getNodeColor);
+                });
+                
+                container.appendChild(item);
+            });
+        }
+
+        document.getElementById('add-group-btn').onclick = () => {
+            state.groups.push({ query: '', color: '#3B82F6' });
+            renderGroups();
+            Graph.nodeColor(getNodeColor);
+        };
+
+        document.getElementById('command-input').addEventListener('keydown', e => {
+            const filtered = commands.filter(c => c.name.toLowerCase().includes(e.target.value.toLowerCase()));
+            if (e.key === 'ArrowDown') { e.preventDefault(); commandIndex = (commandIndex + 1) % (filtered.length || 1); renderCommands(e.target.value); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); commandIndex = (commandIndex - 1 + filtered.length) % (filtered.length || 1); renderCommands(e.target.value); }
+            else if (e.key === 'Enter') { e.preventDefault(); if(filtered[commandIndex]) { filtered[commandIndex].action(); togglePalette(); } }
+        });
+        document.getElementById('command-input').addEventListener('input', e => { commandIndex = 0; renderCommands(e.target.value); });
         document.getElementById('search-input').addEventListener('input', e => { state.filters.query = e.target.value; applyFilters(); });
         document.getElementById('force-strength').addEventListener('input', e => {
             const v = parseInt(e.target.value);
             document.getElementById('force-val').innerText = v;
+            state.layout.repulsion = v;
             Graph.d3Force('charge').strength(v);
+            Graph.d3ReheatSimulation();
+        });
+        document.getElementById('link-distance').addEventListener('input', e => {
+            const v = parseInt(e.target.value);
+            document.getElementById('link-dist-val').innerText = v;
+            state.layout.linkDistance = v;
+            Graph.d3Force('link').distance(link => link.kind === 'contains' ? 40 : v);
+            Graph.d3ReheatSimulation();
+        });
+        document.getElementById('link-strength').addEventListener('input', e => {
+            const v = parseFloat(e.target.value);
+            document.getElementById('link-strength-val').innerText = v.toFixed(1);
+            state.layout.linkStrength = v;
+            Graph.d3Force('link').strength(link => (link.kind === 'contains' ? 1.0 : 0.3) * v);
             Graph.d3ReheatSimulation();
         });
         document.getElementById('reheat-btn').onclick = () => Graph.d3ReheatSimulation();
         document.getElementById('anim-pulse').onchange = e => state.animation.pulse = e.target.checked;
         document.getElementById('anim-flow').onchange = e => { state.animation.flow = e.target.checked; applyFilters(); };
         document.getElementById('show-labels').onchange = e => state.filters.labels = e.target.checked;
+        document.getElementById('label-size-constant').onchange = e => { state.filters.labelSizeConstant = e.target.checked; Graph.d3ReheatSimulation(); };
+        document.getElementById('depth-select').onchange = e => { state.filters.depth = e.target.value; applyFilters(); };
+        document.getElementById('layer-select').onchange = e => { state.filters.layer = e.target.value; applyFilters(); };
+        document.getElementById('domain-select').onchange = e => { state.filters.domain = e.target.value; applyFilters(); };
+        document.getElementById('complexity-select').onchange = e => { state.filters.complexity = e.target.value; applyFilters(); };
         document.getElementById('export-png').onclick = downloadPNG;
         document.getElementById('export-json').onclick = downloadJSON;
 
-        initFilters(); applyFilters(); requestAnimationFrame(update);
+        initFilters(); renderGroups(); applyFilters(); requestAnimationFrame(update);
     </script>
 </body>
 </html>

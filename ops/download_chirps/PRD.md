@@ -1,25 +1,31 @@
 # JTBDs (download_chirps)
 
 ## JTBDs
+
 1. Baixar dados de precipitação acumulada do CHIRPS (Climate Hazards Group InfraRed Precipitation with Station data)
 2. Obter rasters COG de precipitação para análises hidrológicas e agronômicas
 
 ## Descrição
+
 Baixa produtos de precipitação CHIRPS a partir de URLs de Cloud Optimized GeoTIFFs (COG) listados em `ChirpsProduct`. Extrai o nome do arquivo COG da URL, faz o download e retorna um `ChirpsProduct` com o asset local.
 
 ## Inputs
+
 - `chirps_product`: `ChirpsProduct` contendo URL do dado CHIRPS a ser baixado
 
 ## Outputs
+
 - `downloaded_product`: `ChirpsProduct` com asset TIFF baixado localmente
 
 ## Lógicas e Cálculos
+
 - Extrai nome do arquivo COG da URL usando regex (`chirps-.*cog`)
 - Faz download do arquivo via `download_file`
 - Gera ID hash único combinando nome do arquivo, geometria e período
 - Clona metadados do produto de entrada no produto baixado
 
 ## Use Cases
+
 1. **Ingestão de Chirps**: Baixar dados Chirps para uma região e período específicos.
 2. **Atualização de catálogo**: Manter uma base local atualizada com dados Chirps mais recentes.
 3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
@@ -33,9 +39,9 @@ Baixa produtos de precipitação CHIRPS a partir de URLs de Cloud Optimized GeoT
 
 ## Variáveis
 
-| Variável | Tipo | Descrição |
-|----------|------|-----------|
-| `chirps_product` | — | Conforme especificação da operação |
+| Variável         | Tipo | Descrição                          |
+| ---------------- | ---- | ---------------------------------- |
+| `chirps_product` | —    | Conforme especificação da operação |
 
 ## Outcomes Esperados
 
@@ -53,4 +59,3 @@ Baixa produtos de precipitação CHIRPS a partir de URLs de Cloud Optimized GeoT
 ## Datasets / Fontes de Dados
 
 - **CHIRPS**: Precipitação acumulada (0.05°, diário).
-

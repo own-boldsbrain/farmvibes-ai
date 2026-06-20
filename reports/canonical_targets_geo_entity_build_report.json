@@ -1,0 +1,14 @@
+{
+    "total_input_features": 102485,
+    "total_unique_targets": 84338,
+    "entity_type_counts": {
+        "PF": 75135,
+        "UNKNOWN": 5694,
+        "PJ": 3509
+    },
+    "match_status_counts": {
+        "confirmed": 78644,
+        "unconfirmed": 5694
+    },
+    "created_at": "2026-06-16T20:11:47.803639"
+}
