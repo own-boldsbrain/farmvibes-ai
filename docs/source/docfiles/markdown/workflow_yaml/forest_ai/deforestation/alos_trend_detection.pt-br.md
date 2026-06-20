@@ -55,12 +55,11 @@ Detecta tendências de aumento/diminuição nos níveis de pixel florestal sobre
 ## Workflow Yaml
 
 ```yaml
-
 name: alos_trend_detection
 sources:
   user_input:
-  - alos_forest_extent_download_merge.user_input
-  - ordinal_trend_detection.input_geometry
+    - alos_forest_extent_download_merge.user_input
+    - ordinal_trend_detection.input_geometry
 sinks:
   merged_raster: alos_forest_extent_download_merge.merged_raster
   categorical_raster: alos_forest_extent_download_merge.categorical_raster
@@ -70,31 +69,31 @@ sinks:
 parameters:
   pc_key: null
   from_values:
-  - 4
-  - 3
-  - 0
-  - 2
-  - 1
+    - 4
+    - 3
+    - 0
+    - 2
+    - 1
   to_values:
-  - 0
-  - 0
-  - 0
-  - 1
-  - 1
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
 tasks:
   alos_forest_extent_download_merge:
     workflow: data_ingestion/alos/alos_forest_extent_download_merge
     parameters:
-      pc_key: '@from(pc_key)'
+      pc_key: "@from(pc_key)"
   ordinal_trend_detection:
     workflow: forest_ai/deforestation/ordinal_trend_detection
     parameters:
-      from_values: '@from(from_values)'
-      to_values: '@from(to_values)'
+      from_values: "@from(from_values)"
+      to_values: "@from(to_values)"
 edges:
-- origin: alos_forest_extent_download_merge.merged_raster
-  destination:
-  - ordinal_trend_detection.raster
+  - origin: alos_forest_extent_download_merge.merged_raster
+    destination:
+      - ordinal_trend_detection.raster
 description:
   short_description: Detecta tendências de aumento/diminuição nos níveis de pixel florestal sobre a geometria e o intervalo de tempo de entrada do usuário para o mapa florestal ALOS.
   long_description: Este fluxo de trabalho combina os fluxos de trabalho alos_forest_extent_download_merge e ordinal_trend_detection para detectar tendências de aumento/diminuição nos níveis de pixel florestal sobre a geometria e o intervalo de tempo fornecidos pelo usuário para o mapa florestal ALOS. Os Mapas Florestais/Não Florestais do ALOS PALSAR 2.1 são baixados no fluxo de trabalho alos_forest_extent_download_merge. Em seguida, o fluxo de trabalho ordinal_trend_detection recorta o raster ordinal para a geometria e o intervalo de tempo fornecidos pelo usuário e determina se há uma tendência de aumento ou diminuição nos níveis de pixel florestal sobre eles. O alos_trend_detection usa o teste de Cochran-Armitage para detectar tendências nos níveis florestais ao longo dos anos. A hipótese nula é que não há tendência nos níveis de pixel sobre a lista de rasters. A hipótese alternativa é que há uma tendência nos níveis de pixel florestal sobre a lista de rasters (um para cada ano). Ele retorna um valor-p e uma pontuação-z. Se o valor-p for menor que algum nível de significância, a hipótese nula é rejeitada e a hipótese alternativa é aceita. Se a pontuação-z for positiva, a tendência é de aumento. Se a pontuação-z for negativa, a tendência é de diminuição.
@@ -110,6 +109,4 @@ description:
     pc_key: Chave de API do Planetary Computer.
     from_values: Valores a partir dos quais recodificar.
     to_values: Valores para os quais recodificar.
-
-
 ```

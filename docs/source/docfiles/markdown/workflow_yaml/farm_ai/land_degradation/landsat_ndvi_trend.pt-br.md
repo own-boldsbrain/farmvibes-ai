@@ -38,11 +38,10 @@ Estima uma tendência linear sobre o NDVI calculado a partir de mosaicos LANDSAT
 ## Workflow Yaml
 
 ```yaml
-
 name: landsat_ndvi_trend
 sources:
   user_input:
-  - landsat.user_input
+    - landsat.user_input
 sinks:
   ndvi: trend.ndvi_raster
   linear_trend: trend.linear_trend
@@ -52,13 +51,13 @@ tasks:
   landsat:
     workflow: data_ingestion/landsat/preprocess_landsat
     parameters:
-      pc_key: '@from(pc_key)'
+      pc_key: "@from(pc_key)"
   trend:
     workflow: farm_ai/land_degradation/ndvi_linear_trend
 edges:
-- origin: landsat.raster
-  destination:
-  - trend.raster
+  - origin: landsat.raster
+    destination:
+      - trend.raster
 description:
   short_description: Estima uma tendência linear sobre o NDVI calculado a partir de mosaicos LANDSAT que intersectam com a geometria e o intervalo de tempo de entrada.
   long_description: O fluxo de trabalho baixa dados LANDSAT, calcula o NDVI sobre eles e estima uma tendência linear sobre pedaços de dados, combinando-os em um raster de tendência final.
@@ -69,6 +68,4 @@ description:
     linear_trend: Raster com a tendência e as estatísticas do teste.
   parameters:
     pc_key: Chave de API opcional do Planetary Computer.
-
-
 ```

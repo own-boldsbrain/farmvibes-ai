@@ -42,12 +42,11 @@ Gera um conjunto de dados (dataset) para segmentação de culturas, baseado no r
 ## Workflow Yaml
 
 ```yaml
-
 name: datagen_crop_segmentation
 sources:
   user_input:
-  - spaceeye.user_input
-  - cdl.user_input
+    - spaceeye.user_input
+    - cdl.user_input
 sinks:
   ndvi: ndvi.index_raster
   cdl: cdl.raster
@@ -57,7 +56,7 @@ tasks:
   spaceeye:
     workflow: data_ingestion/spaceeye/spaceeye_interpolation
     parameters:
-      pc_key: '@from(pc_key)'
+      pc_key: "@from(pc_key)"
   ndvi:
     workflow: data_processing/index/index
     parameters:
@@ -65,9 +64,9 @@ tasks:
   cdl:
     workflow: data_ingestion/cdl/download_cdl
 edges:
-- origin: spaceeye.raster
-  destination:
-  - ndvi.raster
+  - origin: spaceeye.raster
+    destination:
+      - ndvi.raster
 description:
   short_description: Gera um conjunto de dados para segmentação de culturas, baseado no raster NDVI e nos mapas da Camada de Dados de Culturas (CDL).
   long_description: O fluxo de trabalho gera dados livres de nuvens do SpaceEye para a região e o intervalo de tempo de entrada e calcula o NDVI sobre eles. Também baixa mapas CDL para os anos incluídos no intervalo de tempo.
@@ -78,6 +77,4 @@ description:
     cdl: Mapa CDL para os anos incluídos no intervalo de tempo de entrada.
   parameters:
     pc_key: Chave de API opcional do Planetary Computer.
-
-
 ```

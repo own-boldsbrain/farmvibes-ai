@@ -67,12 +67,11 @@ Identifica alterações/outliers no NDVI ao longo das datas. O fluxo de trabalho
 ## Fluxo de Trabalho (Workflow) Yaml
 
 ```yaml
-
 name: change_detection
 sources:
   user_input:
-  - spaceeye.user_input
-  - summary_timeseries.input_geometry
+    - spaceeye.user_input
+    - summary_timeseries.input_geometry
 sinks:
   spaceeye_raster: spaceeye.raster
   index: ndvi.index_raster
@@ -87,7 +86,7 @@ tasks:
   spaceeye:
     workflow: data_ingestion/spaceeye/spaceeye
     parameters:
-      pc_key: '@from(pc_key)'
+      pc_key: "@from(pc_key)"
   ndvi:
     workflow: data_processing/index/index
     parameters:
@@ -97,13 +96,13 @@ tasks:
   outliers:
     workflow: data_processing/outlier/detect_outlier
 edges:
-- origin: spaceeye.raster
-  destination:
-  - ndvi.raster
-- origin: ndvi.index_raster
-  destination:
-  - summary_timeseries.raster
-  - outliers.rasters
+  - origin: spaceeye.raster
+    destination:
+      - ndvi.raster
+  - origin: ndvi.index_raster
+    destination:
+      - summary_timeseries.raster
+      - outliers.rasters
 description:
   short_description: Identifica alterações/outliers no NDVI ao longo das datas.
   long_description: O fluxo de trabalho gera imagens SpaceEye para a região e intervalo de tempo de entrada e calcula o raster NDVI para cada data. Ele agrega as estatísticas de NDVI (média, desvio padrão, máximo e mínimo) no tempo e detecta outliers entre as datas com um Modelo de Mistura Gaussiana (GMM) de componente único.
@@ -119,6 +118,4 @@ description:
     mixture_means: Médias do GMM.
   parameters:
     pc_key: Chave da API do PlanetaryComputer.
-
-
 ```

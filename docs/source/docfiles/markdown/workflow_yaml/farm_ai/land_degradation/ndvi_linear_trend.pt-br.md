@@ -34,11 +34,10 @@ Calcula a tendência linear de NDVI por pixel sobre o raster de entrada. O fluxo
 ## Workflow Yaml
 
 ```yaml
-
 name: ndvi_linear_trend
 sources:
   raster:
-  - ndvi.raster
+    - ndvi.raster
 sinks:
   ndvi_raster: ndvi.index_raster
   linear_trend: chunked_linear_trend.linear_trend_raster
@@ -53,9 +52,9 @@ tasks:
       chunk_step_y: 512
       chunk_step_x: 512
 edges:
-- origin: ndvi.index_raster
-  destination:
-  - chunked_linear_trend.input_rasters
+  - origin: ndvi.index_raster
+    destination:
+      - chunked_linear_trend.input_rasters
 description:
   short_description: Calcula a tendência linear de NDVI por pixel sobre o raster de entrada.
   long_description: O fluxo de trabalho calcula o NDVI a partir do raster de entrada, calcula a tendência linear sobre pedaços de dados, combinando-os no raster final.
@@ -64,6 +63,4 @@ description:
   sinks:
     ndvi_raster: Raster NDVI.
     linear_trend: Raster com a tendência e as estatísticas do teste.
-
-
 ```

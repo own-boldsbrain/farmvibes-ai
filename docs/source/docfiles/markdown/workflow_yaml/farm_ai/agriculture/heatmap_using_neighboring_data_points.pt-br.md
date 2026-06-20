@@ -43,7 +43,7 @@ Cria um mapa de calor (heatmap) usando os vizinhos por meio da realização de o
 
 - **resolution**: Define a resolução de saída como a proporção da resolução do raster de entrada. Por exemplo, se a resolução for 5, o mapa de calor de saída será 5 vezes mais grosseiro que o raster de entrada.
 
-- **bins**: Define o número de intervalos (bins) de largura igual na faixa fornecida. Consulte este artigo para saber mais sobre bins: https://numpy.org/doc/stable/reference/generated/numpy.histogram.html
+- **bins**: Define o número de intervalos (bins) de largura igual na faixa fornecida. Consulte este artigo para saber mais sobre bins: <https://numpy.org/doc/stable/reference/generated/numpy.histogram.html>
 
 ## Tarefas (Tasks)
 

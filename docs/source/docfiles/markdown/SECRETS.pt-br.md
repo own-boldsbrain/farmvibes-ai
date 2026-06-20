@@ -2,7 +2,7 @@
 
 As operações no FarmVibes.AI podem recuperar segredos para usar como parâmetros, o que pode ser útil para evitar o armazenamento de segredos em texto simples. Os segredos são armazenados com segurança dentro do cluster Kubernetes e não são transmitidos ou visíveis fora da VM. Para mais informações sobre segredos no Kubernetes, consulte a [documentação do Kubernetes](https://kubernetes.io/docs/concepts/configuration/secret/).
 
-Os segredos podem ser adicionados ao cluster através do comando ```add-secret``` do comando *farmvibes-ai*. O segredo pode então ser passado como parâmetro para os arquivos yaml do fluxo de trabalho.
+Os segredos podem ser adicionados ao cluster através do comando `add-secret` do comando _farmvibes-ai_. O segredo pode então ser passado como parâmetro para os arquivos yaml do fluxo de trabalho.
 
 Este documento detalha como adicionar ou excluir um segredo no cluster (tanto local quanto remoto), bem como lista todos os fluxos de trabalho que exigem um segredo.
 
@@ -40,10 +40,8 @@ tasks:
       password: "@from(download_password)"
 edges:
 description:
-  short_description:
-    Example workflow.
-  long_description:
-    Requires secret from parameter download_password.
+  short_description: Example workflow.
+  long_description: Requires secret from parameter download_password.
     Default secret key is my-secret-pass.
   sources:
     input_a: Example input.
@@ -77,7 +75,7 @@ farmvibes-ai <local | remote> delete-secret <key>
 - **NOAA GFS SAS token** (parâmetro `noaa_gfs_token` com chave de segredo padrão `noaa-gfs-sas`).
   - `data_ingestion/weather/get_forecast`
 
-- **Planetary computer API key**. A chave de API é necessária para fluxos de trabalho que baixam dados do Sentinel-1. Para outros fluxos de trabalho, a chave é opcional e evita limitações de taxa (throttling). Se não for fornecida, o FarmVibes.AI acessa o catálogo do Planetary Computer anonimamente. Para se registrar e obter uma chave de API, [(veja mais informações aqui)](https://planetarycomputer.microsoft.com/docs/overview/about/). 
+- **Planetary computer API key**. A chave de API é necessária para fluxos de trabalho que baixam dados do Sentinel-1. Para outros fluxos de trabalho, a chave é opcional e evita limitações de taxa (throttling). Se não for fornecida, o FarmVibes.AI acessa o catálogo do Planetary Computer anonimamente. Para se registrar e obter uma chave de API, [(veja mais informações aqui)](https://planetarycomputer.microsoft.com/docs/overview/about/).
   - `data_ingestion/dem/download_dem`
   - `data_ingestion/landsat/preprocess_landsat`
   - `data_ingestion/naip/download_naip`

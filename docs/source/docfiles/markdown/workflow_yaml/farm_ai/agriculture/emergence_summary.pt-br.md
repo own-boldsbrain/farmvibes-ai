@@ -44,12 +44,11 @@ Calcula estatísticas de emergência usando MSAVI com limiar (média, desvio pad
 ## Fluxo de Trabalho (Workflow) Yaml
 
 ```yaml
-
 name: emergence_summary
 sources:
   user_input:
-  - s2.user_input
-  - summary_timeseries.input_geometry
+    - s2.user_input
+    - summary_timeseries.input_geometry
 sinks:
   timeseries: summary_timeseries.timeseries
 parameters:
@@ -59,7 +58,7 @@ tasks:
     workflow: data_ingestion/sentinel2/preprocess_s2_improved_masks
     parameters:
       max_tiles_per_time: 1
-      pc_key: '@from(pc_key)'
+      pc_key: "@from(pc_key)"
   msavi:
     workflow: data_processing/index/index
     parameters:
@@ -71,18 +70,18 @@ tasks:
   summary_timeseries:
     workflow: data_processing/timeseries/timeseries_masked_aggregation
 edges:
-- origin: s2.raster
-  destination:
-  - msavi.raster
-- origin: msavi.index_raster
-  destination:
-  - emergence.raster
-- origin: emergence.thresholded_raster
-  destination:
-  - summary_timeseries.raster
-- origin: s2.mask
-  destination:
-  - summary_timeseries.mask
+  - origin: s2.raster
+    destination:
+      - msavi.raster
+  - origin: msavi.index_raster
+    destination:
+      - emergence.raster
+  - origin: emergence.thresholded_raster
+    destination:
+      - summary_timeseries.raster
+  - origin: s2.mask
+    destination:
+      - summary_timeseries.mask
 description:
   short_description: Calcula estatísticas de emergência usando MSAVI com limiar (média, desvio padrão, máximo e mínimo) para a geometria e o intervalo de tempo de entrada.
   long_description: O fluxo de trabalho recupera produtos do Sentinel-2 com a API do Planetary Computer (PC), encaminha-os para um modelo de detecção de nuvens e combina a máscara de nuvens prevista com a máscara fornecida pelo PC. Ele calcula o MSAVI para cada bloco e data disponíveis, aplica um limiar acima de um determinado valor e resume cada um com os valores de média, desvio padrão, máximo e mínimo para as regiões não obscurecidas por nuvens. Por fim, gera uma série temporal com tais estatísticas para todas as datas disponíveis, filtrando os blocos com densa cobertura de nuvens.
@@ -92,6 +91,4 @@ description:
     timeseries: Estatísticas de emergência agregadas dos blocos recuperados dentro da geometria e intervalo de tempo de entrada.
   parameters:
     pc_key: Chave opcional da API do Planetary Computer.
-
-
 ```
