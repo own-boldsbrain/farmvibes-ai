@@ -29,6 +29,7 @@ Conecta-se à API ADMAg usando credenciais OAuth2 para buscar dados agronômicos
 - `time_range` = (primeiro plantio, última colheita)
 
 ## Use Cases
+
 1. **Automação**: Conecta-se à API ADMAg usando credenciais OAuth2 para buscar dados agronômicos de um campo sazonal específico (`party_id` + `seasonal_field_id`) de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -41,16 +42,16 @@ Conecta-se à API ADMAg usando credenciais OAuth2 para buscar dados agronômicos
 
 ## Variáveis
 
-| Variável | Tipo | Descrição |
-|----------|------|-----------|
-| `admag_input` | — | Conforme especificação da operação |
-| `ADMAgSeasonalFieldInput` | — | Conforme especificação da operação |
-| `party_id` | — | Conforme especificação da operação |
-| `seasonal_field_id` | — | Conforme especificação da operação |
-| `base_url` | — | Conforme especificação da operação |
-| `client_id` | — | Conforme especificação da operação |
-| `client_secret` | — | Conforme especificação da operação |
-| `authority` | — | Conforme especificação da operação |
+| Variável                  | Tipo | Descrição                          |
+| ------------------------- | ---- | ---------------------------------- |
+| `admag_input`             | —    | Conforme especificação da operação |
+| `ADMAgSeasonalFieldInput` | —    | Conforme especificação da operação |
+| `party_id`                | —    | Conforme especificação da operação |
+| `seasonal_field_id`       | —    | Conforme especificação da operação |
+| `base_url`                | —    | Conforme especificação da operação |
+| `client_id`               | —    | Conforme especificação da operação |
+| `client_secret`           | —    | Conforme especificação da operação |
+| `authority`               | —    | Conforme especificação da operação |
 
 ## Outcomes Esperados
 
@@ -68,4 +69,3 @@ Conecta-se à API ADMAg usando credenciais OAuth2 para buscar dados agronômicos
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-

@@ -26,6 +26,7 @@ Concatena uma lista de `DataSummaryStatistics` em uma série temporal única, fi
 - Salva CSV e define time_range com base nos extremos
 
 ## Use Cases
+
 1. **Automação**: Concatena uma lista de `DataSummaryStatistics` em uma série temporal única, filtrando entradas com `masked_ratio` acima do limiar e ordenando por data de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -38,10 +39,10 @@ Concatena uma lista de `DataSummaryStatistics` em uma série temporal única, fi
 
 ## Variáveis
 
-| Variável | Tipo | Descrição |
-|----------|------|-----------|
-| `stats: List[DataSummaryStatistics]` | — | Conforme especificação da operação |
-| `masked_thr` | — | Conforme especificação da operação |
+| Variável                             | Tipo | Descrição                          |
+| ------------------------------------ | ---- | ---------------------------------- |
+| `stats: List[DataSummaryStatistics]` | —    | Conforme especificação da operação |
+| `masked_thr`                         | —    | Conforme especificação da operação |
 
 ## Outcomes Esperados
 
@@ -59,4 +60,3 @@ Concatena uma lista de `DataSummaryStatistics` em uma série temporal única, fi
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-
