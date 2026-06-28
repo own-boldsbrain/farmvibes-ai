@@ -1,3 +1,4 @@
 export const mockBarBreakdownEmissionsChartProps = {
-  // Add default mock props here
+  productionData: [],
+  exchangeData: [],
 };
