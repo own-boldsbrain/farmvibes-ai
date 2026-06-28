@@ -4,7 +4,7 @@ import BreakdownChart from './BreakdownChart';
 const meta: Meta<typeof BreakdownChart> = {
   title: 'Features/BreakdownChart',
   component: BreakdownChart,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof BreakdownChart>;

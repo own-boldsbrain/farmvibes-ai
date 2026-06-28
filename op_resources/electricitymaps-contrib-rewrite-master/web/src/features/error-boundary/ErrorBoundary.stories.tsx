@@ -4,7 +4,7 @@ import ErrorBoundary from './ErrorBoundary';
 const meta: Meta<typeof ErrorBoundary> = {
   title: 'Features/ErrorBoundary',
   component: ErrorBoundary,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof ErrorBoundary>;

@@ -4,7 +4,7 @@ import GraphBackground from './GraphBackground';
 const meta: Meta<typeof GraphBackground> = {
   title: 'Features/GraphBackground',
   component: GraphBackground,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof GraphBackground>;

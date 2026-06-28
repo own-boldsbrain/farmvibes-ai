@@ -4,7 +4,7 @@ import BialekView from './BialekView';
 const meta: Meta<typeof BialekView> = {
   title: 'Features/BialekView',
   component: BialekView,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof BialekView>;

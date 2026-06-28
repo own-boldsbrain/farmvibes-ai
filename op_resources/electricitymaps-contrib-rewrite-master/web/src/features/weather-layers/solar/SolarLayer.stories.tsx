@@ -4,7 +4,7 @@ import SolarLayer from './SolarLayer';
 const meta: Meta<typeof SolarLayer> = {
   title: 'Features/SolarLayer',
   component: SolarLayer,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof SolarLayer>;

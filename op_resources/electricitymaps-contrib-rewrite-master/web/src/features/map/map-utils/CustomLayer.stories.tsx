@@ -4,7 +4,7 @@ import CustomLayer from './CustomLayer';
 const meta: Meta<typeof CustomLayer> = {
   title: 'Features/CustomLayer',
   component: CustomLayer,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof CustomLayer>;

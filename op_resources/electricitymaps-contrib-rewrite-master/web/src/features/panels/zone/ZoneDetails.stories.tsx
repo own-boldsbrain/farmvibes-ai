@@ -4,7 +4,7 @@ import ZoneDetails from './ZoneDetails';
 const meta: Meta<typeof ZoneDetails> = {
   title: 'Features/ZoneDetails',
   component: ZoneDetails,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof ZoneDetails>;

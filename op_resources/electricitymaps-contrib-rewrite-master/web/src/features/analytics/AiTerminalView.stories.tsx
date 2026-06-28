@@ -4,7 +4,7 @@ import AiTerminalView from './AiTerminalView';
 const meta: Meta<typeof AiTerminalView> = {
   title: 'Features/AiTerminalView',
   component: AiTerminalView,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof AiTerminalView>;

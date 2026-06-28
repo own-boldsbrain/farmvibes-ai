@@ -4,7 +4,7 @@ import InfoText from './InfoText';
 const meta: Meta<typeof InfoText> = {
   title: 'Features/InfoText',
   component: InfoText,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof InfoText>;

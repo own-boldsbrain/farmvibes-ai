@@ -4,7 +4,7 @@ import Attribution from './Attribution';
 const meta: Meta<typeof Attribution> = {
   title: 'Features/Attribution',
   component: Attribution,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof Attribution>;

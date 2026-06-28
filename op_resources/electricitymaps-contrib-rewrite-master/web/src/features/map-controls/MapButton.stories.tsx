@@ -4,7 +4,7 @@ import MapButton from './MapButton';
 const meta: Meta<typeof MapButton> = {
   title: 'Features/MapButton',
   component: MapButton,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof MapButton>;

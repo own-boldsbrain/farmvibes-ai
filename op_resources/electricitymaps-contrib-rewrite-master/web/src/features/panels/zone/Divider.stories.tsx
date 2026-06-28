@@ -4,7 +4,7 @@ import Divider from './Divider';
 const meta: Meta<typeof Divider> = {
   title: 'Features/Divider',
   component: Divider,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof Divider>;

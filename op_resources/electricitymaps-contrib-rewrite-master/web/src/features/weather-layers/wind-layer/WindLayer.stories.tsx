@@ -4,7 +4,7 @@ import WindLayer from './WindLayer';
 const meta: Meta<typeof WindLayer> = {
   title: 'Features/WindLayer',
   component: WindLayer,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof WindLayer>;

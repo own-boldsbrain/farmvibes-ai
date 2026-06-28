@@ -4,7 +4,7 @@ import CarbonChartTooltip from './CarbonChartTooltip';
 const meta: Meta<typeof CarbonChartTooltip> = {
   title: 'Features/CarbonChartTooltip',
   component: CarbonChartTooltip,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof CarbonChartTooltip>;

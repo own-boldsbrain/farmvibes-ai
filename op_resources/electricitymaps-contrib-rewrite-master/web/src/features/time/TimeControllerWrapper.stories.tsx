@@ -4,7 +4,7 @@ import TimeControllerWrapper from './TimeControllerWrapper';
 const meta: Meta<typeof TimeControllerWrapper> = {
   title: 'Features/TimeControllerWrapper',
   component: TimeControllerWrapper,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof TimeControllerWrapper>;

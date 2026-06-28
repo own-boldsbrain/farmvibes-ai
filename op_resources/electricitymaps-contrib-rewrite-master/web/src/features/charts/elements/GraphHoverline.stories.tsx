@@ -4,7 +4,7 @@ import GraphHoverline from './GraphHoverline';
 const meta: Meta<typeof GraphHoverline> = {
   title: 'Features/GraphHoverline',
   component: GraphHoverline,
-}};
+};
 
 export default meta;
 type Story = StoryObj<typeof GraphHoverline>;
