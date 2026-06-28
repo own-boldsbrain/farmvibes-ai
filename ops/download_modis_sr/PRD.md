@@ -1,21 +1,26 @@
 # JTBDs (download_modis_sr)
 
 ## JTBDs
+
 1. Obter reflectância de superfície MODIS (bandas 1-7) para uma área e período
 2. Aplicar máscara de qualidade (QA) para filtrar pixels com nuvens/sombra
 
 ## Descrição
+
 Baixa as bandas de reflectância de superfície de produtos MODIS (MOD09GA/MYD09GA) do Planetary Computer, aplica filtro QA e empilha em um único raster.
 
 ## Inputs
+
 - `product`: `ModisProduct` com ID, resolução e período
 - `pc_key` (opcional): Chave de API do Planetary Computer
 - `qa_mask_value`: Valor de máscara QA para filtrar pixels (default: 1024)
 
 ## Outputs
+
 - `raster`: `ModisRaster` com as bandas de reflectância e aliases Spyndex (R, G, B, N, S1, S2)
 
 ## Lógicas e Cálculos
+
 1. Conecta ao `Modis8DaySRCollection` e consulta item único pelo ID
 2. Baixa todas as bandas `sur_refl_*` para diretório temporário
 3. Abre como `xarray.Dataset`, empilha em array único
@@ -23,6 +28,7 @@ Baixa as bandas de reflectância de superfície de produtos MODIS (MOD09GA/MYD09
 5. Salva raster comprimido e mapeia bandas com aliases Spyndex para compatibilidade com índices espectrais
 
 ## Use Cases
+
 1. **Ingestão de Modis Sr**: Baixar dados Modis Sr para uma região e período específicos.
 2. **Atualização de catálogo**: Manter uma base local atualizada com dados Modis Sr mais recentes.
 3. **Integração em pipeline**: Fornecer dados de entrada para operações de processamento downstream.
@@ -59,4 +65,3 @@ Baixa as bandas de reflectância de superfície de produtos MODIS (MOD09GA/MYD09
 ## Datasets / Fontes de Dados
 
 - **MODIS**: Vegetation indices e surface reflectance (250m-1km).
-

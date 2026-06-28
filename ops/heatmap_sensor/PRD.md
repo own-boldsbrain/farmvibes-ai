@@ -1,22 +1,27 @@
 # JTBDs (Heatmap Sensor)
 
 ## JTBDs
+
 1. Gerar mapas de calor de nutrientes do solo a partir de amostras pontuais e imagens de satélite
 2. Interpolar amostras de solo para área total do talhão usando algoritmos configuráveis
 
 ## Descrição
+
 Recebe um raster de imagem, uma coleção de pontos de amostra de solo com atributo (ex: "C" = Carbono) e um polígono de boundary. Cria um mesh grid de `resolution` metros dentro do talhão e aplica algoritmo de interpolação (`nearest neighbor`, `cluster overlap` ou `kriging neighbor`). O resultado é rasterizado em faixas (bins) e exportado como GeoTIFF + shapefile.
 
 ## Inputs
+
 - `raster`: `Raster`
 - `samples`: `GeometryCollection` (amostras de solo com atributo)
 - `samples_boundary`: `GeometryCollection` (clusters/boundary)
 - Parâmetros: `attribute_name`, `simplify`, `tolerance`, `algorithm`, `resolution`, `bins`
 
 ## Outputs
+
 - `result`: `DataVibe`
 
 ## Lógicas e Cálculos
+
 - `create_mesh_grid`: gera grade de pontos com espaçamento `resolution` dentro do talhão
 - Algoritmos: `nearest neighbor`, `cluster overlap` (média por cluster), `kriging neighbor`
 - `rasterize_heatmap`: rasteriza shapes dos nutrientes com `MergeAlg.replace`
@@ -25,6 +30,7 @@ Recebe um raster de imagem, uma coleção de pontos de amostra de solo com atrib
 - Exporta shapefile + GeoTIFF como assets
 
 ## Use Cases
+
 1. **Automação**: Recebe um raster de imagem, uma coleção de pontos de amostra de solo com atributo (ex: "C" = Carbono) e um polígono de boundary de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -67,4 +73,3 @@ Recebe um raster de imagem, uma coleção de pontos de amostra de solo com atrib
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-

@@ -1,19 +1,24 @@
 # JTBDs (List CHIRPS)
 
 ## JTBDs
+
 1. Listar produtos de precipitação CHIRPS para uma região e período
 2. Selecionar frequência (diária ou mensal) e resolução (0,05° ou 0,25°)
 
 ## Descrição
+
 Operação que consulta o repositório CHIRPS (Climate Hazards Group InfraRed Precipitation with Station Data) e lista arquivos COG disponíveis para a frequência e resolução selecionadas. Obtém o dado mais recente disponível e calcula o footprint global do dataset.
 
 ## Inputs
+
 - `input_item` (DataVibe): geometria e intervalo de tempo de interesse
 
 ## Outputs
+
 - `chirps_products` (List[ChirpsProduct]): produtos CHIRPS listados
 
 ## Lógicas e Cálculos
+
 - Valida `freq` (daily/monthly) e `res` (p05/p25); monthly só disponível em p05
 - Varre do presente até 1981 para encontrar o CHIRPS mais recente via requisição HTTP
 - Obtém bbox e footprint globais a partir do COG mais recente
@@ -21,6 +26,7 @@ Operação que consulta o repositório CHIRPS (Climate Hazards Group InfraRed Pr
 - Cria `ChirpsProduct` com URL, geometria global e time range específico
 
 ## Use Cases
+
 1. **Descoberta de dados**: Consultar produtos Chirps disponíveis para uma região.
 2. **Planejamento de aquisição**: Verificar cobertura temporal e espacial antes de baixar.
 3. **Curadoria de dataset**: Filtrar cenas por data, cobertura de nuvem e outros critérios.
@@ -54,4 +60,3 @@ Operação que consulta o repositório CHIRPS (Climate Hazards Group InfraRed Pr
 ## Datasets / Fontes de Dados
 
 - **CHIRPS**: Precipitação acumulada (0.05°, diário).
-

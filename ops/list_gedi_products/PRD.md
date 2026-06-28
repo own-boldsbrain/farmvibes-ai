@@ -1,19 +1,24 @@
 # JTBDs (List GEDI Products)
 
 ## JTBDs
+
 1. Listar produtos GEDI (Global Ecosystem Dynamics Investigation) da NASA EarthData para uma região e período
 2. Selecionar nível de processamento (ex: GEDI02_B.002)
 
 ## Descrição
+
 Operação que consulta a API EarthData da NASA e lista produtos GEDI que intersectam a geometria e intervalo de tempo. Cada produto contém geometria (polígono ou multipolígono da órbita), número da órbita inicial/final e nível de processamento.
 
 ## Inputs
+
 - `input_data` (DataVibe): geometria e intervalo de tempo de interesse
 
 ## Outputs
+
 - `gedi_products` (List[GEDIProduct]): produtos GEDI listados
 
 ## Lógicas e Cálculos
+
 - Valida `processing_level` contra `EarthDataAPI.concept_ids`
 - Consulta EarthData API com geometria e time range
 - Converte polígonos da resposta (string de coordenadas) para `shapely.Polygon` ou `MultiPolygon`
@@ -21,6 +26,7 @@ Operação que consulta a API EarthData da NASA e lista produtos GEDI que inters
 - Deriva `processing_level` a partir do `collection_concept_id`
 
 ## Use Cases
+
 1. **Descoberta de dados**: Consultar produtos Gedi Products disponíveis para uma região.
 2. **Planejamento de aquisição**: Verificar cobertura temporal e espacial antes de baixar.
 3. **Curadoria de dataset**: Filtrar cenas por data, cobertura de nuvem e outros critérios.
@@ -54,4 +60,3 @@ Operação que consulta a API EarthData da NASA e lista produtos GEDI que inters
 ## Datasets / Fontes de Dados
 
 - **Catálogo remoto**: Metadados de produtos disponíveis.
-
