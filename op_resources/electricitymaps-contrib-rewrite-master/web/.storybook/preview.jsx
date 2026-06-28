@@ -1,5 +1,6 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router-dom';
 import '../src/index.css';
 
 const queryClient = new QueryClient({
@@ -14,7 +15,9 @@ const queryClient = new QueryClient({
 export const decorators = [
   (Story) => (
     <QueryClientProvider client={queryClient}>
-      <Story />
+      <MemoryRouter initialEntries={['/']}>
+        <Story />
+      </MemoryRouter>
     </QueryClientProvider>
   ),
 ];

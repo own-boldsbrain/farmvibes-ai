@@ -15,13 +15,13 @@ interface ZoneHeaderTitleProps {
 }
 
 export default function ZoneHeaderTitle({
-  zoneId,
+  zoneId = '',
   isAggregated,
   isEstimated,
 }: ZoneHeaderTitleProps) {
   const { __ } = useTranslation();
   const title = getZoneName(zoneId);
-  const isSubZone = zoneId.includes('-');
+  const isSubZone = zoneId ? zoneId.includes('-') : false;
   const returnToMapLink = createToWithState('/map');
   const countryName = getCountryName(zoneId);
   const disclaimer = getDisclaimer(zoneId);
