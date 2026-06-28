@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { mockInfoModalProps } from './InfoModal.mock';
@@ -7,6 +8,7 @@ import InfoModal from './InfoModal';
 vi.mock('jotai', () => ({
   useAtom: () => [{ datetimeString: new Date().toISOString() }, vi.fn()],
   atom: () => ({}),
+  useSetAtom: () => vi.fn(),
 }));
 
 vi.mock('translation/translation', () => ({
@@ -28,6 +30,18 @@ vi.mock('react-router-dom', () => ({
   Link: ({ children, to }: any) => <a href={to}>{children}</a>,
   NavLink: ({ children, to }: any) => <a href={to}>{children}</a>,
 }));
+
+
+vi.mock('@radix-ui/react-dialog', () => {
+  return {
+    Root: ({ children, open }: any) => open ? React.createElement('div', null, children) : null,
+    Portal: ({ children }: any) => React.createElement('div', null, children),
+    Overlay: () => React.createElement('div', null),
+    Content: ({ children }: any) => React.createElement('div', null, children),
+    Title: ({ children }: any) => React.createElement('h3', null, children),
+    Close: ({ children }: any) => React.createElement('button', null, children),
+  };
+});
 
 describe('<InfoModal {...mockInfoModalProps} />', () => {
   it('renders correctly', () => {

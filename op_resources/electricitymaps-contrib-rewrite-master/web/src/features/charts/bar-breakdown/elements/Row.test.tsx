@@ -7,6 +7,7 @@ import Row from './Row';
 vi.mock('jotai', () => ({
   useAtom: () => [{ datetimeString: new Date().toISOString() }, vi.fn()],
   atom: () => ({}),
+  useSetAtom: () => vi.fn(),
 }));
 
 vi.mock('translation/translation', () => ({
@@ -31,7 +32,7 @@ vi.mock('react-router-dom', () => ({
 
 describe('<Row {...mockRowProps} />', () => {
   it('renders correctly', () => {
-    const { container } = render(<Row {...mockRowProps} />);
+    const { container } = render(<svg><Row {...mockRowProps} /></svg>);
     expect(container).toBeDefined();
   });
 });

@@ -7,6 +7,7 @@ import ZoneHeaderTitle from './ZoneHeaderTitle';
 vi.mock('jotai', () => ({
   useAtom: () => [{ datetimeString: new Date().toISOString() }, vi.fn()],
   atom: () => ({}),
+  useSetAtom: () => vi.fn(),
 }));
 
 vi.mock('translation/translation', () => ({

@@ -6,21 +6,33 @@ breakdown_mocks = {
     "charts/bar-breakdown/BarBreakdownChart.mock.ts": """export const mockBarBreakdownChartProps = {
   productionData: [],
   exchangeData: [],
+  data: {
+    zoneStates: {},
+  },
 };
 """,
     "charts/bar-breakdown/BarBreakdownEmissionsChart.mock.ts": """export const mockBarBreakdownEmissionsChartProps = {
   productionData: [],
   exchangeData: [],
+  data: {
+    zoneStates: {},
+  },
 };
 """,
     "charts/bar-breakdown/BarElectricityBreakdownChart.mock.ts": """export const mockBarElectricityBreakdownChartProps = {
   productionData: [],
   exchangeData: [],
+  data: {
+    zoneStates: {},
+  },
 };
 """,
     "charts/bar-breakdown/EmptyBarBreakdownChart.mock.ts": """export const mockEmptyBarBreakdownChartProps = {
   productionData: [],
   exchangeData: [],
+  data: {
+    zoneStates: {},
+  },
 };
 """,
 }

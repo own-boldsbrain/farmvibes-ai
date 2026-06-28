@@ -7,6 +7,7 @@ import Axis from './Axis';
 vi.mock('jotai', () => ({
   useAtom: () => [{ datetimeString: new Date().toISOString() }, vi.fn()],
   atom: () => ({}),
+  useSetAtom: () => vi.fn(),
 }));
 
 vi.mock('translation/translation', () => ({
@@ -31,7 +32,7 @@ vi.mock('react-router-dom', () => ({
 
 describe('<Axis {...mockAxisProps} />', () => {
   it('renders correctly', () => {
-    const { container } = render(<Axis {...mockAxisProps} />);
+    const { container } = render(<svg><Axis {...mockAxisProps} /></svg>);
     expect(container).toBeDefined();
   });
 });

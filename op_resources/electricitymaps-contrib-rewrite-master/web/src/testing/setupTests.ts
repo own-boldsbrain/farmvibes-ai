@@ -76,8 +76,8 @@ afterAll(() => {
 });
 
 vi.mock('react-map-gl', () => ({
-  useControl: () => ({ getMap: () => ({ getZoom: () => 5, project: () => ({ x: 0, y: 0 }) }) }),
-  useMap: () => ({ current: { getZoom: () => 5, project: () => ({ x: 0, y: 0 }) } }),
+  useControl: () => ({ getMap: () => ({ getZoom: () => 5, project: () => ({ x: 0, y: 0 }), unproject: () => ({ lng: 0, lat: 0 }) }) }),
+  useMap: () => ({ current: { getZoom: () => 5, project: () => ({ x: 0, y: 0 }), unproject: () => ({ lng: 0, lat: 0 }) } }),
   MapProvider: ({ children }: any) => children,
   NavigationControl: () => null,
   Source: ({ children }: any) => children,
@@ -100,7 +100,12 @@ vi.mock('api/getState', () => ({
 vi.mock('api/getZone', () => ({
   default: () => ({
     data: {
-      zoneStates: {},
+      zoneStates: {
+        '2026-06-28T12:00:00.000Z': {
+          price: { value: 50, currency: 'EUR' },
+          co2intensity: 200,
+        },
+      },
     },
     isLoading: false,
     error: null,
@@ -108,11 +113,8 @@ vi.mock('api/getZone', () => ({
 }));
 
 vi.mock('api/getWeatherData', () => ({
-  default: () => ({
-    data: null,
-    isLoading: false,
-    error: null,
-  }),
+  useGetSolar: () => ({ data: [], isSuccess: false }),
+  useGetWind: () => ({ data: null, isSuccess: false }),
 }));
 
 vi.mock('api/getAppVersion', () => ({
