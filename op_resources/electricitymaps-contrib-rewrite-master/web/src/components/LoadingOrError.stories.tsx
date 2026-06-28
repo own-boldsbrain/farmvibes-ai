@@ -13,7 +13,7 @@ export const Loading: Story = {
  args: {},
 };
 
-export const Error: Story = {
+export const Failure: Story = {
  args: {
  error: new Error('Failed to load data from API'),
  },
