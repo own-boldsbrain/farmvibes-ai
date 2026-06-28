@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => ({
   },
   server: {
     watch: {
-      ignored: ['**/dist/**', '**/node_modules/**'],
+      ignored: [/node_modules/, /dist/],
     },
   },
   define: {
