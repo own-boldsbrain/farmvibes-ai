@@ -1,17 +1,9 @@
 import type { Meta, StoryObj } from'@storybook/react';
-import { BrowserRouter } from'react-router-dom';
 import InternalLink from'./InternalLink';
 
 const meta: Meta<typeof InternalLink> = {
  title:'Basics/InternalLink',
  component: InternalLink,
- decorators: [
- (Story) => (
- <BrowserRouter>
- <Story />
- </BrowserRouter>
- ),
- ],
 };
 
 export default meta;
