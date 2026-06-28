@@ -5,18 +5,22 @@
 ## 1. Optimal Locations (`optimal_locations.yaml`)
 
 ### JTBDs
+
 - Identificar localizações ótimas para instalação de sensores de solo ou coleta de amostras, utilizando clustering (GMM) sobre índices espectrais calculados a partir de imagens de satélite.
 
 ### Casos de Uso
+
 - Agricultor quer posicionar sensores de umidade/nutrientes em pontos representativos do talhão.
 - Consultor define locais de amostragem de solo para análise de fertilidade.
 - Pesquisador planeja malha de sensores para monitoramento de cultura.
 
 ### Faz / Não Faz
+
 - **Faz**: computa índices espectrais (EVI, PRI, NDVI, etc. — suportados pela biblioteca spyndex); aplica Gaussian Mixture Model (GMM) para separar pixels em grupos de variância igual; seleciona localização representativa por cluster; gera shapefile com coordenadas (lat/lon).
 - **Não Faz**: não instala sensores fisicamente; não coleta amostras; não analisa solo; não define qual índice usar (decisão do usuário).
 
 ### Users Inputs
+
 - `user_input`: geometria e intervalo de datas.
 - `input_raster`: raster de entrada para cálculo de índice.
 - `n_clusters`: número de clusters/grupos (ex.: 5, 8).
@@ -24,29 +28,37 @@
 - `index`: nome do índice espectral a ser usado (ex.: "EVI", "PRI", "NDVI").
 
 ### System Outputs
+
 - `result`: arquivo ZIP com shapefile (.shp) contendo as localizações ótimas (latitude, longitude).
 
 ### Outcomes Esperados
+
 - Mapa de pontos de amostragem/sensores representativos da variabilidade espacial do talhão, otimizando custo e qualidade da amostragem.
 
 ### APIs
+
 - N/A (processamento local). O raster de entrada pode vir de workflow de ingestão de Sentinel-2.
 
 ### CRUD
+
 - **POST**: submissão do workflow com parâmetros.
 - **GET**: download do ZIP com shapefile.
 
 ### Bancos de Dados
+
 - N/A (dados transitórios).
 
 ### Datasets e JSON
+
 - Input: raster GeoTIFF (sentinel-2 ou outro).
 - Output: shapefile em ZIP com pontos (Point geometry + atributos).
 
 ### Tabelas
+
 - Tabela de atributos do shapefile: latitude, longitude, cluster_id.
 
 ### Lógicas e Cálculos
+
 - Cálculo do índice espectral selecionado usando a biblioteca **spyndex**.
 - **Gaussian Mixture Model (GMM)**: separa os valores do índice em `n_clusters` grupos de variância igual.
 - Para cada cluster, seleciona uma localização representativa (centroide ou pixel mais próximo).

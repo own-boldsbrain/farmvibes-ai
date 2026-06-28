@@ -5,7 +5,7 @@ FarmVibes.AI is a geospatial platform for agriculture and sustainability, enabli
 ## Project Overview
 
 - **Core Technologies:** Python, Docker, Kubernetes (k3d for local cluster), REST API, Jupyter Notebooks.
-- **Architecture:** 
+- **Architecture:**
   - **Operators (ops/):** Discrete units of computation that process data.
   - **Workflows (workflows/):** Directed Acyclic Graphs (DAGs) of operators.
   - **Compute Engine:** A local cluster (managed via Docker/Kubernetes) that executes workflows.
@@ -28,6 +28,7 @@ FarmVibes.AI is a geospatial platform for agriculture and sustainability, enabli
 ## Building and Running
 
 ### Local Cluster Management
+
 The local cluster is managed via a Makefile and the `farmvibes-ai` CLI.
 
 - **Setup local cluster:** `make local` (Requires Docker and k3d)
@@ -36,7 +37,9 @@ The local cluster is managed via a Makefile and the `farmvibes-ai` CLI.
 - **Clean cluster resources:** `make clean`
 
 ### Running Workflows
+
 Workflows are typically executed via the Python client in a Jupyter notebook.
+
 ```python
 from vibe_notebook.client import get_default_vibe_client
 client = get_default_vibe_client()
@@ -55,7 +58,7 @@ Tests are located in `src/tests` and can be run using `pytest`.
 - **Linting & Formatting:** The project uses `ruff` (configured in `.ruff.toml`).
 - **Type Checking:** `pyright` is used for static type analysis (`pyrightconfig.json`).
 - **API & Data Models:** `TypeSpec` is the standard for defining APIs and shared data models. Definitions are located in the `typespec/` directory. Use `make typespec-compile` to generate OpenAPI specs.
-- **Configuration:** 
+- **Configuration:**
   - Operators: Defined by `name.py` and `name.yaml` in `ops/`.
   - Workflows: Defined by `name.yaml` in `workflows/`.
 - **Geospatial Standards:** Heavy use of `shapely`, `geopandas`, `rasterio`, and `pystac` (STAC items).
