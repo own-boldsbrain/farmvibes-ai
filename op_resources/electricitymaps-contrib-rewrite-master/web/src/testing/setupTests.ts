@@ -100,9 +100,7 @@ vi.mock('api/getState', () => ({
 vi.mock('api/getZone', () => ({
   default: () => ({
     data: {
-      data: {
-        zoneStates: {},
-      },
+      zoneStates: {},
     },
     isLoading: false,
     error: null,
