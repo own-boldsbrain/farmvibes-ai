@@ -35,10 +35,10 @@ interface BarBreakdownEmissionsChartProps {
 
 function BarBreakdownEmissionsChart({
   data,
-  exchangeData,
+  exchangeData = [],
   height,
   isMobile,
-  productionData,
+  productionData = [],
   onProductionRowMouseOver,
   onProductionRowMouseOut,
   onExchangeRowMouseOver,
