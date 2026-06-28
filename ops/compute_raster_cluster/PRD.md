@@ -26,6 +26,7 @@ Aplica algoritmo de overlap clustering em janelas locais para agrupar pixels sim
 - Retorna `CategoricalRaster` com lista de categorias
 
 ## Use Cases
+
 1. **Análise de Raster Cluster**: Gerar camada derivada de Raster Cluster para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -67,4 +68,3 @@ Aplica algoritmo de overlap clustering em janelas locais para agrupar pixels sim
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

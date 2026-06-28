@@ -28,6 +28,7 @@ Operação genérica de inferência ONNX. Suporta três modos: raster completo (
 - Retorna Raster ou RasterChunk conforme modo
 
 ## Use Cases
+
 1. **Análise de Onnx**: Gerar camada derivada de Onnx para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -69,4 +70,3 @@ Operação genérica de inferência ONNX. Suporta três modos: raster completo (
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

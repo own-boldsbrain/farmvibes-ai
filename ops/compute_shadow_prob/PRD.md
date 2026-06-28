@@ -28,6 +28,7 @@ Aplica modelo de segmentação convolutional (ONNX) FPN (Feature Pyramid Network
 - Reamostragem bilinear para resolução original
 
 ## Use Cases
+
 1. **Análise de Shadow Prob**: Gerar camada derivada de Shadow Prob para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -70,4 +71,3 @@ Aplica modelo de segmentação convolutional (ONNX) FPN (Feature Pyramid Network
 ## Datasets / Fontes de Dados
 
 - **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
-

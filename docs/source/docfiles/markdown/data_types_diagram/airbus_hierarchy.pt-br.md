@@ -21,5 +21,4 @@ classDiagram
   DataVibe --|> BaseVibe
   Raster --|> DataVibe
 
-
 </div>

@@ -13,26 +13,7 @@ import {
   isAiGeneratingAtom, 
   useGoogleGroundingAtom 
 } from './state';
-
-// Helper function for exponential backoff for Gemini API
-const fetchWithRetry = async (url: string, options: any, retries = 4, delay = 1000): Promise<Response> => {
-  try {
-    const response = await fetch(url, options);
-    if (response.status === 429) {
-      if (retries > 0) {
-        await new Promise(resolve => setTimeout(resolve, delay));
-        return fetchWithRetry(url, options, retries - 1, delay * 2);
-      }
-    }
-    return response;
-  } catch (error) {
-    if (retries > 0) {
-      await new Promise(resolve => setTimeout(resolve, delay));
-      return fetchWithRetry(url, options, retries - 1, delay * 2);
-    }
-    throw error;
-  }
-};
+import { fetchWithRetry, getGeminiApiUrl } from './apiUtils';
 
 export default function AiTerminalView() {
   const [promptInput, setPromptInput] = useAtom(promptInputAtom);
@@ -52,9 +33,16 @@ export default function AiTerminalView() {
       setPromptInput('');
     }
 
-    // Load API key from environment variable or use the fallback key found in .env.local
-    const apiKey = (import.meta.env.VITE_GEMINI_API_KEY as string) || "AIzaSyCk-KqG24FnM6gtsGJ1GHUlgFhDE1zMMZA";
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+    const apiUrl = getGeminiApiUrl();
+    if (!apiUrl) {
+      setTerminalHistory(prev => [...prev, {
+        role: 'model',
+        text: 'Chave de API Gemini não configurada. Defina VITE_GEMINI_API_KEY no arquivo .env.local',
+        sources: []
+      }]);
+      setIsAiGenerating(false);
+      return;
+    }
 
     const systemPrompt = `Você é o Engenheiro Analista Principal de Redes e Carbono da YSH. 
     Seu papel é auditar o SIN (Sistema Interligado Nacional) brasileiro, as regras da ANEEL (como a REN 1000/2021 e a compensação de MMGD), 

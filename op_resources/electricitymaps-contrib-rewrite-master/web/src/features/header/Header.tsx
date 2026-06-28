@@ -13,7 +13,7 @@ function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
     <div className="relative flex py-2 ">
       <NavigationMenu.Item
         asChild
-        className="rounded-md transition-colors hover:bg-zinc-100 dark:hover:bg-black/50"
+        className="transition-colors hover:bg-container-low"
       >
         <NavigationMenu.Link
           onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}
@@ -23,7 +23,7 @@ function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
         >
           {children}
           {active && (
-            <div className="absolute left-0 bottom-0 h-[2px] w-full bg-green-500"></div>
+            <div className="absolute left-0 bottom-0 h-[2px] w-full bg-kinetic-gradient"></div>
           )}
         </NavigationMenu.Link>
       </NavigationMenu.Item>
@@ -33,7 +33,7 @@ function MenuLink({ children, href, active, id }: MenuLinkProps): JSX.Element {
 
 export default function Header(): JSX.Element {
   return (
-    <header className="z-30 hidden w-full items-center justify-between bg-white pl-4 pr-8 shadow-[0_4px_6px_-2px_rgba(0,0,0,0.1)] dark:bg-gray-900 dark:shadow-[0_4px_6px_-2px_rgba(0,0,0,0.25)] sm:flex">
+    <header className="z-30 hidden w-full items-center justify-between bg-container-high pl-4 pr-8 border-b border-bg sm:flex">
       <Logo className="h-12 w-56 fill-black dark:fill-white" />
       <NavigationMenu.Root className="hidden md:block">
         <NavigationMenu.List className="flex space-x-2">

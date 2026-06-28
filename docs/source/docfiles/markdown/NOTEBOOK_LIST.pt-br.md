@@ -6,7 +6,6 @@ Apresentamos uma lista completa dos notebooks disponíveis no FarmVibes.AI com u
 
 ---------------
 
-
 ## Resumo
 
 Organizamos os notebooks disponíveis nos seguintes tópicos:
@@ -18,7 +17,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Índices espectrais (Spectral indices)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/sentinel/spectral_indices.ipynb)
 
-
 </details>
 <details>
 <summary> ADMAg - Microsoft Azure Data Manager for Agriculture </summary>
@@ -29,7 +27,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Estimativa de Mapa de Calor de Nutrientes com integração ADMAg` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/heatmaps/nutrients_using_classification_admag.ipynb)
 
-
 </details>
 <details>
 <summary> BingMaps </summary>
@@ -38,7 +35,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Fluxo de Trabalho do Modelo Segment Anything (mapa base BingMaps)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/segment_anything/basemap_segmentation.ipynb)
 
-
 </details>
 <details>
 <summary> Análise de Culturas (Crop Analysis) </summary>
@@ -46,7 +42,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Períodos de colheita e germinação` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/harvest_period/ndvi_summary.ipynb)
 
 - [`Integração com ADMAg para computar resumo de NDVI` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/admag/azure_data_manager_for_agriculture_example.ipynb)
-
 
 </details>
 <details>
@@ -62,7 +57,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Segmentação de áreas de cultivo (4/4) - inferência` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/crop_segmentation/04_inference.ipynb)
 
-
 </details>
 <details>
 <summary> Desmatamento (Deforestation) </summary>
@@ -74,7 +68,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Baixar Mapa Florestal Glad` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/forest/download_glad_forest_map.ipynb)
 
 - [`Baixar mapas do Global Forest Change (Hansen).` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/forest/download_hansen_forest_map.ipynb)
-
 
 </details>
 <details>
@@ -104,7 +97,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Visualização de timelapse` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/sentinel/timelapse_visualization.ipynb)
 
-
 </details>
 <details>
 <summary> Landsat </summary>
@@ -112,7 +104,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Classificação de irrigação` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/irrigation/irrigation_classification.ipynb)
 
 - [`Degradação da terra` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/land_degradation/land_degradation.ipynb)
-
 
 </details>
 <details>
@@ -136,7 +127,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Detecção de ervas daninhas (Weed detection)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/weed_detection/weed_detection.ipynb)
 
-
 </details>
 <details>
 <summary> Integração ONNX </summary>
@@ -148,7 +138,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Segmentação de áreas de cultivo (3/4) - treinamento de modelo no Azure Machine Learning` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/crop_segmentation/03_aml_training.ipynb)
 
 - [`Segmentação de áreas de cultivo (4/4) - inferência` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/crop_segmentation/04_inference.ipynb)
-
 
 </details>
 <details>
@@ -206,7 +195,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Detecção de ervas daninhas (Weed detection)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/weed_detection/weed_detection.ipynb)
 
-
 </details>
 <details>
 <summary> Segment Anything Model (SAM) </summary>
@@ -226,7 +214,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Fluxo de Trabalho do Modelo Segment Anything (mapa base BingMaps)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/segment_anything/basemap_segmentation.ipynb)
 
 - [`Fluxo de Trabalho do Modelo Segment Anything (Sentinel-2)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/segment_anything/sentinel2_segmentation.ipynb)
-
 
 </details>
 <details>
@@ -256,7 +243,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Índices espectrais` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/sentinel/spectral_indices.ipynb)
 
-
 </details>
 <details>
 <summary> SpaceEye </summary>
@@ -268,7 +254,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Investigando o desmatamento na Floresta Amazônica com SpaceEye` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/sentinel/sentinel_spaceeye.ipynb)
 
 - [`Visualização de timelapse` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/sentinel/timelapse_visualization.ipynb)
-
 
 </details>
 <details>
@@ -298,13 +283,11 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Análise "E se" (What-if) do sequestro de carbono` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/carbon/whatif.ipynb)
 
-
 </details>
 <details>
 <summary> Séries Temporais (Time Series) </summary>
 
 - [`Períodos de colheita e germinação` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/harvest_period/ndvi_summary.ipynb)
-
 
 </details>
 <details>
@@ -314,7 +297,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Classificação de irrigação` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/irrigation/irrigation_classification.ipynb)
 
-
 </details>
 <details>
 <summary> Clima (Weather) </summary>
@@ -322,7 +304,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Degradação da terra` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/land_degradation/land_degradation.ipynb)
 
 - [`Predição de microclima` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/deepmc/mc_forecast.ipynb)
-
 
 </details>
 <details>
@@ -333,7 +314,6 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Fluxos de Gases de Efeito Estufa (Green House Gas fluxes)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/ghg_fluxes/ghg_fluxes.ipynb)
 
 - [`Análise "E se" (What-if) do sequestro de carbono` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/carbon/whatif.ipynb)
-
 
 </details>
 <details>
@@ -359,16 +339,11 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 
 - [`Visualização de timelapse` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/sentinel/timelapse_visualization.ipynb)
 
-
 </details>
-
-
-
 
 <br>
 
 ---------------
-
 
 ## Descrição dos Notebooks
 
@@ -443,5 +418,3 @@ Organizamos os notebooks disponíveis nos seguintes tópicos:
 - [`Detecção de ervas daninhas (Weed detection)` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/weed_detection/weed_detection.ipynb) : Treina um Modelo de Mistura Gaussiana para agrupar regiões semelhantes em uma imagem raster afetada por ervas daninhas.
 
 - [`Análise "E se" (What-if) do sequestro de carbono` 📓](https://github.com/microsoft/farmvibes-ai/blob/main/notebooks/carbon/whatif.ipynb) : Obtém informações de sequestro de carbono com a API COMET-Farm para campos agrícolas.
-
-

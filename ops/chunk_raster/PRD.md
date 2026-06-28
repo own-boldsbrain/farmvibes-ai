@@ -26,6 +26,7 @@ Divide rasters de entrada em uma série de chunks (blocos) menores, permitindo p
 - Gera geometria do chunk em EPSG:4326 a partir da window do raster
 
 ## Use Cases
+
 1. **Automação**: Divide rasters de entrada em uma série de chunks (blocos) menores, permitindo processamento paralelo em grade de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -63,4 +64,3 @@ Divide rasters de entrada em uma série de chunks (blocos) menores, permitindo p
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-

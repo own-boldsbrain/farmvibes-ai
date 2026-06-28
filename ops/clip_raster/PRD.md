@@ -26,6 +26,7 @@ Recorta o raster de entrada com base na geometria de referência fornecida. Supo
 - **Hard clip**: usa `rioxarray.clip()` para recortar os dados fisicamente, gerando novo asset
 
 ## Use Cases
+
 1. **Automação**: Recorta o raster de entrada com base na geometria de referência fornecida de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -62,4 +63,3 @@ Recorta o raster de entrada com base na geometria de referência fornecida. Supo
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-

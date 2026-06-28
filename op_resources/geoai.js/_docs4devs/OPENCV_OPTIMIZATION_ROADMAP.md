@@ -174,7 +174,7 @@ function bgrToRgb(bgrData: Uint8Array): Uint8Array {
 
 #### 3.1 Official OpenCV.js Build Process
 
-The official OpenCV.js build script is available at: https://raw.githubusercontent.com/opencv/opencv/master/platforms/js/build_js.py
+The official OpenCV.js build script is available at: <https://raw.githubusercontent.com/opencv/opencv/master/platforms/js/build_js.py>
 
 **Prerequisites:**
 
@@ -352,7 +352,7 @@ async function processImage(imageData: Uint8Array) {
 
 ### ✅ Completed (Recent Optimizations)
 
-2. **Preprocessing Optimization** - Completed
+1. **Preprocessing Optimization** - Completed
    - Removed OpenCV dependencies from 3 model files
    - Replaced with transformers.js ImageProcessor
    - Reduced OpenCV usage by ~60% in preprocessing

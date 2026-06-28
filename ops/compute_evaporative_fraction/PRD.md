@@ -23,13 +23,14 @@ Implementa o método SSEB (Senay et al., 2013) para calcular fração evaporativ
 
 ## Lógicas e Cálculos
 
-- LST = (lwir11 * 0.00341802) + 149; corrige com lapse rate (0.0065 * DEM)
+- LST = (lwir11 *0.00341802) + 149; corrige com lapse rate (0.0065* DEM)
 - Seleciona hot pixels: LST entre P90 e P95 com NDVI < P01
 - Seleciona cold pixels: LST entre P02 e P04 com NDVI > P90
 - Remove agrupamentos menores que 9 pixels via connected components
-- etrf = (NDVI * K1 / K2) + LP; EF = etrf * (hot - LST) / (hot - cold)
+- etrf = (NDVI *K1 / K2) + LP; EF = etrf* (hot - LST) / (hot - cold)
 
 ## Use Cases
+
 1. **Análise de Evaporative Fraction**: Gerar camada derivada de Evaporative Fraction para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -68,4 +69,3 @@ Implementa o método SSEB (Senay et al., 2013) para calcular fração evaporativ
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

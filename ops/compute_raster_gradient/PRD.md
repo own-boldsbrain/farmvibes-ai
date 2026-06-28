@@ -25,6 +25,7 @@ Computa o gradiente horizontal de cada banda do raster de entrada usando o opera
 - Inclui overviews no raster de saída
 
 ## Use Cases
+
 1. **Análise de Raster Gradient**: Gerar camada derivada de Raster Gradient para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -58,4 +59,3 @@ Computa o gradiente horizontal de cada banda do raster de entrada usando o opera
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

@@ -4,20 +4,20 @@ import config from '../tailwind.config.js';
 describe('Tailwind Configuration', () => {
   it('should have the correct Precision Architect colors using CSS variables', () => {
     const colors = config.theme.extend.colors;
-    
+
     expect(colors['bg']).toBe('var(--color-bg)');
-    expect(colors['precision-surface']).toBe('var(--elevation-surface)');
-    expect(colors['precision-low']).toBe('var(--elevation-low)');
-    expect(colors['precision-high']).toBe('var(--elevation-high)');
-    expect(colors['precision-elevated']).toBe('var(--elevation-elevated)');
-    
-    expect(colors['precision-text-primary']).toBe('var(--color-text-primary)');
-    expect(colors['precision-text-secondary']).toBe('var(--color-text-secondary)');
+    expect(colors['surface']).toBe('var(--elevation-surface)');
+    expect(colors['container-low']).toBe('var(--elevation-low)');
+    expect(colors['container-high']).toBe('var(--elevation-high)');
+    expect(colors['container-elevated']).toBe('var(--elevation-elevated)');
+
+    expect(colors['textPrimary']).toBe('var(--color-text-primary)');
+    expect(colors['textSecondary']).toBe('var(--color-text-secondary)');
   });
 
-  it('should have the ysh-kinetic gradient using CSS variable', () => {
+  it('should have the kinetic gradient using CSS variable', () => {
     const bgImage = config.theme.extend.backgroundImage;
-    expect(bgImage['ysh-kinetic']).toContain('var(--kinetic-gradient');
+    expect(bgImage['kinetic-gradient']).toContain('var(--kinetic-gradient');
   });
 
   it('should have orthogonal border radius (0px)', () => {
@@ -25,5 +25,12 @@ describe('Tailwind Configuration', () => {
     Object.values(borderRadius).forEach(value => {
       expect(value).toBe('0px');
     });
+  });
+
+  it('should have the Kinetic accent palette defined', () => {
+    const accent = config.theme.extend.colors.accent;
+    expect(accent.gold).toBe('#FFCE00');
+    expect(accent.orange).toBe('#FF6600');
+    expect(accent.magenta).toBe('#FF0066');
   });
 });

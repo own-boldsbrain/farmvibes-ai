@@ -78,7 +78,7 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
     <button
       data-test-id="left-panel-collapse-button"
       className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer bg-zinc-100 pl-1 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800'
+        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer bg-container-low pl-1 hover:bg-container-high text-textPrimary'
       }
       onClick={onCollapse}
     >
@@ -89,9 +89,9 @@ function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
 
 function MobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] shadow-md dark:bg-gray-900 sm:hidden">
+    <div className="flex w-full items-center justify-between p-1 pt-[env(safe-area-inset-top)] bg-container-high border-b border-bg sm:hidden">
       <Logo className="h-10 w-44 fill-black dark:fill-white" />
-      <TimeDisplay className="mr-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300" />
+      <TimeDisplay className="mr-2 whitespace-nowrap text-sm text-textSecondary" />
     </div>
   );
 }
@@ -103,7 +103,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 
   return (
     <aside
-      className={`absolute left-0 top-0 z-20 h-full w-full  bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-800 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
+      className={`absolute left-0 top-0 z-20 h-full w-full bg-surface transition-all duration-500 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] border-r border-bg ${
         location.pathname === '/map' ? 'hidden' : ''
       } ${!isOpen ? '-translate-x-full' : ''}`}
     >

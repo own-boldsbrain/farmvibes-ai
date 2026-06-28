@@ -25,6 +25,7 @@ Filtra informações de geometria e/ou time_range de um DataVibe de entrada, sub
 4. Retorna clone do DataVibe com assets vazios e metadados modificados
 
 ## Use Cases
+
 1. **Automação**: Filtra informações de geometria e/ou time_range de um DataVibe de entrada, substituindo por valores dummy quando solicitado de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -58,4 +59,3 @@ Filtra informações de geometria e/ou time_range de um DataVibe de entrada, sub
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-

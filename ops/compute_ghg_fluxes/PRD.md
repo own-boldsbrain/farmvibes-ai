@@ -26,6 +26,7 @@ Calcula fluxos de GEE baseado no protocolo GHG, usando fatores de emissão IPCC 
 - Converte N₂O e CH₄ para CO₂-eq (GWP: 298 e 25)
 
 ## Use Cases
+
 1. **Análise de Ghg Fluxes**: Gerar camada derivada de Ghg Fluxes para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -59,4 +60,3 @@ Calcula fluxos de GEE baseado no protocolo GHG, usando fatores de emissão IPCC 
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

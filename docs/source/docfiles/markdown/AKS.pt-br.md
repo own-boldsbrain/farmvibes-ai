@@ -30,9 +30,9 @@ O instalador falhará se a quota não estiver disponível.
 
 Resumindo, o número mínimo de CPUs necessário é:
 
- * Total de vCPUs Regionais: aumentar para pelo menos 20
- * vCPUs da Família Standard DSv3: aumentar para pelo menos 12
- * vCPUs da Família Standard BS: aumentar para pelo menos 8
+* Total de vCPUs Regionais: aumentar para pelo menos 20
+* vCPUs da Família Standard DSv3: aumentar para pelo menos 12
+* vCPUs da Família Standard BS: aumentar para pelo menos 8
 
 Você pode precisar habilitar o provedor `Microsoft.Compute` na sua assinatura.
 Para instruções sobre como fazer isso, prossiga para a seção de [Provedores do Azure](#provedores-do-azure).
@@ -68,12 +68,12 @@ Uma vez atendidos esses requisitos, você pode seguir as instruções sobre como
 Como o script de gerenciamento remoto do FarmVibes.AI precisa provisionar novos recursos no Azure, ele precisa de acesso a vários [Provedores do Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs).
 O próprio script é capaz de registrar cada provedor necessário. Até o momento da escrita deste documento, os provedores necessários são:
 
- * `Microsoft.DocumentDB`, para provisionamento do Cosmos DB
- * `Microsoft.KeyVault`, para gerenciar um Azure KeyVault para segredos
- * `Microsoft.ContainerService`, para gerenciar o próprio AKS
- * `Microsoft.Network`, para configurar IPs públicos e vnets
- * `Microsoft.Storage`, para provisionar contas de [armazenamento (storage)](https://learn.microsoft.com/en-us/azure/storage/)
- * `Microsoft.Compute`, para provisionar Máquinas Virtuais e Conjuntos de Escala de Máquinas Virtuais (VMSS)
+* `Microsoft.DocumentDB`, para provisionamento do Cosmos DB
+* `Microsoft.KeyVault`, para gerenciar um Azure KeyVault para segredos
+* `Microsoft.ContainerService`, para gerenciar o próprio AKS
+* `Microsoft.Network`, para configurar IPs públicos e vnets
+* `Microsoft.Storage`, para provisionar contas de [armazenamento (storage)](https://learn.microsoft.com/en-us/azure/storage/)
+* `Microsoft.Compute`, para provisionar Máquinas Virtuais e Conjuntos de Escala de Máquinas Virtuais (VMSS)
 
 ### Definindo a assinatura
 
@@ -93,10 +93,10 @@ az account set ${ID_DA_SUA_ASSINATURA_DESEJADA}
 
 O ambiente AKS suporta todos os [ambientes de Nuvem (Nacional) do Azure](https://learn.microsoft.com/en-us/graph/deployments). Os usuários podem escolher com qual nuvem desejam interagir usando o argumento `--environment`. Os valores válidos para este argumento são:
 
- * `public` (o padrão se não for especificado)
- * `usgovernment` (para a nuvem do Governo dos EUA)
- * `german` (para a nuvem soberana da Alemanha)
- * `china` (para a nuvem soberana da China)
+* `public` (o padrão se não for especificado)
+* `usgovernment` (para a nuvem do Governo dos EUA)
+* `german` (para a nuvem soberana da Alemanha)
+* `china` (para a nuvem soberana da China)
 
 ## Substituindo o administrador do cluster
 
@@ -120,42 +120,42 @@ Uma vez que o grupo de recursos e a conta de armazenamento de metadados existam,
 
 ### (3) Infraestrutura
 
-- [**Cosmos DB**](https://learn.microsoft.com/en-us/azure/cosmos-db/): a configuração cria duas contas do Azure Cosmos DB, cada uma com seus respectivos bancos de dados e contêineres. O Azure Cosmos DB é um serviço de banco de dados multimodelo totalmente gerenciado, distribuído globalmente, projetado para acesso a dados com baixa latência e escalabilidade horizontal contínua.
+* [**Cosmos DB**](https://learn.microsoft.com/en-us/azure/cosmos-db/): a configuração cria duas contas do Azure Cosmos DB, cada uma com seus respectivos bancos de dados e contêineres. O Azure Cosmos DB é um serviço de banco de dados multimodelo totalmente gerenciado, distribuído globalmente, projetado para acesso a dados com baixa latência e escalabilidade horizontal contínua.
 
-- [**Key Vault**](https://learn.microsoft.com/en-us/azure/key-vault/): um componente para armazenar e gerenciar informações sensíveis, como segredos, strings de conexão e credenciais usadas pelos serviços no cluster remoto.
+* [**Key Vault**](https://learn.microsoft.com/en-us/azure/key-vault/): um componente para armazenar e gerenciar informações sensíveis, como segredos, strings de conexão e credenciais usadas pelos serviços no cluster remoto.
 
-- [**Azure Kubernetes Service (AKS)**](https://learn.microsoft.com/en-us/azure/aks/): um serviço de Kubernetes gerenciado que simplifica a implantação, o gerenciamento e a escala de aplicações conteinerizadas usando Kubernetes. Neste projeto, um cluster AKS é criado com as configurações especificadas, permitindo que você implante e gerencie seus serviços conteinerizados com facilidade.
+* [**Azure Kubernetes Service (AKS)**](https://learn.microsoft.com/en-us/azure/aks/): um serviço de Kubernetes gerenciado que simplifica a implantação, o gerenciamento e a escala de aplicações conteinerizadas usando Kubernetes. Neste projeto, um cluster AKS é criado com as configurações especificadas, permitindo que você implante e gerencie seus serviços conteinerizados com facilidade.
 
-- [**Conta de Armazenamento (Storage Account)**](https://learn.microsoft.com/en-us/azure/storage/): um serviço de armazenamento em nuvem que fornece armazenamento escalável, durável e altamente disponível para vários tipos de dados, como blobs, arquivos, filas e tabelas. Neste projeto, a Conta de Armazenamento é configurada para permitir o acesso a partir da rede virtual criada para a configuração do AKS, fornecendo acesso seguro e isolado aos dados armazenados.
+* [**Conta de Armazenamento (Storage Account)**](https://learn.microsoft.com/en-us/azure/storage/): um serviço de armazenamento em nuvem que fornece armazenamento escalável, durável e altamente disponível para vários tipos de dados, como blobs, arquivos, filas e tabelas. Neste projeto, a Conta de Armazenamento é configurada para permitir o acesso a partir da rede virtual criada para a configuração do AKS, fornecendo acesso seguro e isolado aos dados armazenados.
 
-- [**Rede Virtual (VNet) e Sub-rede**](https://learn.microsoft.com/en-us/azure/virtual-network/): a Rede Virtual (VNet) é o bloco de construção fundamental para criar uma rede privada e isolada no Azure. Ela permite que os recursos dentro da rede se comuniquem entre si de forma segura e eficiente.
+* [**Rede Virtual (VNet) e Sub-rede**](https://learn.microsoft.com/en-us/azure/virtual-network/): a Rede Virtual (VNet) é o bloco de construção fundamental para criar uma rede privada e isolada no Azure. Ela permite que os recursos dentro da rede se comuniquem entre si de forma segura e eficiente.
 
-- **Endereço IP Público**: os endereços IP Públicos do Azure permitem que você se comunique com recursos pela internet, fornecendo acesso público aos serviços executados no cluster remoto. O rótulo do nome de domínio é criado usando uma combinação do prefixo e um hash do nome do grupo de recursos, criando um nome de domínio único e facilmente identificável para seus serviços.
+* **Endereço IP Público**: os endereços IP Públicos do Azure permitem que você se comunique com recursos pela internet, fornecendo acesso público aos serviços executados no cluster remoto. O rótulo do nome de domínio é criado usando uma combinação do prefixo e um hash do nome do grupo de recursos, criando um nome de domínio único e facilmente identificável para seus serviços.
 
 ### (4) Componentes do Kubernetes
 
 Após a conclusão da camada de infraestrutura, o script prossegue para o provisionamento dos componentes do Kubernetes, que são:
 
-- Banco de dados [Redis](https://redis.io/) para cache de dados sobre fluxos de trabalho executados e dados gerados.
-- [RabbitMQ](https://www.rabbitmq.com/) para troca de mensagens entre os serviços do FarmVibes.AI.
-- [Dapr (Distributed Application Runtime)](https://dapr.io/) para abstrair a invocação de serviços e mensageria.
-- Um volume persistente que usa a conta de armazenamento criada no passo anterior como repositório de suporte.
-- Serviço de telemetria aberta (Open Telemetry) para coletar dados de telemetria dos serviços.
-- Um serviço de gerenciamento de certificados para configurar endpoints TLS para os serviços do FarmVibes.AI, como a API REST.
+* Banco de dados [Redis](https://redis.io/) para cache de dados sobre fluxos de trabalho executados e dados gerados.
+* [RabbitMQ](https://www.rabbitmq.com/) para troca de mensagens entre os serviços do FarmVibes.AI.
+* [Dapr (Distributed Application Runtime)](https://dapr.io/) para abstrair a invocação de serviços e mensageria.
+* Um volume persistente que usa a conta de armazenamento criada no passo anterior como repositório de suporte.
+* Serviço de telemetria aberta (Open Telemetry) para coletar dados de telemetria dos serviços.
+* Um serviço de gerenciamento de certificados para configurar endpoints TLS para os serviços do FarmVibes.AI, como a API REST.
 
 ### (5) Serviços
 
 Finalmente, após a configuração dos componentes básicos do cluster, o script prossegue para definir e implantar os serviços do FarmVibes.AI:
 
-- **Rest-api (Servidor).** Um servidor web que expõe uma API REST para que os usuários possam chamar fluxos de trabalho, acompanhar a execução de fluxos de trabalho e recuperar resultados.
+* **Rest-api (Servidor).** Um servidor web que expõe uma API REST para que os usuários possam chamar fluxos de trabalho, acompanhar a execução de fluxos de trabalho e recuperar resultados.
 
-- **Orchestrator.** Este componente gerencia a execução do fluxo de trabalho, transmitindo solicitações aos trabalhadores (workers) e atualizando o status do fluxo de trabalho.
+* **Orchestrator.** Este componente gerencia a execução do fluxo de trabalho, transmitindo solicitações aos trabalhadores (workers) e atualizando o status do fluxo de trabalho.
 
-- **Worker.** Um componente escalável responsável pela computação real da operação do fluxo de trabalho. Em vez de executar todo o fluxo de trabalho de uma vez, ele computa os chunks atômicos processados pelo usuário.
+* **Worker.** Um componente escalável responsável pela computação real da operação do fluxo de trabalho. Em vez de executar todo o fluxo de trabalho de uma vez, ele computa os chunks atômicos processados pelo usuário.
 
-- **Cache.** Este componente fica entre o orquestrador e os trabalhadores; ele verifica se uma operação foi executada anteriormente e retorna resultados em cache para o orquestrador.
+* **Cache.** Este componente fica entre o orquestrador e os trabalhadores; ele verifica se uma operação foi executada anteriormente e retorna resultados em cache para o orquestrador.
 
-- **Data Ops.** Este componente é responsável por gerenciar operações de dados, como manter o controle de assets relacionados à execução do fluxo de trabalho e excluir dados de execução quando solicitado.
+* **Data Ops.** Este componente é responsável por gerenciar operações de dados, como manter o controle de assets relacionados à execução do fluxo de trabalho e excluir dados de execução quando solicitado.
 
 ## Instalação e Configuração
 
@@ -274,4 +274,5 @@ foreach ($job in $jobs) {
     Remove-Job -Job $job
 }
 ```
+
 </details>

@@ -28,6 +28,7 @@ Usa modelo CNN (ONNX) sobre gradiente de elevação e elevação média para cla
 - Reamostragem nearest-neighbor para resolução original
 
 ## Use Cases
+
 1. **Análise de Conservation Practice**: Gerar camada derivada de Conservation Practice para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -69,4 +70,3 @@ Usa modelo CNN (ONNX) sobre gradiente de elevação e elevação média para cla
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

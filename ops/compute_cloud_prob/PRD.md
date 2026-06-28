@@ -27,6 +27,7 @@ Aplica modelo de segmentação convolutional (ONNX) sobre Sentinel-2 L2A para es
 - Reamostra para resolução original via bilinear
 
 ## Use Cases
+
 1. **Análise de Cloud Prob**: Gerar camada derivada de Cloud Prob para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -69,4 +70,3 @@ Aplica modelo de segmentação convolutional (ONNX) sobre Sentinel-2 L2A para es
 ## Datasets / Fontes de Dados
 
 - **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
-

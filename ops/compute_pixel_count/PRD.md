@@ -24,6 +24,7 @@ Conta valores únicos de pixel em todas as bandas do raster de entrada, gerando 
 - Salva resultado em CSV com colunas `unique_values` e `counts`
 
 ## Use Cases
+
 1. **Análise de Pixel Count**: Gerar camada derivada de Pixel Count para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -57,4 +58,3 @@ Conta valores únicos de pixel em todas as bandas do raster de entrada, gerando 
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

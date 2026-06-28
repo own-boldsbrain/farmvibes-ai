@@ -20,6 +20,7 @@ const isProduction = import.meta.env.PROD;
 // Init CSS
 import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
+import './styles/estilos_globais_e_reset.css';
 
 // Init polyfills
 

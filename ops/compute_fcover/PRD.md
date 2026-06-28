@@ -26,6 +26,7 @@ Calcula FCOVER a partir de bandas Sentinel-2 (B03-B12, B8A) e ângulos de visada
 - Denormaliza para [0, 1]
 
 ## Use Cases
+
 1. **Análise de Fcover**: Gerar camada derivada de Fcover para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -60,4 +61,3 @@ Calcula FCOVER a partir de bandas Sentinel-2 (B03-B12, B8A) e ângulos de visada
 ## Datasets / Fontes de Dados
 
 - **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
-

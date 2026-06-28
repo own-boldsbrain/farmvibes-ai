@@ -27,6 +27,7 @@ Calcula o valor médio de iluminância para cada banda de um raster Sentinel-2, 
 - Retorna apenas resultados não-nulos
 
 ## Use Cases
+
 1. **Análise de Illuminance**: Gerar camada derivada de Illuminance para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -63,4 +64,3 @@ Calcula o valor médio de iluminância para cada banda de um raster Sentinel-2, 
 ## Datasets / Fontes de Dados
 
 - **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
-

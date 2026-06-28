@@ -27,6 +27,7 @@ Combina a banda `qa_pixel` do Landsat (bits de nuvem) com um limiar de NDVI para
 - Multiplica as duas máscaras: resultado 1 só onde ambas são 1
 
 ## Use Cases
+
 1. **Análise de Cloud Water Mask**: Gerar camada derivada de Cloud Water Mask para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -63,4 +64,3 @@ Combina a banda `qa_pixel` do Landsat (bits de nuvem) com um limiar de NDVI para
 ## Datasets / Fontes de Dados
 
 - **Landsat 5/7/8/9**: Reflectância de superfície, 30m (15m pancromático).
-

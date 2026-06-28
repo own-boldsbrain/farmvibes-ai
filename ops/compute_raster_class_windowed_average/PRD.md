@@ -27,6 +27,7 @@ Calcula a média de elevação (z-score) por classe de cluster em janelas desliz
 - Upsample para resolução original via bilinear
 
 ## Use Cases
+
 1. **Análise de Raster Class Windowed Average**: Gerar camada derivada de Raster Class Windowed Average para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -63,4 +64,3 @@ Calcula a média de elevação (z-score) por classe de cluster em janelas desliz
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

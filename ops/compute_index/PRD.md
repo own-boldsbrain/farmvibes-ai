@@ -25,6 +25,7 @@ Calcula índices espectrais sobre rasters usando a biblioteca spyndex (NDVI, EVI
 - Anexa asset de visualização com colormap e range
 
 ## Use Cases
+
 1. **Análise de Index**: Gerar camada derivada de Index para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -60,4 +61,3 @@ Calcula índices espectrais sobre rasters usando a biblioteca spyndex (NDVI, EVI
 ## Datasets / Fontes de Dados
 
 - **Raster de entrada**: Fornecido pelo usuário ou por operação upstream.
-

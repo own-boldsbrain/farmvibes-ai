@@ -6,26 +6,7 @@ import {
   activeScenarioReportAtom, 
   isScenarioReportGeneratingAtom 
 } from './state';
-
-// Helper function for exponential backoff for Gemini API
-const fetchWithRetry = async (url: string, options: any, retries = 4, delay = 1000): Promise<Response> => {
-  try {
-    const response = await fetch(url, options);
-    if (response.status === 429) {
-      if (retries > 0) {
-        await new Promise(resolve => setTimeout(resolve, delay));
-        return fetchWithRetry(url, options, retries - 1, delay * 2);
-      }
-    }
-    return response;
-  } catch (error) {
-    if (retries > 0) {
-      await new Promise(resolve => setTimeout(resolve, delay));
-      return fetchWithRetry(url, options, retries - 1, delay * 2);
-    }
-    throw error;
-  }
-};
+import { fetchWithRetry, getGeminiApiUrl } from './apiUtils';
 
 export default function DuckCurveView() {
   const [mmgdCapacity, setMmgdCapacity] = useAtom(mmgdCapacityAtom);
@@ -42,9 +23,12 @@ export default function DuckCurveView() {
     setIsScenarioReportGenerating(true);
     setActiveScenarioReport(null);
 
-    // Canvas API key will be injected at runtime
-    const apiKey = "";
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+    const apiUrl = getGeminiApiUrl();
+    if (!apiUrl) {
+      setActiveScenarioReport('Chave de API Gemini não configurada. Defina VITE_GEMINI_API_KEY no arquivo .env.local');
+      setIsScenarioReportGenerating(false);
+      return;
+    }
 
     const prompt = `Gere uma análise técnica concisa de 1 parágrafo com as seguintes variáveis de simulação da rede brasileira (SIN):
     - Capacidade instalada de MMGD Solar ativa na rede local: ${mmgdCapacity} GW.

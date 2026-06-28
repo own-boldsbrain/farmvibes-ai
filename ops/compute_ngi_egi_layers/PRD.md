@@ -24,12 +24,13 @@ Processa bandas Landsat (green, nir, lwir11), NDVI e fração evaporativa para g
 
 ## Lógicas e Cálculos
 
-- Aplica scale/offset: LST = lwir11 * 0.00341802 + 149; bandas = banda * 0.0000275 - 0.2
+- Aplica scale/offset: LST = lwir11 *0.00341802 + 149; bandas = banda* 0.0000275 - 0.2
 - Green Index (GI) = NIR / Green
 - NGI = NDVI * GI; EGI = EF / GI
 - Aplica cloud_water_mask nas três camadas de saída
 
 ## Use Cases
+
 1. **Análise de Ngi Egi Layers**: Gerar camada derivada de Ngi Egi Layers para interpretação.
 2. **Feature engineering**: Produzir insumos para modelos de machine learning.
 3. **Monitoramento temporal**: Calcular o índice/variável para múltiplas datas e comparar.
@@ -66,4 +67,3 @@ Processa bandas Landsat (green, nir, lwir11), NDVI e fração evaporativa para g
 ## Datasets / Fontes de Dados
 
 - **Landsat 5/7/8/9**: Reflectância de superfície, 30m (15m pancromático).
-

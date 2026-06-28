@@ -18,16 +18,19 @@ uma chave ssh, uma pode ser gerada executando `ssh-keygen` em seu shell. Ao cria
 ## Criando uma nova VM Ubuntu
 
 1. Faça login no Azure usando o Azure CLI:
+
 ```shell
 az login
 ```
 
-2. Se você tiver múltiplas Assinaturas do Azure, selecione a assinatura que deseja usar:
+1. Se você tiver múltiplas Assinaturas do Azure, selecione a assinatura que deseja usar:
+
 ```shell
 az account set --subscription <NOME DA ASSINATURA>
 ```
 
-3. A partir da raiz do repositório, você precisará executar o seguinte comando de implantação (deployment):
+1. A partir da raiz do repositório, você precisará executar o seguinte comando de implantação (deployment):
+
 ```shell
 az deployment group create --resource-group <resource_group> \
    --name <deployment_name> \
@@ -37,6 +40,7 @@ az deployment group create --resource-group <resource_group> \
             vm_suffix_name=<meu_sufixo_de_teste> \
             encoded_script="$(cat resources/vm/setup_farmvibes_ai_vm.sh | gzip -9 | base64 -w0)"
 ```
+
 Por favor, altere `<resource_group>`, `<deployment_name>` e `<meu_sufixo_de_teste>`
 para nomes de sua preferência.
 
@@ -53,7 +57,8 @@ para nomes de sua preferência.
 
 Você pode ver a lista de parâmetros da VM no arquivo `resources/vm/farmvibes_ai_vm.bicep`.
 
-4. Assim que o script for concluído, um JSON descrevendo os recursos criados será impresso no shell. Você pode obter o comando de conexão ssh com o seguinte comando:
+1. Assim que o script for concluído, um JSON descrevendo os recursos criados será impresso no shell. Você pode obter o comando de conexão ssh com o seguinte comando:
+
 ```shell
 az deployment group show \
   -g <resource_group> \
