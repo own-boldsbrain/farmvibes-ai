@@ -26,6 +26,7 @@ Para um produto Sentinel-2 baixado, empilha as bandas na ordem correta (B01-B12)
 4. Salva cloud mask como uint8 com nodata=100
 
 ## Use Cases
+
 1. **Automação**: Para um produto Sentinel-2 baixado, empilha as bandas na ordem correta (B01-B12) em um único GeoTIFF e gera um raster de máscara de nuvens com categorias de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -59,4 +60,3 @@ Para um produto Sentinel-2 baixado, empilha as bandas na ordem correta (B01-B12)
 ## Datasets / Fontes de Dados
 
 - **Sentinel-2 (MSI)**: Reflectância de superfície, 10-60m, 13 bandas.
-

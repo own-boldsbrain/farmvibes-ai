@@ -25,6 +25,7 @@ Aplica um threshold a um raster: pixels com valor acima do limiar viram 1, abaix
 4. Converte encoding para uint8 e salva com `save_raster_from_ref`
 
 ## Use Cases
+
 1. **Automação**: Aplica um threshold a um raster: pixels com valor acima do limiar viram 1, abaixo viram 0, resultando em um raster uint8 binário de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -59,4 +60,3 @@ Aplica um threshold a um raster: pixels com valor acima do limiar viram 1, abaix
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-

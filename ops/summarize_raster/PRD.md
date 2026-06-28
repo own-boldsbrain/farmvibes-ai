@@ -28,6 +28,7 @@ Computa média, desvio padrão, mínimo, máximo e proporção mascarada de um r
 5. Salva em CSV indexado por data
 
 ## Use Cases
+
 1. **Automação**: Computa média, desvio padrão, mínimo, máximo e proporção mascarada de um raster, opcionalmente aplicando uma máscara booleana para excluir regiões de forma programática e escalável.
 2. **Pipeline de dados**: Integrar esta operação em workflows maiores de análise geoespacial.
 3. **Batch processing**: Processar múltiplas regiões/períodos de forma paralela.
@@ -64,4 +65,3 @@ Computa média, desvio padrão, mínimo, máximo e proporção mascarada de um r
 ## Datasets / Fontes de Dados
 
 - **Dados de entrada**: Fornecidos pelo usuário ou por operações anteriores no pipeline.
-
