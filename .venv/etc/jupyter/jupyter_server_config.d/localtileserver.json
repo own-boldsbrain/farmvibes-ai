@@ -1,7 +1,0 @@
-{
-  "ServerApp": {
-    "jpserver_extensions": {
-      "localtileserver._jupyter": true
-    }
-  }
-}

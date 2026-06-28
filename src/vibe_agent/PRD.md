@@ -40,41 +40,49 @@ Serviço responsável por interceptar requisições de execução de operações
 | Fornecer API de consulta de metadados para DataOps | Expor interfaces HTTP públicas |
 
 ### Users Inputs / Outputs
+
 - **Input**: Mensagem `ExecuteRequestMessage` via tópico `cache-commands`
 - **Output**: Mensagem `ExecuteReplyMessage` (cache hit) ou `CacheInfoExecuteRequestMessage` (cache miss → worker)
 
 ### System Outputs
+
 - Confirmação de cache hit publicada no tópico `updates`
 - Mensagem de execução publicada no tópico `commands` para o Worker
 - Referências armazenadas no Redis via DataOps (chamada de serviço `add_refs/{run_id}`)
 
 ### Outcomes Esperados
+
 - Redução de tempo de processamento evitando recomputação
 - Consistência entre cache e metadados de execução
 - Rastreabilidade completa de workflow → ops → assets
 
 ### APIs / Endpoints
+
 - **Pub/Sub**: inscrito em `control-pubsub` / `cache-commands`
 - **Service Invocation (Dapr)**: `add_refs/{run_id}` — delega ao DataOpsManager
 
 ### CRUD
+
 | Entidade | Create | Read | Update | Delete |
 |---|---|---|---|---|
 | CacheInfo | ✓ (hash) | ✓ (consulta por hash) | ✗ | Indireto via DataOps |
 | OpRunId refs | ✓ (store_references) | ✓ (get_run_ops, get_op_workflow_runs, get_op_assets) | ✗ | ✓ (remove_workflow_op_refs, remove_op_asset_refs) |
 
 ### Schemas de Dados
+
 - `CacheInfo`: name, version, hash (SHA256), parameters, ids
 - `OpRunId`: name, hash
 - `OpRunIdDict`: name, hash (TypedDict para serialização)
 - Chaves Redis: `run:{run_id}:ops`, `op:{op_name}:{op_hash}:runs`, `op:{op_name}:{op_hash}:assets`, `asset:{asset_id}:ops`
 
 ### Datasets / Tipos
+
 - Metadados estruturados armazenados em Redis (conjuntos)
 - Identificadores de assets (strings UUID)
 - Referências a operações (op_name + hash)
 
 ### Lógicas e Cálculos
+
 - Geração de hash: `SHA256(ids_sorted + parameters_sorted + version)`
 - Resolução de dependências de operação via `OperationDependencyResolver`
 - Estratégia de pool: `ProcessPoolExecutor` (local) ou `ThreadPoolExecutor` (Azure)
@@ -85,22 +93,27 @@ Serviço responsável por interceptar requisições de execução de operações
 ## 2. CacheMetadataStore
 
 ### Nome do Módulo
+
 `CacheMetadataStore` (`cache_metadata_store.py`, `cache_metadata_store_client.py`)
 
 ### Descrição
+
 Protocolo e implementação Redis para armazenar relacionamentos entre workflows, operações e assets. O client (`CacheMetadataStoreClient`) invoca remotamente o DataOpsManager via Dapr para persistir referências.
 
 ### JTBDs
+
 - Rastrear quais operações pertencem a um workflow
 - Rastrear quais assets pertencem a uma operação
 - Permitir deleção em cascata de workflow → op → asset
 
 ### Casos de Uso
+
 1. Associar operação executada a um workflow run
 2. Recuperar assets de uma operação para deleção
 3. Verificar se um asset é referenciado por múltiplas operações
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Armazenar relacionamentos run ↔ op ↔ asset | Armazenar dados binários |
@@ -108,14 +121,17 @@ Protocolo e implementação Redis para armazenar relacionamentos entre workflows
 | Oferecer implementação Redis e protocolo abstrato | Gerenciar concorrência além de locks Redis |
 
 ### Users Inputs / Outputs
+
 - **Input**: run_id, OpRunId, asset_ids, output OpIOType
 - **Output**: conjuntos de op refs, asset refs, workflow refs
 
 ### APIs / Endpoints
+
 - `add_refs/{run_id}` (Dapr service invocation via cliente)
 - Métodos do protocolo: store_references, get_run_ops, get_op_workflow_runs, get_op_assets, get_assets_refs, remove_workflow_op_refs, remove_op_asset_refs
 
 ### CRUD
+
 | Entidade | Create | Read | Update | Delete |
 |---|---|---|---|---|
 | Run→Op | ✓ (SADD) | ✓ (SMEMBERS) | ✗ | ✓ (SREM) |
@@ -123,13 +139,16 @@ Protocolo e implementação Redis para armazenar relacionamentos entre workflows
 | Asset→Op | ✓ (SADD) | ✓ (SMEMBERS) | ✗ | ✓ (SREM) |
 
 ### Schemas de Dados
+
 - Formato de chave: `run:{uuid}:ops`, `op:{name}:{hash}:runs`, `op:{name}:{hash}:assets`, `asset:{uuid}:ops`
 - Formato de valor: conjuntos de strings (`{op_name}:{op_hash}` ou UUIDs)
 
 ### Datasets / Tipos
+
 - Redis strings, sets, pipelines transacionais
 
 ### Lógicas e Cálculos
+
 - Uso de Redis pipelines com transaction=True para atomicidade
 - ExponentialBackoff para reconexão Redis
 - Cache de listagem de blobs com LRU (size=100)
@@ -139,23 +158,28 @@ Protocolo e implementação Redis para armazenar relacionamentos entre workflows
 ## 3. DataOpsManager
 
 ### Nome do Módulo
+
 `DataOpsManager` (`data_ops.py`, `launch_data_ops.py`)
 
 ### Descrição
+
 Serviço central de gerenciamento de metadados e operações de dados. Processa mensagens de reply de execução (para adicionar referências) e requisições de deleção de workflows, orquestrando a remoção segura de metadados e assets.
 
 ### JTBDs
+
 - Registrar metadados de execução de operações (referências)
 - Gerenciar deleção completa de workflows (metadados + assets)
 - Garantir consistência transacional em operações de deleção
 - Evitar deleção de workflows em execução
 
 ### Casos de Uso
+
 1. Processar execute_reply: extrair output, computar asset_ids, armazenar referências
 2. Processar deleção de workflow: verificar status, deletar ops não compartilhadas, atualizar statestore
 3. Deleção seletiva de operações e assets não referenciados por outros workflows
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Gerenciar metadados de cache e referências | Executar operações de processamento |
@@ -164,16 +188,19 @@ Serviço central de gerenciamento de metadados e operações de dados. Processa 
 | Interagir com statestore via Dapr | Gerenciar ciclo de vida de deployments |
 
 ### Users Inputs / Outputs
+
 - **Input (pub/sub)**: `ExecuteReplyMessage` (tópico `updates`), `WorkflowDeletionMessage` (tópico `workflow_execution_request`)
 - **Input (service invocation)**: `add_refs/{run_id}` via Dapr
 - **Output**: Referências armazenadas no Redis, metadados atualizados no statestore, assets removidos do storage
 
 ### System Outputs
+
 - RunConfig atualizado no statestore com status `deleting` → `deleted`
 - Assets removidos do Azure Blob Storage ou sistema de arquivos local
 - Catálogos STAC removidos do storage
 
 ### APIs / Endpoints
+
 - **Pub/Sub (async)**: `control-pubsub` / `updates`, `control-pubsub` / `workflow_execution_request`
 - **Service Invocation (FastAPI)**: `add_refs/{run_id}` (POST) — recebe `OpRunIdDict` + `OpIOType`
 - **Startup**: inicialização de locks (RWLock, asyncio.Lock)
@@ -212,18 +239,22 @@ Serviço central de gerenciamento de metadados e operações de dados. Processa 
 ## 4. Worker
 
 ### Nome do Módulo
+
 `Worker` (`worker.py`, `launch_worker.py`)
 
 ### Descrição
+
 Serviço responsável por executar operações em processos filhos isolados (via `pebble`). Gerencia ciclo de vida de execução, retry, timeout, graceful shutdown e relatórios de status.
 
 ### JTBDs
+
 - Executar operações geoespaciais isoladamente em subprocessos
 - Garantir finalização com retry em caso de falha
 - Reportar resultados (sucesso/erro) ao DataOpsManager
 - Suportar shut down graceful sem perder mensagens
 
 ### Casos de Uso
+
 1. Receber mensagem `CacheInfoExecuteRequestMessage`
 2. Verificar se o workflow já não foi finalizado (evita work orfão)
 3. Executar op em processo filho com timeout de 3h
@@ -232,6 +263,7 @@ Serviço responsável por executar operações em processos filhos isolados (via
 6. Shutdown graceful: terminar processo filho, rejeitar novas mensagens
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Executar ops em subprocessos isolados | Gerenciar cache (delega ao Cache) |
@@ -241,32 +273,39 @@ Serviço responsável por executar operações em processos filhos isolados (via
 | Monitorar conclusão de workflow para cancelar op | Gerenciar deployment ou scaling |
 
 ### Users Inputs / Outputs
+
 - **Input**: `CacheInfoExecuteRequestMessage` via Dapr pub/sub (tópico `commands`)
 - **Output**: `AckMessage`, `ExecuteReplyMessage`, `ErrorMessage` via pub/sub (tópico `updates`)
 
 ### System Outputs
+
 - ACK enviado imediatamente ao receber mensagem
 - Success reply com output ao finalizar
 - Error reply com nome da exceção, mensagem e traceback
 - Logs de uso de recursos (CPU, memória, I/O) pós-execução
 
 ### APIs / Endpoints
+
 - **Pub/Sub**: inscrito em `control-pubsub` / `commands`
 - **Service Invocation (Dapr)**: `shutdown` — inicia shutdown graceful
 - **Endpoint de health/readness**: via decorator `@dapr_ready`
 
 ### CRUD
+
 N/A — Worker não persiste dados diretamente.
 
 ### Schemas de Dados
+
 - `CacheInfoExecuteRequestContent`: input, operation_spec, cache_info
 - `OperationSpec`: name, root_folder, inputs_spec, output_spec, entrypoint, parameters, etc.
 - `OpStatusType`: done, failed
 
 ### Datasets / Tipos
+
 N/A — processa mensagens, não mantém datasets.
 
 ### Lógicas e Cálculos
+
 - Pool de processos: `ForkServerContext` para isolamento
 - `run_op_with_retry`: até `max_tries` (5) tentativas, com timeout decrescente
 - `get_future_result`: loop de polling a cada 10s, verifica se workflow foi cancelado
@@ -279,24 +318,29 @@ N/A — processa mensagens, não mantém datasets.
 ## 5. Operation / OperationFactory
 
 ### Nome do Módulo
+
 `Operation` / `OperationFactory` (`ops.py`, `ops_helper.py`)
 
 ### Descrição
+
 Fábrica de operações que constrói instâncias de `Operation` a partir de especificações YAML. Cada `Operation` encapsula um callback Python, um conversor STAC e regras de input/output. `CallableBuilder` carrega dinamicamente módulos Python para construir callbacks.
 
 ### JTBDs
+
 - Construir operações a partir de definições YAML
 - Validar inputs/outputs contra especificações de tipo
 - Gerenciar cache local da operação (evitar duplicação)
 - Resolver dependências de parâmetros e secrets
 
 ### Casos de Uso
+
 1. Parse de definição de operação em YAML → `OperationSpec`
 2. Construção dinâmica de callback Python a partir de entrypoint
 3. Execução de operação: carregar inputs do storage → executar callback → armazenar outputs
 4. Resolução de secrets via `SecretProvider`
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Parsear specs YAML de operações | Gerenciar deployment de workers |
@@ -306,17 +350,21 @@ Fábrica de operações que constrói instâncias de `Operation` a partir de esp
 | Resolver dependências e secrets | Expor interfaces de rede |
 
 ### Users Inputs / Outputs
+
 - **Input**: caminho de definição YAML, parâmetros override, input data OpIOType
 - **Output**: output data OpIOType processado e armazenado
 
 ### System Outputs
+
 - Catálogos STAC armazenados no storage (local ou remoto)
 - Assets (arquivos) copiados para o asset manager
 
 ### APIs / Endpoints
+
 N/A — módulo interno, sem interfaces de rede.
 
 ### CRUD
+
 N/A — operações são construídas por factory, não expõem CRUD.
 
 ### Schemas de Dados
@@ -333,6 +381,7 @@ N/A — operações são construídas por factory, não expõem CRUD.
 - Assets geoespaciais (GeoTIFF, etc.)
 
 ### Lógicas e Cálculos
+
 - `OperationParser.parse`: carrega YAML, valida campos obrigatórios (name, inputs, output, parameters, entrypoint), parse de TypeDictVibe via TypeParser
 - `CallableBuilder.build`: `importlib.util.spec_from_file_location` → `exec_module` → `getattr(callback_builder)`
 - `Operation.run`: deserialize → fetch do cache → retrieve do storage → converter STAC → callback → validate → store → serialize
@@ -343,18 +392,22 @@ N/A — operações são construídas por factory, não expõem CRUD.
 ## 6. Storage
 
 ### Nome do Módulo
+
 `Storage` (`storage/storage.py`, `storage/local_storage.py`, `storage/remote_storage.py`, `storage/asset_management.py`, `storage/file_upload.py`)
 
 ### Descrição
+
 Camada de abstração de armazenamento para dados STAC e assets binários. Suporta duas implementações: `LocalStorage` (catálogos STAC em disco) e `CosmosStorage` (Azure Cosmos DB + Blob Storage). O `AssetManager` gerencia assets individuais (arquivos) localmente ou no Azure Blob Storage.
 
 ### JTBDs
+
 - Armazenar e recuperar resultados de operações em formato STAC
 - Gerenciar assets binários (GeoTIFF, etc.) associados a itens STAC
 - Fornecer cache de resultados baseado em hash (input + op)
 - Suportar deleção segura de catálogos e assets
 
 ### Casos de Uso
+
 1. Store: salvar output de op como catálogo STAC + copiar assets
 2. Retrieve: carregar itens STAC do storage e resolver hrefs de assets
 3. Cache lookup: verificar se resultado já existe pelo hash
@@ -362,6 +415,7 @@ Camada de abstração de armazenamento para dados STAC e assets binários. Supor
 5. Upload de assets para Azure Blob (local ou remoto)
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Abstrair storage local e Azure Cosmos/Blob | Processar dados geoespaciais |
@@ -386,14 +440,15 @@ Camada de abstração de armazenamento para dados STAC e assets binários. Supor
 N/A — módulo interno acessado por Cache, Worker e DataOps.
 
 ### CRUD
+
 | Entidade | Create | Read | Update | Delete |
 |---|---|---|---|---|
 | Catálogo STAC | ✓ (store) | ✓ (retrieve) | ✗ | ✓ (remove) |
 | Asset | ✓ (copy_assets) | ✓ (retrieve asset) | ✗ | ✓ (remove asset) |
 | ItemList (Cosmos) | ✓ | ✓ | ✗ | ✓ |
 
-
 ### Schemas de Dados
+
 - `StorageConfig`, `LocalStorageConfig`, `CosmosStorageConfig`
 - `AssetManagerConfig`, `LocalFileAssetManagerConfig`, `BlobAssetManagerConfig`
 - `ItemDict`: Dict[str, Item | List[Item]]

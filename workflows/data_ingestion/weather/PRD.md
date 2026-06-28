@@ -1,6 +1,7 @@
 # PRD — Dados Meteorológicos (Weather)
 
 ## Workflows
+
 - `download_chirps.yaml` — Precipitação acumulada (CHIRPS)
 - `download_era5.yaml` — Variáveis horárias ERA5 (Planetary Computer)
 - `download_era5_monthly.yaml` — Variáveis mensais ERA5 (Copernicus CDS)
@@ -38,6 +39,7 @@
 ## Faz / Não Faz
 
 ### Faz
+
 - Baixar CHIRPS nas resoluções p05 (0.05°) e p25 (0.25°), diário ou mensal.
 - Baixar ERA5 horário do Planetary Computer (várias variáveis).
 - Baixar ERA5 mensal do Copernicus CDS (requer CDS API key).
@@ -48,6 +50,7 @@
 - Baixar previsão GFS do blob storage Planetary Computer.
 
 ### Não Faz
+
 - Não faz downscaling ou correção de viés.
 - Não gera variáveis derivadas (ex.: GDD, ETo).
 - Não faz interpolação espacial.
@@ -58,6 +61,7 @@
 ## Users Inputs
 
 ### CHIRPS
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `freq` | string | "daily" ou "monthly" |
@@ -65,28 +69,33 @@
 | `user_input` | geometry + time range | Região e período |
 
 ### ERA5 (PC)
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `variable` | string | `2t`, `100u`, `100v`, `10u`, `10v`, `2d`, `mn2t`, `msl`, `mx2t`, `sp`, `ssrd`, `sst`, `tp` |
 | `pc_key` | string | Chave Planetary Computer |
 
 ### ERA5 Monthly (CDS)
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `variable` | string | Mesmas variáveis ERA5 |
 | `cds_api_key` | string | Chave Copernicus CDS |
 
 ### GridMET
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `variable` | string | `bi`, `erc`, `etr`, `fm100`, `fm1000`, `pet`, `pr`, `rmax`, `rmin`, `sph`, `srad`, `th`, `tmmn`, `tmmx`, `vpd`, `vs` |
 
 ### TerraClimate
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `variable` | string | `aet`, `def`, `pet`, `ppt`, `q`, `soil`, `srad`, `swe`, `tmax`, `tmin`, `vap`, `ws`, `vpd`, `PDSI` |
 
 ### Herbie
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `model` | string | `hrrr`, `hrrrak`, `rap`, `gfs`, `gfs_wave`, `rrfs` |
@@ -97,6 +106,7 @@
 | `search_text` | regex | Expressão regular para filtrar camadas GRIB2 |
 
 ### Ambient Weather
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `api_key` | string | Chave API Ambient Weather |
@@ -105,11 +115,13 @@
 | `feed_interval` | string | Intervalo entre amostras |
 
 ### GFS Forecast
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `noaa_gfs_token` | string | SAS token para blob storage |
 
 ### Herbie Forecast
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `forecast_lead_times` | list | Range de lead times |

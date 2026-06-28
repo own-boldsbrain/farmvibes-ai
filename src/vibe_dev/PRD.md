@@ -27,12 +27,14 @@
 ## 4. Faz / Não Faz
 
 **Faz:**
+
 - Executa workflows em subprocesso ou thread local
 - Fornece storage fake (`FakeStorage`) para testes
 - Gera fixtures pytest para workflows, operações e storage
 - Salva e recupera dados de referência para testes de regressão
 
 **Não Faz:**
+
 - Não substitui o cluster Kubernetes para produção
 - Não implementa escalonamento horizontal
 - Não persiste estado entre execuções (exceto referências)

@@ -1,6 +1,7 @@
 # PRD — MODIS (Moderate Resolution Imaging Spectroradiometer)
 
 ## Workflows
+
 - `download_modis_surface_reflectance.yaml` — Baixa reflectância de superfície MODIS (8 dias)
 - `download_modis_vegetation_index.yaml` — Baixa índices de vegetação MODIS (16 dias)
 
@@ -24,12 +25,14 @@
 ## Faz / Não Faz
 
 ### Faz
+
 - Baixar reflectância MODIS (MODO9Q1 - 250m, MOD09A1 - 500m).
 - Baixar índices de vegetação (MOD13Q1 - 250m, MOD13A1 - 500m).
 - Selecionar pixels com baixa cobertura de nuvens.
 - Suportar resoluções 250m e 500m.
 
 ### Não Faz
+
 - Não faz correção atmosférica adicional.
 - Não calcula outros índices (SAVI, GNDVI).
 - Não interpola dados faltantes.
@@ -39,6 +42,7 @@
 ## Users Inputs
 
 ### `download_modis_surface_reflectance`
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `pc_key` | string | Chave opcional Planetary Computer |
@@ -46,6 +50,7 @@
 | `user_input` | geometry + time range | Região e período |
 
 ### `download_modis_vegetation_index`
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `index` | string | "evi" ou "ndvi" |
@@ -58,9 +63,11 @@
 ## System Outputs
 
 ### Reflectância
+
 - **sink:** `raster` — Rasters com bandas de reflectância e quality control.
 
 ### Índice de Vegetação
+
 - **sink:** `index` — Raster com NDVI ou EVI.
 
 ---

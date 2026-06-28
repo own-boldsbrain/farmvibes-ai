@@ -58,6 +58,7 @@ N/A
 - `ALLOWED_ORIGINS`, `MAX_PARALLEL_REQUESTS`
 
 ### Datasets / Tipos
+
 N/A
 
 ### Lógicas e Cálculos
@@ -71,12 +72,15 @@ N/A
 ## 2. Dapr / DropDapr / VibeDaprClient
 
 ### Nome do Módulo
+
 `Dapr` (`dapr.py`, `dropdapr.py`, `vibe_dapr_client.py`)
 
 ### Descrição
+
 Camada de integração com o Dapr runtime. `dapr.py` fornece decorators para aguardar Dapr ficar pronto e processamento de respostas. `dropdapr.py` é um substituto drop-in para `dapr-ext-grpc` usando FastAPI + uvicorn (para DataOps que usa HTTP async). `vibe_dapr_client.py` implementa um cliente HTTP Dapr com retry, tratamento de timeouts e serialização especial para floats.
 
 ### JTBDs
+
 - Aguardar disponibilidade do Dapr sidecar antes de iniciar serviços
 - Processar e tratar respostas de state store e service invocation
 - Fornecer implementação HTTP de subscribe/pub para ambientes async
@@ -84,12 +88,14 @@ Camada de integração com o Dapr runtime. `dapr.py` fornece decorators para agu
 - Preservar precisão de floats em serialização JSON Dapr
 
 ### Casos de Uso
+
 1. Decorator `@dapr_ready` para bloques até Dapr estar pronto
 2. DropDapr: serviço FastAPI que substitui gRPC para DataOps (subscribe async, service invocation)
 3. VibeDaprClient: chamadas HTTP GET/POST para state store e service invocation com retry
 4. Serialização especial: floats → strings (evita truncamento no sidecar Dapr)
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Aguardar readiness do Dapr | Gerenciar ciclo de vida do sidecar |
@@ -99,16 +105,19 @@ Camada de integração com o Dapr runtime. `dapr.py` fornece decorators para agu
 | Serializar floats como strings | Executar operações de negócio |
 
 ### Users Inputs / Outputs
+
 - **Input (VibeDaprClient)**: URLs, payloads JSON, traceparent headers
 - **Output (VibeDaprClient)**: respostas JSON processadas (ClientResponse)
 - **Input (DropDapr)**: CloudEvents HTTP POST, inscrições Dapr
 - **Output (DropDapr)**: TopicEventResponse (SUCCESS, RETRY, DROP)
 
 ### System Outputs
+
 - Chamadas HTTP para state store, service invocation e pub/sub Dapr
 - Respostas de erro estruturadas (400, 403, 404, 500)
 
 ### APIs / Endpoints
+
 - **DropDapr App**: GET `/` (info), GET `/dapr/subscribe` (inscrições), POST `/events/{pubsub}/{topic}` (event handlers), endpoints via `@app.method(name)`
 - **Service invocation**: POST `http://{dapr}:{port}/v1.0/invoke/{app-id}/method/{method}`
 - **State**: GET/POST `http://{dapr}:{port}/v1.0/state/{store}/{key}`
@@ -116,18 +125,22 @@ Camada de integração com o Dapr runtime. `dapr.py` fornece decorators para agu
 - **Transaction**: POST `http://{dapr}:{port}/v1.0/state/{store}/transaction`
 
 ### CRUD
+
 N/A — client HTTP genérico.
 
 ### Schemas de Dados
+
 - `TopicEventResponse`: Dict[str, str] com status (SUCCESS, RETRY, DROP)
 - `DaprSubscription`: TypedDict com pubsubname, topic, route, metadata
 - RetryOptions: ExponentialRetry (attempts=10, max_timeout=30s, statuses={400, 500, 502, 503, 504})
 - Metadata padrão: `{"partitionKey": "eywa"}`
 
 ### Datasets / Tipos
+
 N/A
 
 ### Lógicas e Cálculos
+
 - `dapr_ready_decorator`: cria DaprClient, chama `client.wait(timeout)` com timeout de 90s
 - `handle_aiohttp_timeout`: retry até 3 tentativas com `asyncio.TimeoutError`
 - `process_dapr_response`: roteia para state ou service invocation handler baseado no path da URL
@@ -141,18 +154,22 @@ N/A
 ## 3. Messaging
 
 ### Nome do Módulo
+
 `Messaging` (`messaging.py`)
 
 ### Descrição
+
 Sistema de mensageria baseado em CloudEvents 1.0 para comunicação pub/sub entre os microsserviços via Dapr. Define todos os tipos de mensagem, builders, serializadores e funções de envio síncrono/assíncrono.
 
 ### JTBDs
+
 - Definir protocolo de comunicação entre serviços (Cache, Worker, DataOps)
 - Garantir serialização consistente de mensagens incluindo tipos complexos (OperationSpec, OpIOType)
 - Fornecer mecanismo de accept/fail para processamento de eventos
 - Rastrear tracing distribuído via header traceparent
 
 ### Casos de Uso
+
 1. Cache envia ExecuteRequestMessage para Worker
 2. Worker envia ExecuteReplyMessage para DataOps
 3. Orchestrator envia WorkflowExecutionMessage
@@ -160,6 +177,7 @@ Sistema de mensageria baseado em CloudEvents 1.0 para comunicação pub/sub entr
 5. DataOps recebe WorkflowDeletionMessage
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Definir tipos de mensagem (9 tipos) | Gerenciar filas ou brokers |
@@ -168,20 +186,25 @@ Sistema de mensageria baseado em CloudEvents 1.0 para comunicação pub/sub entr
 | Validar conteúdo vs tipo de mensagem | Fazer routing além do tópico |
 
 ### Users Inputs / Outputs
+
 - **Input**: CloudEvent recebido pelo subscribe Dapr
 - **Output**: CloudEvent JSON publicado no tópico Dapr
 
 ### System Outputs
+
 - Mensagens publicadas no pub/sub Dapr via HTTP POST
 - Logs de aviso para mensagens > 256KB (limite seguro)
 
 ### APIs / Endpoints
+
 N/A — módulo de definição, sem endpoints próprios.
 
 ### CRUD
+
 N/A
 
 ### Schemas de Dados
+
 - `MessageHeader`: type (MessageType), run_id (UUID), id, parent_id, current_trace_parent, version, created_at
 - `ExecuteRequestContent`: input (OpIOType), operation_spec (OperationSpec)
 - `CacheInfoExecuteRequestContent`: input, operation_spec, cache_info (CacheInfo)
@@ -195,9 +218,11 @@ N/A
 - `OpStatusType`: done, failed
 
 ### Datasets / Tipos
+
 N/A — mensagens transitórias.
 
 ### Lógicas e Cálculos
+
 - `MessageHeader.set_id`: gera traceparent W3C a partir do run_id se id vazio
 - `BaseMessage.validate_content`: valida que content type corresponde ao MessageType
 - `to_cloud_event`: constrói dict CloudEvents 1.0 com `encode(json)` como data (compressed encoding via vibe_core)
@@ -215,6 +240,7 @@ N/A — mensagens transitórias.
 ## 4. Schemas
 
 ### Nome do Módulo
+
 `Schemas` (`schemas.py`)
 
 ### Descrição
@@ -245,15 +271,19 @@ Define schemas de dados fundamentais: especificação de operações (`Operation
 | Validar campos obrigatórios | Interagir com Dapr |
 
 ### Users Inputs / Outputs
+
 N/A — schemas importados por todos os serviços.
 
 ### APIs / Endpoints
+
 N/A
 
 ### CRUD
+
 N/A
 
 ### Schemas de Dados
+
 - `OperationSpec` (Pydantic dataclass): name, root_folder, inputs_spec (TypeDictVibe), output_spec (TypeDictVibe), entrypoint (EntryPointDict), description (TaskDescription), dependencies, parameters, default_parameters, version, image_name
 - `OpRunId` (frozen dataclass): name, hash
 - `OpRunIdDict` (TypedDict): name, hash
@@ -265,9 +295,11 @@ N/A
 - `CacheIdDict`: Dict[str, Union[str, List[str]]]
 
 ### Datasets / Tipos
+
 - Definições YAML de operações no filesystem
 
 ### Lógicas e Cálculos
+
 - `CacheInfo.__init__`: se sources recebido, computa ids via `_populate_ids`. Se hash não fornecido, computa via `SHA256(join_mapping(ids) + join_mapping(parameters) + version)`
 - `_compute_or_extract_id`: retorna `thing.hash_id` (BaseVibe) ou `thing.id` (Item), ou lista recursiva
 - `_join_mapping`: itera sorted keys, concatena chave + valor (recursivo para dicts)
@@ -280,22 +312,27 @@ N/A
 ## 5. SecretProvider
 
 ### Nome do Módulo
+
 `SecretProvider` (`secret_provider.py`)
 
 ### Descrição
+
 Provedor de secrets para resolução de valores sensíveis em parâmetros de operações. Suporta Dapr Secret Store (Kubernetes) e Azure Key Vault. Implementa padrão de retry com backoff para indisponibilidade do sidecar Dapr.
 
 ### JTBDs
+
 - Resolver secrets em parâmetros de operação no formato `@SECRET(store, name)`
 - Permitir troca de provedor de secrets sem alterar código cliente
 - Garantir resiliência contra indisponibilidade temporária do Dapr
 
 ### Casos de Uso
+
 1. Resolver segredo de conexão com banco de dados em parâmetro de operação
 2. Obter chave de API de serviço externo via Azure Key Vault
 3. Fallback automático com retry em caso de connection refused do Dapr
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Resolver secrets no formato @SECRET(store, name) | Gerenciar ciclo de vida de secrets |
@@ -303,25 +340,31 @@ Provedor de secrets para resolução de valores sensíveis em parâmetros de ope
 | Implementar retry com backoff | Armazenar secrets em cache |
 
 ### Users Inputs / Outputs
+
 - **Input**: string contendo `@SECRET(store_name, secret_name)` ou valor comum
 - **Output**: valor do secret resolvido ou valor original (se não for secret)
 
 ### APIs / Endpoints
+
 N/A
 
 ### CRUD
+
 N/A
 
 ### Schemas de Dados
+
 - `SecretProvider`: classe abstrata com método resolve(value) e regex `^@SECRET\(([^,]*?), ([^,]*?)\)`
 - `DaprSecretProvider`: resolve via `retrieve_dapr_secret("kubernetes", secret_name, secret_name)`
 - `AzureSecretProvider`: resolve via `SecretClient.get_secret(keyvault_name, secret_name)`
 - `DaprSecretConfig`, `KeyVaultSecretConfig`, `SecretProviderConfig`, `DaprSecretProviderConfig`, `AzureSecretProviderConfig`
 
 ### Datasets / Tipos
+
 N/A
 
 ### Lógicas e Cálculos
+
 - Regex: `^@SECRET\(([^,]*?), ([^,]*?)\)` — captura store (ou keyvault) e secret name
 - `DaprSecretProvider._resolve_impl`: loop infinito com sleep de 30s em caso de `connection refused`
 - `retrieve_dapr_secret`: decorada com `@dapr_ready(dapr_wait_time_s=30)`, usa `DaprClient.get_secret()`
@@ -331,24 +374,29 @@ N/A
 ## 6. StateStore
 
 ### Nome do Módulo
+
 `StateStore` (`statestore.py`)
 
 ### Descrição
+
 Cliente para o Dapr State Store (componente `statestore`). Fornece operações CRUD assíncronas: retrieve, retrieve_bulk, store e transaction. Usa `VibeDaprClient` para comunicação HTTP com o sidecar Dapr.
 
 ### JTBDs
+
 - Persistir estado de execução de workflows (RunConfig)
 - Recuperar estado de runs para validação (ex: workflow já finalizado?)
 - Suportar bulk retrieval para UI de listagem de workflows
 - Suportar transações multi-operação
 
 ### Casos de Uso
+
 1. Worker consulta se workflow foi cancelado antes de executar
 2. DataOps atualiza status do workflow (→ deleting → deleted)
 3. Orchestrator salva RunConfig ao iniciar workflow
 4. UI recupera lista de runs com detalhes
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Implementar StateStoreProtocol | Gerenciar cache de dados |
@@ -357,29 +405,35 @@ Cliente para o Dapr State Store (componente `statestore`). Fornece operações C
 | Suportar transações | Interagir com storage de assets |
 
 ### Users Inputs / Outputs
+
 - **Input**: key (string), obj (any), operations (TransactionOperation list)
 - **Output**: dados recuperados (any), confirmação de store
 
 ### APIs / Endpoints
+
 - GET `http://{dapr}:{port}/v1.0/state/statestore/{key}`
 - POST `http://{dapr}:{port}/v1.0/state/statestore/` (store)
 - POST `http://{dapr}:{port}/v1.0/state/statestore/bulk` (bulk retrieve)
 - POST `http://{dapr}:{port}/v1.0/state/statestore/transaction` (multi-op)
 
 ### CRUD
+
 | Entidade | Create | Read | Update | Delete |
 |---|---|---|---|---|
 | State entries | ✓ (store) | ✓ (retrieve) | ✓ (store) | ✗ (statestore base) |
 
 ### Schemas de Dados
+
 - `StateStoreProtocol`: Protocol com retrieve, retrieve_bulk, store, transaction
 - `TransactionOperation`: TypedDict com key, operation ("upsert" / "delete"), value
 - Partition key: `"eywa"`
 
 ### Datasets / Tipos
+
 - Dados de estado: `RunConfig` (serializado como JSON)
 
 ### Lógicas e Cálculos
+
 - `retrieve_bulk`: POST com lista de keys + parallelism, retorna lista de estados, valida que todos keys foram retornados
 - `store`: POST com array de objetos `[{key, value, metadata: {partitionKey}}]`, assert response.ok
 - `transaction`: POST com `{operations: [{operation, request: {key, value}}], metadata: {partitionKey}}`
@@ -390,22 +444,27 @@ Cliente para o Dapr State Store (componente `statestore`). Fornece operações C
 ## 7. Telemetry
 
 ### Nome do Módulo
+
 `Telemetry` (`telemetry.py`)
 
 ### Descrição
+
 Configuração e utilitários para tracing distribuído via OpenTelemetry com exportação OTLP para um collector. Inclui decorators para adicionar spans automaticamente, atualização de contexto de tracing via header traceparent, e geração de span attributes.
 
 ### JTBDs
+
 - Rastrear execução de operações através dos microsserviços
 - Propagar contexto de tracing entre serviços via header traceparent
 - Exportar traces para sistema de observabilidade (OTLP)
 
 ### Casos de Uso
+
 1. Cache cria span ao processar fetch_work
 2. Worker inicia span ao executar operação
 3. Contexto traceparent propagado via pub/sub e service invocation
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Configurar tracer OTLP | Gerenciar métricas |
@@ -414,23 +473,29 @@ Configuração e utilitários para tracing distribuído via OpenTelemetry com ex
 | Extrair e propagar traceparent W3C | Fazer sampling |
 
 ### Users Inputs / Outputs
+
 N/A — módulo de infraestrutura.
 
 ### APIs / Endpoints
+
 N/A
 
 ### CRUD
+
 N/A
 
 ### Schemas de Dados
+
 - `OTLPSpanExporter`: endpoint OTLP gRPC, insecure=True
 - `BatchSpanProcessor`: exportação em lote
 - `Resource`: service.name
 
 ### Datasets / Tipos
+
 N/A
 
 ### Lógicas e Cálculos
+
 - `setup_telemetry(service_name, exporter_endpoint)`: cria TracerProvider → OTLPSpanExporter(insecure) → BatchSpanProcessor → set global
 - `get_current_trace_parent()`: formata trace_id (032x), span_id (016x), flags (02x) no formato W3C `00-{trace_id}-{parent_id}-{flags}`
 - `update_telemetry_context(trace_parent)`: `attach(extract({"traceparent": trace_parent}))`
@@ -442,21 +507,26 @@ N/A
 ## 8. Tokens
 
 ### Nome do Módulo
+
 `Tokens` (`tokens.py`)
 
 ### Descrição
+
 Gerenciamento de tokens SAS (Shared Access Signature) para acesso seguro a arquivos no Azure Blob Storage. Suporta autenticação via Azure AD (UserDelegationKey) e connection string (account key).
 
 ### JTBDs
+
 - Gerar URLs assinadas SAS para acesso temporário a assets
 - Gerenciar renovação automática de chaves de delegação antes da expiração
 - Cache de chaves de usuário por conta de storage
 
 ### Casos de Uso
+
 1. BlobAssetManager.retrieve gera URL assinada SAS para download de asset
 2. BlobTokenManager mantém chave de delegação renovada automaticamente
 
 ### Faz / Não Faz
+
 | Faz | Não Faz |
 |---|---|
 | Gerar SAS tokens para Blob Storage | Gerenciar permissões de usuário |
@@ -465,6 +535,7 @@ Gerenciamento de tokens SAS (Shared Access Signature) para acesso seguro a arqui
 | Suportar credential e connection string | Validar tokens gerados |
 
 ### Users Inputs / Outputs
+
 - **Input**: blob URL
 - **Output**: blob URL com assinatura SAS (query string)
 

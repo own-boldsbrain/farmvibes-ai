@@ -146,26 +146,72 @@ function buildUrl(operation: RuntimePowerOperation, input: Record<string, unknow
   return url;
 }
 
-async function executePowerOperation(operation: RuntimePowerOperation, input: Record<string, unknown>) {
-  const url = buildUrl(operation, input);
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+async function fetchWithRetry(
+  url: URL,
+  options: RequestInit,
+  timeoutMs: number,
+  retries = 2,
+  delayMs = 1000
+): Promise<Response> {
+  let lastError: any;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      if (attempt > 0) {
+        console.error(`[nasa-power-mcp-1to1] Retry attempt ${attempt}/${retries} for ${url.pathname}`);
+      }
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
+      if (response.status >= 500 && attempt < retries) {
+        clearTimeout(timeout);
+        await new Promise((resolve) => setTimeout(resolve, delayMs * Math.pow(2, attempt)));
+        continue;
+      }
+      clearTimeout(timeout);
+      return response;
+    } catch (error: any) {
+      clearTimeout(timeout);
+      lastError = error;
+      const isAbort = error.name === "AbortError";
+      const isNetworkError = error instanceof TypeError;
+      if ((isAbort || isNetworkError) && attempt < retries) {
+        console.error(`[nasa-power-mcp-1to1] Transient error on attempt ${attempt}: ${error.message || error}`);
+        await new Promise((resolve) => setTimeout(resolve, delayMs * Math.pow(2, attempt)));
+        continue;
+      }
+      throw error;
+    }
+  }
+  throw lastError || new Error("Request failed after retries");
+}
 
+async function executePowerOperation(operation: RuntimePowerOperation, input: Record<string, unknown>) {
   try {
-    const response = await fetch(url, {
+    const url = buildUrl(operation, input);
+    const response = await fetchWithRetry(url, {
       method: operation.method,
-      signal: controller.signal,
       headers: {
         "User-Agent": DEFAULT_USER_AGENT,
         "Accept": "application/json,text/csv,text/plain,text/html,image/png,*/*",
       },
-    });
+    }, REQUEST_TIMEOUT_MS);
 
     const contentType = response.headers.get("content-type") ?? "";
 
     if (!response.ok) {
-      const errorBody = await response.text();
-      throw new Error(`NASA POWER ${response.status} ${response.statusText}: ${errorBody}`);
+      const errorBody = await response.text().catch(() => "Unknown error response body");
+      return {
+        content: [
+          {
+            type: "text",
+            text: `NASA POWER API Error ${response.status} (${response.statusText}): ${errorBody}`,
+          },
+        ],
+        isError: true,
+      };
     }
 
     if (contentType.includes("image/")) {
@@ -183,15 +229,19 @@ async function executePowerOperation(operation: RuntimePowerOperation, input: Re
     }
 
     if (contentType.includes("application/json")) {
-      const json = await response.json();
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify(json, null, 2),
-          },
-        ],
-      };
+      try {
+        const json = await response.json();
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(json, null, 2),
+            },
+          ],
+        };
+      } catch (parseError: any) {
+        console.error(`[nasa-power-mcp-1to1] JSON parsing failed: ${parseError.message}`);
+      }
     }
 
     const text = await response.text();
@@ -203,8 +253,23 @@ async function executePowerOperation(operation: RuntimePowerOperation, input: Re
         },
       ],
     };
-  } finally {
-    clearTimeout(timeout);
+  } catch (error: any) {
+    const isTimeout = error.name === "AbortError";
+    const errorMessage = isTimeout
+      ? `Request timed out after ${REQUEST_TIMEOUT_MS}ms`
+      : error.message || String(error);
+
+    console.error(`[nasa-power-mcp-1to1] Operation execution failed: ${errorMessage}`);
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Error executing operation ${operation.operationId}: ${errorMessage}`,
+        },
+      ],
+      isError: true,
+    };
   }
 }
 

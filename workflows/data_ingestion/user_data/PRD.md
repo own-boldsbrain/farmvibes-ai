@@ -1,6 +1,7 @@
 # PRD — Dados do Usuário (Ingestão)
 
 ## Workflows
+
 - `ingest_geometry.yaml` — Adiciona geometrias do usuário ao cluster
 - `ingest_raster.yaml` — Adiciona rasters do usuário ao cluster
 - `ingest_smb.yaml` — Adiciona rasters de compartilhamento SMB ao cluster
@@ -26,12 +27,14 @@
 ## Faz / Não Faz
 
 ### Faz
+
 - Baixar geometrias de referências URL/URI.
 - Baixar rasters de referências URL/URI.
 - Conectar a compartilhamento SMB (autenticado).
 - Gerar objetos GeometryCollection e Raster locais.
 
 ### Não Faz
+
 - Não valida geometrias (topologia).
 - Não reprojeta rasters automaticamente.
 - Não faz cache de downloads.
@@ -42,11 +45,13 @@
 ## Users Inputs
 
 ### `ingest_geometry` / `ingest_raster`
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `user_input` | list | Lista de referências externas (URLs) |
 
 ### `ingest_smb`
+
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `server_name` | string | Nome do servidor SMB |

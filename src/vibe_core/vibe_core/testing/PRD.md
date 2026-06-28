@@ -36,6 +36,7 @@ Utilitários de teste para comparar objetos `DataVibe` e rasters TIFF. Provê fu
 ## 5. Lógicas e Cálculos
 
 **`assert_all_fields_close`:**
+
 1. Obtém todos os campos da dataclass `DataVibe` via `dataclasses.fields`.
 2. Filtra campos presentes em `ignore_fields` (padrão: `id`, `assets`).
 3. Para cada campo restante:
@@ -43,6 +44,7 @@ Utilitários de teste para comparar objetos `DataVibe` e rasters TIFF. Provê fu
    - Senão: compara com `==` direto.
 
 **`assert_all_close`:**
+
 1. Verifica `type(x) is type(y)` — tipos exatos.
 2. Chama `assert_all_fields_close`.
 3. Para cada par de assets (ziplado):
@@ -50,6 +52,7 @@ Utilitários de teste para comparar objetos `DataVibe` e rasters TIFF. Provê fu
    - Se `image/tiff`: abre ambos com `rasterio.open`, compara `meta` (dict de metadados), lê arrays com `.read()` e chama `np.allclose(ar1, ar2, rtol=1e-5, atol=1e-8, equal_nan=True)`.
 
 **`ensure_equal_output_images`:**
+
 1. Abre ambos caminhos com `rasterio.open`.
 2. Lê arrays completos (bands × height × width).
 3. Compara arrays com `np.allclose`.
