@@ -14,6 +14,10 @@ resource "helm_release" "rabbitmq" {
       value = "bitnamilegacy/rabbitmq"
     },
     {
+      name  = "global.security.allowInsecureImages"
+      value = "true"
+    },
+    {
       name  = "image.tag"
       value = var.rabbitmq_image_tag
     },
