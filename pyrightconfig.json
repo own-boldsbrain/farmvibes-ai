@@ -1,11 +1,22 @@
 {
   "ignore": [
-    "ops/run_landcover_model",
+    "ops/run_landcover_model"
+  ],
+  "venvPath": ".",
+  "venv": ".venv",
+  "extraPaths": [
+    "src/vibe_core",
+    "src/vibe_common",
+    "src/vibe_agent",
+    "src/vibe_server",
+    "src/vibe_lib",
+    "src/vibe_notebook",
+    "src/vibe_dev"
   ],
   "reportMissingParameterType": "error",
   "reportInvalidTypeVarUse": "error",
   "reportMissingTypeArgument": "error",
   "reportMissingImports": "warning",
   "typeCheckingMode": "basic",
-  "useLibraryCodeForTypes": true,
+  "useLibraryCodeForTypes": true
 }
