@@ -18,6 +18,10 @@ resource "helm_release" "redis" {
       value = "6379"
     },
     {
+      name  = "image.repository"
+      value = "bitnamilegacy/redis"
+    },
+    {
       name  = "image.tag"
       value = var.redis_image_tag
     },

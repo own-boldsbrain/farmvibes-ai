@@ -10,6 +10,10 @@ resource "helm_release" "rabbitmq" {
 
   set = [
     {
+      name  = "image.repository"
+      value = "bitnamilegacy/rabbitmq"
+    },
+    {
       name  = "image.tag"
       value = var.rabbitmq_image_tag
     },
