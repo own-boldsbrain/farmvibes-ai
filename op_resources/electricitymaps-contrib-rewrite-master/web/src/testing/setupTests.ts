@@ -87,8 +87,10 @@ vi.mock('react-map-gl', () => ({
 vi.mock('api/getState', () => ({
   default: () => ({
     data: {
-      zones: {},
-      exchanges: {},
+      data: {
+        zones: {},
+        exchanges: {},
+      },
     },
     isLoading: false,
     error: null,
@@ -98,7 +100,9 @@ vi.mock('api/getState', () => ({
 vi.mock('api/getZone', () => ({
   default: () => ({
     data: {
-      zoneStates: {},
+      data: {
+        zoneStates: {},
+      },
     },
     isLoading: false,
     error: null,

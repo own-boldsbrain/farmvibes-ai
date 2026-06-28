@@ -22,7 +22,7 @@ vi.mock('translation/translation', () => ({
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
   useLocation: () => ({ search: '', hash: '' }),
-  useParams: () => ({}),
+  useParams: () => ({ zoneId: 'BR' }),
   useSearchParams: () => [{ get: () => null }],
   resolvePath: (path: string) => path,
   Link: ({ children, to }: any) => <a href={to}>{children}</a>,

@@ -1,3 +1,5 @@
 export const mockZoneHeaderTitleProps = {
-  // Add default mock props here
+  zoneId: 'BR',
+  isEstimated: false,
+  isAggregated: false,
 };
