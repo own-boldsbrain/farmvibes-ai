@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { mockAnalyticsLayoutProps } from './AnalyticsLayout.mock';
 import AnalyticsLayout from './AnalyticsLayout';
 
 // Mock lucide-react icons to avoid rendering issues in JSDOM

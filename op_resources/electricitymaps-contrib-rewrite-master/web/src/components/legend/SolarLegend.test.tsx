@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import SolarLegend from './SolarLegend';
-import { scaleLinear } from 'd3-scale';
 
 vi.mock('translation/translation', () => ({
   useTranslation: () => ({
@@ -9,11 +8,14 @@ vi.mock('translation/translation', () => ({
   }),
 }));
 
-vi.mock('../../features/weather-layers/solar/utils', () => ({
-  solarColor: scaleLinear<string, string>().domain([0, 1000]).range(['#000', '#fff']),
-}));
+vi.mock('../../features/weather-layers/solar/utils', () => {
+  const mockScale = () => '#ffffff';
+  mockScale.domain = () => [0, 1000];
+  return {
+    solarColor: mockScale,
+  };
+});
 
-// Mock ColorBar component to avoid rendering inline SVGs/div layouts in this test
 vi.mock('./ColorBar', () => ({
   default: () => <div data-testid="color-bar-mock" />,
 }));

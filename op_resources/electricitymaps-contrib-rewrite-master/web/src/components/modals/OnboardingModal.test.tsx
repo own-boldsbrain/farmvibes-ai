@@ -22,6 +22,7 @@ vi.mock('react-router-dom', () => ({
     },
   ],
   resolvePath: (path: string) => `/resolved/${path}`,
+  MemoryRouter: ({ children }: any) => <>{children}</>,
 }));
 
 // Mock the inner modal layout to verify visibility triggers

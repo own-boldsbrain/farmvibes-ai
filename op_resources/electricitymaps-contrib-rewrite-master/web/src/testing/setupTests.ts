@@ -74,3 +74,49 @@ afterEach(() => {
 afterAll(() => {
   server.close();
 });
+
+vi.mock('react-map-gl', () => ({
+  useControl: () => ({ getMap: () => ({ getZoom: () => 5, project: () => ({ x: 0, y: 0 }) }) }),
+  useMap: () => ({ current: { getZoom: () => 5, project: () => ({ x: 0, y: 0 }) } }),
+  MapProvider: ({ children }: any) => children,
+  NavigationControl: () => null,
+  Source: ({ children }: any) => children,
+  Layer: () => null,
+}));
+
+vi.mock('api/getState', () => ({
+  default: () => ({
+    data: {
+      zones: {},
+      exchanges: {},
+    },
+    isLoading: false,
+    error: null,
+  }),
+}));
+
+vi.mock('api/getZone', () => ({
+  default: () => ({
+    data: {
+      zoneStates: {},
+    },
+    isLoading: false,
+    error: null,
+  }),
+}));
+
+vi.mock('api/getWeatherData', () => ({
+  default: () => ({
+    data: null,
+    isLoading: false,
+    error: null,
+  }),
+}));
+
+vi.mock('api/getAppVersion', () => ({
+  default: () => ({
+    data: '1.0.0',
+    isLoading: false,
+    error: null,
+  }),
+}));

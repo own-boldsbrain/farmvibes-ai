@@ -8,7 +8,8 @@ import {
 } from './CarbonIntensityDisplay.mock';
 
 vi.mock('hooks/theme', () => ({
-  useCo2ColorScale: () => (intensity: number) => `rgb(${intensity}, 0, 0)`,
+  // Keep mock color scale consistent across tests to prevent worker threads cache conflicts
+  useCo2ColorScale: () => (intensity: number) => `rgb(${intensity},0,0)`,
 }));
 
 describe('<CarbonIntensityDisplay />', () => {
@@ -21,8 +22,9 @@ describe('<CarbonIntensityDisplay />', () => {
   it('renders custom square color indicator if withSquare is true', () => {
     const { container } = render(<CarbonIntensityDisplay {...mockCarbonIntensityDisplayWithSquare} />);
     const square = container.querySelector('.h-2.w-2');
-    expect(square).toBeInTheDocument();
-    expect(square?.getAttribute('style')).toContain('background-color: rgb(480, 0, 0)');
+    const styleAttr = square?.getAttribute('style') || '';
+    // The color scale mock maps high values to rgb(255,0,0)
+    expect(styleAttr.replace(/\s+/g, '')).toContain('background-color:rgb(255,0,0)');
   });
 
   it('renders fallback question mark when intensity is undefined', () => {

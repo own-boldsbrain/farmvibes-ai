@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { mockMacroViewProps } from './MacroView.mock';
 import MacroView from './MacroView';
 
 vi.mock('lucide-react', () => ({
@@ -8,17 +9,17 @@ vi.mock('lucide-react', () => ({
 
 describe('MacroView', () => {
   it('should render the page heading', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('O Paradigma do Efeito "Ordem de Mérito"')).toBeDefined();
   });
 
   it('should render the context label', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('Contexto Macro')).toBeDefined();
   });
 
   it('should render all regions in the comparative table', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('Holanda')).toBeDefined();
     expect(screen.getByText('Alemanha')).toBeDefined();
     expect(screen.getByText('Espanha')).toBeDefined();
@@ -28,7 +29,7 @@ describe('MacroView', () => {
   });
 
   it('should render the table header columns', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('Região')).toBeDefined();
     expect(screen.getByText('Preço Médio')).toBeDefined();
     expect(screen.getByText('Corr. Preço-Carbono')).toBeDefined();
@@ -37,18 +38,18 @@ describe('MacroView', () => {
   });
 
   it('should render the Brazilian anomaly section', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('A Anomalia Brasileira')).toBeDefined();
   });
 
   it('should render the MCTI emission factor', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('21,5')).toBeDefined();
     expect(screen.getByText('gCO₂eq/kWh')).toBeDefined();
   });
 
   it('should render the year label for the comparison table', () => {
-    render(<MacroView />);
+    render(<MacroView {...mockMacroViewProps} />);
     expect(screen.getByText('Tabela Comparativa Global (2025)')).toBeDefined();
   });
 });
