@@ -13,8 +13,8 @@ export default function ConcessionariasPanel() {
         setData(list);
         setLoading(false);
       })
-      .catch(err => {
-        console.error("Failed to load distributors list", err);
+      .catch(error => {
+        console.error("Failed to load distributors list", error);
         setLoading(false);
       });
   }, []);
@@ -39,8 +39,8 @@ export default function ConcessionariasPanel() {
         {loading ? (
           <div className="text-xs font-mono text-zinc-500 animate-pulse">A carregar telemetria...</div>
         ) : (
-          data.map((f, i) => (
-            <div key={i} className="bg-zinc-100 p-4 border-l-4 dark:bg-zinc-900 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800" style={{ borderLeftColor: f.quality_color || '#FF6600' }}>
+          data.map((f, index) => (
+            <div key={index} className="bg-zinc-100 p-4 border-l-4 dark:bg-zinc-900 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-800" style={{ borderLeftColor: f.quality_color || '#FF6600' }}>
               <div className="flex justify-between items-start mb-2">
                 <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-50">
                   {f.ysh_name || 'Desconhecida'}
@@ -53,7 +53,7 @@ export default function ConcessionariasPanel() {
                 <div className="flex justify-between text-[10px] font-mono">
                   <span className="text-zinc-500 uppercase font-bold">Área Geográfica:</span>
                   <span className="font-bold text-zinc-900 dark:text-zinc-50">
-                    {parseFloat(f.ysh_area_km2 || 0).toLocaleString('pt-BR', { maximumFractionDigits: 2 })} km²
+                    {Number.parseFloat(f.ysh_area_km2 || 0).toLocaleString('pt-BR', { maximumFractionDigits: 2 })} km²
                   </span>
                 </div>
                 <div className="flex justify-between text-[10px] font-mono">
@@ -78,7 +78,7 @@ export default function ConcessionariasPanel() {
                   <div className="flex justify-between text-[10px] font-mono">
                     <span className="text-zinc-500 uppercase font-bold">Projetos P&D:</span>
                     <span className="font-bold text-zinc-900 dark:text-zinc-50">
-                      {f.projetos_pd} ({f.investimento_pd >= 1000000 ? `R$ ${(f.investimento_pd / 1000000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })}M` : `R$ ${f.investimento_pd.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}`})
+                      {f.projetos_pd} ({f.investimento_pd >= 1_000_000 ? `R$ ${(f.investimento_pd / 1_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })}M` : `R$ ${f.investimento_pd.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}`})
                     </span>
                   </div>
                 )}
@@ -86,7 +86,7 @@ export default function ConcessionariasPanel() {
                   <div className="flex justify-between text-[10px] font-mono">
                     <span className="text-zinc-500 uppercase font-bold">Projetos EE:</span>
                     <span className="font-bold text-zinc-900 dark:text-zinc-50">
-                      {f.projetos_pe} ({f.investimento_pe >= 1000000 ? `R$ ${(f.investimento_pe / 1000000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })}M` : `R$ ${f.investimento_pe.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}`})
+                      {f.projetos_pe} ({f.investimento_pe >= 1_000_000 ? `R$ ${(f.investimento_pe / 1_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })}M` : `R$ ${f.investimento_pe.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}`})
                     </span>
                   </div>
                 )}

@@ -38,9 +38,9 @@ export default function MacroView() {
             </div>
             
             <div className="divide-y divide-container-high">
-              {MACRO_METRICS.map((row, idx) => (
+              {MACRO_METRICS.map((row, index) => (
                 <div 
-                  key={idx} 
+                  key={index} 
                   className={`grid grid-cols-5 gap-4 px-6 py-4 text-[11px] items-center transition-colors ${
                     row.region.includes('Brasil') ? 'bg-accent-gold/5 border-l-4 border-accent-orange' : 'hover:bg-container-low'
                   }`}

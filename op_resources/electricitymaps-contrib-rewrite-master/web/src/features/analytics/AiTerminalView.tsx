@@ -23,19 +23,19 @@ export default function AiTerminalView() {
 
   // Communicates with Gemini 3 Flash Preview
   const executeAiQuery = async (queryText: string, isSystemTrigger = false) => {
-    if (!queryText.trim()) return;
+    if (!queryText.trim()) {return;}
 
     setIsAiGenerating(true);
     
     // Add user prompt to the local state history
     if (!isSystemTrigger) {
-      setTerminalHistory(prev => [...prev, { role: 'user', text: queryText, sources: [] }]);
+      setTerminalHistory(previous => [...previous, { role: 'user', text: queryText, sources: [] }]);
       setPromptInput('');
     }
 
     const apiUrl = getGeminiApiUrl();
     if (!apiUrl) {
-      setTerminalHistory(prev => [...prev, {
+      setTerminalHistory(previous => [...previous, {
         role: 'model',
         text: 'Chave de API Gemini não configurada. Defina VITE_GEMINI_API_KEY no arquivo .env.local',
         sources: []
@@ -86,16 +86,16 @@ export default function AiTerminalView() {
             .filter((source: any) => source.uri && source.title);
         }
 
-        setTerminalHistory(prev => [...prev, { role: 'model', text, sources }]);
+        setTerminalHistory(previous => [...previous, { role: 'model', text, sources }]);
       } else {
-        setTerminalHistory(prev => [...prev, { 
+        setTerminalHistory(previous => [...previous, { 
           role: 'model', 
           text: 'Erro: O modelo retornou uma estrutura inesperada de dados ou foi bloqueado por filtros de segurança.', 
           sources: [] 
         }]);
       }
-    } catch (error) {
-      setTerminalHistory(prev => [...prev, { 
+    } catch {
+      setTerminalHistory(previous => [...previous, { 
         role: 'model', 
         text: 'Erro crítico na comunicação com o backend do Gemini. Verifique a conectividade com o modelo.', 
         sources: [] 
@@ -134,9 +134,9 @@ export default function AiTerminalView() {
       {/* HISTÓRICO DE CHAT DO TERMINAL */}
       <div className="bg-surface border border-container-high flex flex-col h-[400px]">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {terminalHistory.map((chat, idx) => (
+          {terminalHistory.map((chat, index) => (
             <div 
-              key={idx} 
+              key={index} 
               className={`p-4 ${
                 chat.role === 'user' 
                   ? 'bg-container-low border-l-4 border-textPrimary' 
@@ -159,9 +159,9 @@ export default function AiTerminalView() {
                     Fontes Verificadas (Google Search Grounding)
                   </span>
                   <div className="flex flex-wrap gap-2">
-                    {chat.sources.map((source, sIdx) => (
+                    {chat.sources.map((source, sIndex) => (
                       <a 
-                        key={sIdx} 
+                        key={sIndex} 
                         href={source.uri} 
                         target="_blank" 
                         rel="noopener noreferrer"

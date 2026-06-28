@@ -102,14 +102,14 @@ export default function MapPage(): ReactElement {
         'fill-extrusion-height': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
-          120000,
+          120_000,
           ['boolean', ['feature-state', 'hover'], false],
-          80000,
-          30000,
+          80_000,
+          30_000,
         ],
         'fill-extrusion-base': 0,
         'fill-extrusion-opacity': 0.85,
-      } as any,
+      } as mapboxgl.FillExtrusionPaint,
       concessionariasBorder: {
         'line-color': [
           'match',
@@ -123,9 +123,9 @@ export default function MapPage(): ReactElement {
           ['zoom'],
           2, 0.5,
           6, 1.2,
-          10, 2.0
+          10, 2
         ],
-        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1.0, 0.4],
+        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.4],
       } as mapboxgl.LinePaint,
       permissionariasFill: {
         'fill-extrusion-color': [
@@ -144,14 +144,14 @@ export default function MapPage(): ReactElement {
         'fill-extrusion-height': [
           'case',
           ['boolean', ['feature-state', 'selected'], false],
-          120000,
+          120_000,
           ['boolean', ['feature-state', 'hover'], false],
-          80000,
-          30000,
+          80_000,
+          30_000,
         ],
         'fill-extrusion-base': 0,
         'fill-extrusion-opacity': 0.85,
-      } as any,
+      } as mapboxgl.FillExtrusionPaint,
       permissionariasBorder: {
         'line-color': [
           'match',
@@ -165,9 +165,9 @@ export default function MapPage(): ReactElement {
           ['zoom'],
           2, 0.5,
           6, 1.2,
-          10, 2.0
+          10, 2
         ],
-        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1.0, 0.4],
+        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.4],
       } as mapboxgl.LinePaint,
     }),
     [theme]
@@ -368,11 +368,11 @@ export default function MapPage(): ReactElement {
           );
         }
 
-        const { ysh_name, ysh_boundary_type, ysh_area_km2, areaf_km2, nome } = feature.properties || {};
+        const { ysh_name, ysh_area_km2, areaf_km2, nome } = feature.properties || {};
         setHoveredDistributor({
           ysh_name: ysh_name || nome || 'Desconhecida',
           ysh_boundary_type: layerId === 'concessionarias-fill-layer' ? 'concessionaria' : 'permissionaria',
-          ysh_area_km2: parseFloat(ysh_area_km2 || areaf_km2) || 0,
+          ysh_area_km2: Number.parseFloat(ysh_area_km2 || areaf_km2) || 0,
           featureId: feature.id as string | number,
           source: sourceId,
           sourceLayer: sourceLayerId

@@ -8,7 +8,7 @@ export const mockCircularGaugeHalf = {
 };
 
 export const mockCircularGaugeFull = {
-  ratio: 1.0,
+  ratio: 1,
   name: 'Solar',
   tooltipContent: React.createElement('div', null, 'Solar is 100%'),
   testId: 'solar-gauge',

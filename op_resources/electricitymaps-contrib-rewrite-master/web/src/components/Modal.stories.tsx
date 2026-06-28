@@ -11,12 +11,12 @@ export default meta;
 type Story = StoryObj<typeof Modal>;
 
 export const Default: Story = {
- render: (args) => {
+ render: (arguments_) => {
  const [isOpen, setIsOpen] = useState(true);
  return (
  <div>
  <button onClick={() => setIsOpen(true)} className="bg-blue-500 text-white px-4 py-2">Open Modal</button>
- <Modal {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
+ <Modal {...arguments_} isOpen={isOpen} setIsOpen={setIsOpen}>
  <p>This is the modal content.</p>
  </Modal>
  </div>

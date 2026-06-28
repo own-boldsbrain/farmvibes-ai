@@ -24,6 +24,11 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     disabled: false,
   },
+  server: {
+    watch: {
+      ignored: ['**/dist/**', '**/node_modules/**'],
+    },
+  },
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },

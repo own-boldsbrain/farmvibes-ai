@@ -14,9 +14,9 @@ type Story = StoryObj<typeof Row>;
 const mockScale = scaleLinear().domain([0, 100]).range([0, 200]);
 
 export const Default: Story = {
- render: (args) => (
+ render: (arguments_) => (
  <svg width="400"height="50">
- <Row {...args}>
+ <Row {...arguments_}>
  <HorizontalBar className="bar"fill="#44ab60"range={[0, 75]} scale={mockScale} />
  </Row>
  </svg>

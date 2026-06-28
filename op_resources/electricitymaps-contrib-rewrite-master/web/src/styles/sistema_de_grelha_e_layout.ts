@@ -67,7 +67,7 @@ export class LayoutGrid {
    */
   public snapToBaseline(valuePx: number): number {
     const remainder = valuePx % this.config.baselinePx;
-    if (remainder === 0) return valuePx;
+    if (remainder === 0) {return valuePx;}
     
     // Arredonda para a unidade de linha de base mais próxima
     return valuePx + (this.config.baselinePx - remainder);

@@ -10,9 +10,9 @@ const meta: Meta<typeof TimeAxis> = {
 export default meta;
 type Story = StoryObj<typeof TimeAxis>;
 
-const mockDatetimes = Array.from({ length: 25 }).map((_, i) => {
+const mockDatetimes = Array.from({ length: 25 }).map((_, index) => {
  const d = new Date();
- d.setHours(d.getHours() - (24 - i));
+ d.setHours(d.getHours() - (24 - index));
  return d;
 });
 

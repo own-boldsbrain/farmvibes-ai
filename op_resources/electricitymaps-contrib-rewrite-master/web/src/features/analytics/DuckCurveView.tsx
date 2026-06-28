@@ -13,8 +13,8 @@ export default function DuckCurveView() {
   const [activeScenarioReport, setActiveScenarioReport] = useAtom(activeScenarioReportAtom);
   const [isScenarioReportGenerating, setIsScenarioReportGenerating] = useAtom(isScenarioReportGeneratingAtom);
 
-  const basePeakLoad = 85.0; // GW
-  const baseMiddayLoad = 78.0; // GW
+  const basePeakLoad = 85; // GW
+  const baseMiddayLoad = 78; // GW
   const netMiddayLoad = (baseMiddayLoad - mmgdCapacity).toFixed(1);
   const rampRate = (basePeakLoad - Number(netMiddayLoad)).toFixed(1);
 
@@ -57,7 +57,7 @@ export default function DuckCurveView() {
       } else {
         setActiveScenarioReport("Falha ao gerar o parecer técnico de estabilidade. Estrutura de dados inválida.");
       }
-    } catch (e) {
+    } catch {
       setActiveScenarioReport("Erro de conexão na requisição do relatório sintético.");
     } finally {
       setIsScenarioReportGenerating(false);

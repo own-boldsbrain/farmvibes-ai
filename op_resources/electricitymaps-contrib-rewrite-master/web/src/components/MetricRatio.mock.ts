@@ -5,7 +5,7 @@ export const mockMetricRatioValid = {
 };
 
 export const mockMetricRatioInvalid = {
-  value: NaN,
-  total: NaN,
+  value: Number.NaN,
+  total: Number.NaN,
   format: (v: number) => `${v}%`,
 };

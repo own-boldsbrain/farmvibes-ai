@@ -19,7 +19,7 @@ export const Default: Story = {
 
 export const PartialData: Story = {
  args: {
- value: NaN,
+ value: Number.NaN,
  total: 1000,
  format: (v: number) =>`${v}`,
  },

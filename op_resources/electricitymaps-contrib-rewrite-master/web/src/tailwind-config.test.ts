@@ -22,9 +22,9 @@ describe('Tailwind Configuration', () => {
 
   it('should have orthogonal border radius (0px)', () => {
     const borderRadius = config.theme.extend.borderRadius;
-    Object.values(borderRadius).forEach(value => {
+    for (const value of Object.values(borderRadius)) {
       expect(value).toBe('0px');
-    });
+    }
   });
 
   it('should have the Kinetic accent palette defined', () => {

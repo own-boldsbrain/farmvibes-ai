@@ -22,9 +22,9 @@ describe('<CarbonIntensityDisplay />', () => {
   it('renders custom square color indicator if withSquare is true', () => {
     const { container } = render(<CarbonIntensityDisplay {...mockCarbonIntensityDisplayWithSquare} />);
     const square = container.querySelector('.h-2.w-2');
-    const styleAttr = square?.getAttribute('style') || '';
+    const styleAttribute = square?.getAttribute('style') || '';
     // The color scale mock maps high values to rgb(255,0,0)
-    expect(styleAttr.replace(/\s+/g, '')).toContain('background-color:rgb(255,0,0)');
+    expect(styleAttribute.replace(/\s+/g, '')).toContain('background-color:rgb(255,0,0)');
   });
 
   it('renders fallback question mark when intensity is undefined', () => {

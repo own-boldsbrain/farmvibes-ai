@@ -21,17 +21,17 @@ describe('<OnboardingModalInner />', () => {
     expect(screen.queryByText('Trans-step2')).toBeNull();
 
     // Find and click the next chevron button
-    const nextBtn = container.querySelector('button[class*="pl-1"]');
-    expect(nextBtn).toBeInTheDocument();
-    fireEvent.click(nextBtn!);
+    const nextButton = container.querySelector('button[class*="pl-1"]');
+    expect(nextButton).toBeInTheDocument();
+    fireEvent.click(nextButton!);
 
     // Next state: Step 2 active
     expect(screen.getByText('Trans-step2')).toBeInTheDocument();
 
     // Verify Checkmark button renders on final page index and calls dismiss handler
-    const finishBtn = container.querySelector('button[class*="bg-brand-green"]');
-    expect(finishBtn).toBeInTheDocument();
-    fireEvent.click(finishBtn!);
+    const finishButton = container.querySelector('button[class*="bg-brand-green"]');
+    expect(finishButton).toBeInTheDocument();
+    fireEvent.click(finishButton!);
     expect(handleDismiss).toHaveBeenCalledTimes(1);
   });
 });

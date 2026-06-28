@@ -32,7 +32,7 @@ export class ThemeManager {
   /**
    * Converte a especificação do Gradiente Cinético em uma string CSS inline utilizável
    */
-  public getKineticGradientCSS(angleDegrees: number = 90): string {
+  public getKineticGradientCSS(angleDegrees = 90): string {
     return `linear-gradient(${angleDegrees}deg, ${KineticGradient.Stop1} 0%, ${KineticGradient.Stop2} 50%, ${KineticGradient.Stop3} 100%)`;
   }
 
@@ -41,13 +41,13 @@ export class ThemeManager {
    * Útil para integrar com frameworks como Tailwind CSS.
    */
   public applyToDOM(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     const root = document.documentElement;
     const { colors, layout, name } = this.currentTheme;
 
     // Injeção de Meta-Atributos de Depuração
-    root.setAttribute('data-theme', name);
+    root.dataset.theme = name;
     root.setAttribute('style', ''); // Reseta estilos injetados anteriormente
 
     // Definição das Variáveis CSS de Cores

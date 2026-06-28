@@ -13,6 +13,6 @@ export const Default: Story = {
  args: {
  numberOfEntries: 24,
  selectedIndex: 10,
- onChange: (idx: number) => console.log('Index changed to:', idx),
+ onChange: (index: number) => console.log('Index changed to:', index),
  },
 };

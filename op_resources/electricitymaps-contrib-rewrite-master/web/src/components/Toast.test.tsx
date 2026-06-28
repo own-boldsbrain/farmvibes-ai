@@ -28,8 +28,8 @@ describe('<Toast />', () => {
   it('triggers action callback when action button is clicked', () => {
     const handleAction = vi.fn();
     render(<Toast {...mockToastWithAction} toastAction={handleAction} />);
-    const actionBtn = screen.getByRole('button', { name: /Retry Connection/ });
-    fireEvent.click(actionBtn);
+    const actionButton = screen.getByRole('button', { name: /Retry Connection/ });
+    fireEvent.click(actionButton);
     expect(handleAction).toHaveBeenCalledTimes(1);
   });
 });

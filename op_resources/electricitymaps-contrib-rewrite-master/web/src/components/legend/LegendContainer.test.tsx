@@ -9,8 +9,8 @@ let mockDatetime = { index: 0 };
 
 vi.mock('jotai', () => ({
   useAtom: (atom: any) => {
-    if (atom === 'solarLayerEnabledAtom') return [mockSolarToggle];
-    if (atom === 'windLayerAtom') return [mockWindToggle];
+    if (atom === 'solarLayerEnabledAtom') {return [mockSolarToggle];}
+    if (atom === 'windLayerAtom') {return [mockWindToggle];}
     return [mockDatetime];
   },
 }));

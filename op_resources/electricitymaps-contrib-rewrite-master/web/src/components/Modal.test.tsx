@@ -19,8 +19,8 @@ vi.mock('@radix-ui/react-dialog', () => {
     Close: ({ children, onClick }: any) => (
       <button
         onClick={() => {
-          if (onClick) onClick();
-          if (activeOnOpenChange) activeOnOpenChange(false);
+          if (onClick) {onClick();}
+          if (activeOnOpenChange) {activeOnOpenChange(false);}
         }}
         aria-label="Close"
       >
@@ -41,8 +41,8 @@ describe('<Modal />', () => {
   it('triggers setIsOpen callback when close button is clicked', () => {
     const handleClose = vi.fn();
     render(<Modal {...mockModalProps} setIsOpen={handleClose} />);
-    const closeBtn = screen.getByRole('button', { name: 'Close' });
-    fireEvent.click(closeBtn);
+    const closeButton = screen.getByRole('button', { name: 'Close' });
+    fireEvent.click(closeButton);
     expect(handleClose).toHaveBeenCalledWith(false);
   });
 });

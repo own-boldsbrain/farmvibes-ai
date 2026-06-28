@@ -13,9 +13,9 @@ type Story = StoryObj<typeof Axis>;
 const mockScale = scaleLinear().domain([0, 100]).range([0, 300]);
 
 export const Default: Story = {
- render: (args) => (
+ render: (arguments_) => (
  <svg width="400"height="100">
- <Axis {...args} />
+ <Axis {...arguments_} />
  </svg>
  ),
  args: {

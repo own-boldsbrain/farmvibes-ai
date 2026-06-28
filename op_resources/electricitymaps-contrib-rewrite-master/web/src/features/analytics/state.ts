@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-export const mmgdCapacityAtom = atom<number>(9.0);
+export const mmgdCapacityAtom = atom<number>(9);
 
 export interface ChatMessage {
   role: 'user' | 'model';

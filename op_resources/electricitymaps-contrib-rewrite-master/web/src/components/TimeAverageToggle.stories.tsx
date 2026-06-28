@@ -14,7 +14,7 @@ import { useState } from 'react';
 
 export const All: Story = {
  render: () => {
- const [val, setVal] = useState(TimeAverages.HOURLY);
- return <TimeAverageToggle timeAverage={val} onToggleGroupClick={setVal} />;
+ const [value, setValue] = useState(TimeAverages.HOURLY);
+ return <TimeAverageToggle timeAverage={value} onToggleGroupClick={setValue} />;
  },
 };
